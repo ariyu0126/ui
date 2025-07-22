@@ -1,0 +1,15 @@
+
+.source-code-viewer {
+    margin-top:32px;
+    pre {
+        margin:0;
+        background-color: var(--color-gray-100);
+        border: 1px solid var(--color-gray-300);
+        border-radius: 4px;
+        padding: 16px;
+        overflow-x: auto;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        font-size:12px;
+    }
+  }

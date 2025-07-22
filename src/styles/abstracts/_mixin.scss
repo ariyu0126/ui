@@ -1,0 +1,54 @@
+@use './variables' as *;
+@use './media' as m;
+
+/* media query */
+@mixin MO {
+  @include m.respond-to('MO') {
+    @content;
+  }
+}
+@mixin TAB {
+  @include m.respond-to('TAB') {
+    @content;
+  }
+}
+@mixin PC {
+  @include m.respond-to('PC') {
+    @content;
+  }
+}
+
+
+/* font style */
+@mixin font-style($type, $weight: null) {
+  @if $type == 'default' {
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: if($weight != null, $weight, 400);
+  }
+  @else if $type == 'heading1' {
+    font-size: 36px;
+    line-height:1.334;
+    font-weight: if($weight != null, $weight, 700);
+  }
+  @else if $type == 'heading2' {
+    font-size: 28px;
+    line-height:1.358;
+    font-weight: if($weight != null, $weight, 400);
+  }
+  @else if $type == 'heading3' {
+    font-size: 24px;
+    line-height:1.334;
+    font-weight: if($weight != null, $weight, 400);
+  }
+  @else if $type == 'small' {
+    font-size: 14px;
+    line-height:1.429;
+    font-weight: if($weight != null, $weight, 400);
+  }
+  @else if $type == 'xsmall' {
+    font-size: 12px;
+    line-height:1.334;
+    font-weight: if($weight != null, $weight, 400);
+  }
+}

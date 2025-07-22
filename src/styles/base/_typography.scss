@@ -1,0 +1,20 @@
+@use '../abstracts' as *;
+
+body {
+    @include font-style('default');
+}
+h1 {
+    @include font-style('heading1');
+}
+h2 {
+    @include font-style('heading2');
+}
+h3 {
+    @include font-style('heading3');
+}
+.small {
+    @include font-style('small');
+}
+.xsmall {
+    @include font-style('xsmall');
+}

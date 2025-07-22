@@ -1,0 +1,45 @@
+@use 'sass:map';
+@use '../abstracts' as *;
+
+
+$grid-columns: 12;
+$grid-gutter: map.get($padding-base, 'PC');
+
+.row {
+  display: grid;
+  grid-template-columns: repeat($grid-columns, 1fr);
+  // margin-left: -($grid-gutter);
+  // margin-right: -($grid-gutter);
+  gap: $grid-gutter;
+  width: 100%;
+  box-sizing: border-box;
+}
+.col {
+  padding-left: $grid-gutter;
+  padding-right: $grid-gutter;
+}
+
+@for $i from 1 through $grid-columns {
+  .col-#{$i} {
+    @extend .col;
+    grid-column: span $i;
+  }
+}
+
+@include TAB {
+  $grid-gutter: map.get($padding-base, 'TAB');
+  @for $i from 1 through $grid-columns {
+    .col-md-#{$i} {
+      grid-column: span $i;
+    }
+  }
+}
+
+@include MO {
+  $grid-gutter: map.get($padding-base, 'MO');
+  @for $i from 1 through $grid-columns {
+    .col-sm-#{$i} {
+      grid-column: span $i;
+    }
+  }
+}

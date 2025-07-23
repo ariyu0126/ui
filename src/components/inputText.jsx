@@ -65,9 +65,6 @@ export default function InputText({
         setTouched(true);
         setHintVisible(false);
         validate();
-        // if (validateOnBlur) {
-        //     validate();
-        // }
     }
 
     const validate = () => {
@@ -89,12 +86,21 @@ export default function InputText({
             }
         }
 
-        if (type === 'number' || type === 'tel') {
+        if (type === 'number') {
             if (isNaN(currentValue)) {
                 setErrorMessage('숫자만 입력해주세요.');
                 return false;
             }
         }
+
+        if (type === 'tel') {
+            const telRegex = /^01([0|1|6|7|8|9])-?([0-9]{4})-?([0-9]{4})$/;
+            if (!telRegex.test(currentValue)) {
+                setErrorMessage('전화번호 형식이 올바르지 않습니다.');
+                return false;
+            }
+        }
+
         setErrorMessage('');
         return true;
     }

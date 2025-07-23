@@ -1,8 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import Button from "@/components/Button";
-import SourceCodeViewer from "@/components/SourceCodeViewer";
+import { Button, SourceCodeViewer } from "@/components";
 import '@/styles/pages/playground.scss';
 
 

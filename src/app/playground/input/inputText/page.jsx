@@ -1,9 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import InputText from "@/components/inputText";
-import Button from "@/components/Button";
-import SourceCodeViewer from "@/components/SourceCodeViewer";
+import InputText from "@/components/InputText";
+import { SourceCodeViewer } from "@/components";
 import '@/styles/pages/playground.scss';
 
 export default function InputTextPlayground() {

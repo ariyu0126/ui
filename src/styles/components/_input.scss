@@ -3,7 +3,7 @@
 
 .input {
     &__text {
-        padding-bottom:1em;
+        padding-bottom:1.3em;
         position:relative;
         display:inline-block;
         &-wrapper {
@@ -19,7 +19,7 @@
                 font-size:12px;
                 position:absolute;
                 bottom:0;
-                left:12px;
+                left:8px;
                 color:var(--color-error);
             }
             .hint-message {

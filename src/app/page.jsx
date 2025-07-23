@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import SourceCodeViewer from "@/components/SourceCodeViewer";
+import { SourceCodeViewer } from "@/components";
 import '@/styles/pages/playground.scss';
 import { buildPageMetadata } from '@/lib/seo';
 

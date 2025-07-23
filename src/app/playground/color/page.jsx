@@ -1,5 +1,4 @@
 import '@/styles/pages/playground.scss';
-import Head from 'next/head';
 
 export default function ColorPlayground() {
     const colors = [
@@ -14,10 +13,6 @@ export default function ColorPlayground() {
     ];
     return (
         <>
-            <Head>
-                <title>컬러</title>
-                <meta name="description" content="컬러 정의" />
-            </Head>
             <div className="playground">
                 <h1>Color</h1>
                 {

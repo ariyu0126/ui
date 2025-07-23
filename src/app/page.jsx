@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import SourceCodeViewer from "@/components/SourceCodeViewer";
 import '@/styles/pages/playground.scss';
+import { buildPageMetadata } from '@/lib/seo';
+
 
 const code = `
   /src
@@ -120,9 +122,9 @@ export default function Home() {
       </ol>
 
       <h3>참고 사이트</h3>
-      <a href="https://ant.design/components/list" target="_blank">https://ant.design/components/list</a>
-      <a href="https://animata.design/docs/card/case-study-card" target="_blank">https://animata.design/docs/card/case-study-card</a>
-      <a href="https://mui.com/material-ui/all-components/" target="_blank">https://mui.com/material-ui/all-components/</a>
+      <a href="https://mui.com/material-ui/all-components/" target="_blank">https://mui.com/material-ui/all-components/</a><br />
+      <a href="https://ant.design/components/button" target="_blank">https://ant.design/components/button</a><br />
+      <a href="https://animata.design/docs/button" target="_blank">https://animata.design/docs/button</a><br />
       <a href="https://www.figma.com/community/file/1157761560874207208/v11-carbon-design-system" target="_blank">https://www.figma.com/community/file/1157761560874207208/v11-carbon-design-system</a>
     </div>
   );

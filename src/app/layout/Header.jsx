@@ -3,7 +3,7 @@ export default function Header() {
     <header className="layout__header" role="header">
       <div className="layout__block row">
         <div className="layout__header-content col-3">
-          <a href="/">UI 컴포넌트</a>
+          <a href="https://ari-ui.netlify.app/">UI 컴포넌트</a>
         </div>
         <div className="layout__header-menu col-9">
           {/* <ul aria-label="메뉴">

@@ -3,13 +3,35 @@
 
 .input {
     &__text {
+        padding-bottom:1em;
+        position:relative;
+        display:inline-block;
         &-wrapper {
+            width:auto;
+            height:100%;
+            display:inline-block;
             position:relative;
         }
         &-error,
         &-hint {
-            padding-bottom:1em;
-        }        
+            .error-message,
+            .hint-message {
+                font-size:12px;
+                position:absolute;
+                bottom:0;
+                left:12px;
+                color:var(--color-error);
+            }
+            .hint-message {
+                color:var(--color-point);
+            }
+        }
+        &:has(.size--full) {
+            width:100%;
+            .input__text-wrapper {
+                width:100%;
+            }
+        }  
     }
 
     &__default {

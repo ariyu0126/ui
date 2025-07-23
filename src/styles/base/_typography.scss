@@ -2,6 +2,7 @@
 
 body {
     @include font-style('default');
+    font-family: var(--font-noto-sans-kr);
 }
 h1 {
     @include font-style('heading1');
@@ -17,4 +18,9 @@ h3 {
 }
 .xsmall {
     @include font-style('xsmall');
+}
+b,
+strong,
+.bold {
+    font-weight: 700;
 }

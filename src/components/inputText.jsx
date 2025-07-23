@@ -1,6 +1,6 @@
+
 import { useId, useState } from 'react';
 import IconReset from '/public/xmark-large-svgrepo-com.svg';
-
 
 export default function InputText({
     size='md',
@@ -14,6 +14,9 @@ export default function InputText({
     label='',
     value: propValue,
     onChange,
+    // validateRef,
+    // validateOnBlur = true,
+    // validateOnSubmit = false,
 }) {
     const isControlled = propValue !== undefined;
     const [touched, setTouched] = useState(false);
@@ -27,11 +30,12 @@ export default function InputText({
     const hintId = `${inputId}-hint`;
 
     const hasError = error || errorMessage;
-    const showErrorMessage = touched && hasError;
     const showHintMessage = hintVisible && !hasError;
+    const showErrorMessage = touched && hasError && !hintVisible; // 힌트가 사라질 때 에러 메시지 표시
 
     const handleFocus = () => {
-        setHintVisible(true);
+        setTouched(true);
+        if (hint) setHintVisible(true);
     }
 
     const handleChange = (e) => {
@@ -39,10 +43,15 @@ export default function InputText({
         const newValue = e.target.value;
 
         if (!readonly) {
-            if(!isControlled) {
+            if (!isControlled) {
                 setInternalValue(newValue);
             }
             onChange?.(newValue);
+        }
+
+        // 입력값이 변경되면 에러 메시지를 초기화
+        if (newValue.trim() !== '') {
+            setErrorMessage('');
         }
     }
 
@@ -56,11 +65,19 @@ export default function InputText({
         setTouched(true);
         setHintVisible(false);
         validate();
+        // if (validateOnBlur) {
+        //     validate();
+        // }
     }
 
     const validate = () => {
+        // if (hasError && !currentValue) {
+        //     setErrorMessage(`${label || '입력값'}을(를) 입력해주세요.`);
+        //     return false;
+        // }
+
         if (required && currentValue.trim() === '') {
-            setErrorMessage('필수 입력 사항입니다.');
+            setErrorMessage(`${label || '입력값'} 은(는) 필수 입력 사항입니다.`);
             return false;
         }
 
@@ -72,9 +89,9 @@ export default function InputText({
             }
         }
 
-        if (type === 'number') {
+        if (type === 'number' || type === 'tel') {
             if (isNaN(currentValue)) {
-                setErrorMessage('숫자를 입력해주세요.');
+                setErrorMessage('숫자만 입력해주세요.');
                 return false;
             }
         }
@@ -82,14 +99,13 @@ export default function InputText({
         return true;
     }
 
-    console.log('error:', error);
-console.log('hint:', hint);
-console.log('클래스:', `
-  input__text
-  ${error ? 'input__text-error' : ''}
-  ${required ? 'input__text-required' : ''}
-  ${hint ? 'input__text-hint' : ''}
-`);
+    // if (validateRef) {
+    //     validateRef.current = () => {
+    //         if (validateOnSubmit) {
+    //             validate();
+    //         }
+    //     };
+    // }
 
     return (
         <span className={`input__text ${error || errorMessage ? 'input__text-error' : ''} ${required ? 'input__text-required' : ''} ${hint ? 'input__text-hint' : ''}`}
@@ -112,7 +128,7 @@ console.log('클래스:', `
                     aria-describedby={hasError ? errorId : hint}
                 />
                 {
-                    !readonly && currentValue !== '' &&
+                    !readonly && currentValue !== '' && type !== 'number' &&
                     <button className="button__reset" onClick={handleReset} aria-label="reset">
                        <IconReset />
                     </button>

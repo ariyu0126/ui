@@ -11,6 +11,14 @@ const notoSansKr = Noto_Sans_KR({
   variable: "--font-noto-sans-kr",
 });
 
+export const metadata = {
+  title: {
+    default: 'React UI',
+    template: '%s | React UI',
+  },
+  description: 'React UI 컴포넌트 모음집',
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="ko">

@@ -1,10 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import Head from 'next/head';
 import Button from "@/components/Button";
 import SourceCodeViewer from "@/components/SourceCodeViewer";
 import '@/styles/pages/playground.scss';
+
 
 export default function ButtonPlayground() {
   const [buttonProps, setButtonProps] = useState({
@@ -60,10 +60,6 @@ export default function ButtonPlayground() {
 
   return (
     <>
-      <Head>
-        <title>버튼</title>
-        <meta name="description" content="버튼 컴포넌트" />
-      </Head>
       <div className="playground">
         <h1>Button</h1>
         <h2>1-1. Button 속성</h2>

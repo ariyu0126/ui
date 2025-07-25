@@ -1,15 +1,18 @@
 import path from 'path';
+import { fileURLToPath } from 'url';
+
+// __dirname 대체 코드
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   webpack(config) {
-    // 1. alias 설정 추가
     config.resolve.alias = {
       ...(config.resolve.alias ?? {}),
       '@': path.resolve(__dirname, 'src'),
     };
 
-    // 2. 기존 svg 설정 유지
     config.module.rules.push({
       test: /\.svg$/,
       use: ['@svgr/webpack'],

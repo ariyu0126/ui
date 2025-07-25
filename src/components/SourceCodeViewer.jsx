@@ -1,11 +1,13 @@
+'use client';
+
 import { useState } from 'react';
 import Button from "@/components/Button";
 
-export default function SourceCodeViewer({ code, btnText='코드', hidden=true, copy=false }) {
+const SourceCodeViewer = ({ code, btnText='코드', hidden=true, copy=false, className }) => {
   const [showCode, setShowCode] = useState(!hidden);
 
   return (
-    <div className="source-code-viewer">
+    <div className={`source-code-viewer ${className}`}>
       {
         hidden &&
         <Button color='dark' style='fill' size='sm' align='right' onClick={() => setShowCode(!showCode)} children={showCode ? `Hide ${btnText}` : `Show ${btnText}`} />
@@ -23,3 +25,5 @@ export default function SourceCodeViewer({ code, btnText='코드', hidden=true, 
     </div>
   );
 }
+
+export default SourceCodeViewer

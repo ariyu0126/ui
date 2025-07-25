@@ -1,4 +1,4 @@
-export default function Footer() {
+const Footer = () => {
   return (
     <footer className="layout__footer" role="contentinfo">
       <div className="layout__footer-content">
@@ -7,3 +7,5 @@ export default function Footer() {
     </footer>
   );
 }
+
+export default Footer;

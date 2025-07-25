@@ -1,6 +1,7 @@
+import Typography from '@/components/Typography/Index'
 import '@/styles/pages/playground.scss';
 
-export default function ColorPlayground() {
+const ColorPlayground = () => {
     const colors = [
         { name: 'Black', variable: '--color-black' },
         { name: 'White', variable: '--color-white' },
@@ -14,19 +15,23 @@ export default function ColorPlayground() {
     return (
         <>
             <div className="playground">
-                <h1>Color</h1>
-                {
-                    colors.map((color) => (
-                        <div key={color.variable} className="color-swatch">
-                            <div className="color-box" style={{ backgroundColor: `var(${color.variable})` }}></div>
-                            <div className="color-info">
-                                <p className="color-name">{color.name}</p>
-                                <p className="color-value">{color.variable}</p>
+                <Typography.Title>Color</Typography.Title>
+                <div className="playground__inner">
+                    {
+                        colors.map((color) => (
+                            <div key={color.variable} className="color-swatch">
+                                <div className="color-box" style={{ backgroundColor: `var(${color.variable})` }}></div>
+                                <div className="color-info">
+                                    <p className="color-name">{color.name}</p>
+                                    <p className="color-value">{color.variable}</p>
+                                </div>
                             </div>
-                        </div>
-                    ))
-                }
+                        ))
+                    }
+                </div>
             </div>
         </>
     );
 }
+
+export default ColorPlayground;

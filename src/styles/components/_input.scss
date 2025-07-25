@@ -43,6 +43,9 @@
             outline: 2px solid var(--color-point);
             z-index:1;
         }
+        &:read-only:focus-visible {
+            outline-color: var(--color-gray-100); // 원하는 색상으로 변경
+        }
 
         &.size--lg {
             height: map.get($height, 'lg');
@@ -55,15 +58,32 @@
     }
 }
 
-.button__reset {
-    display: block;
-    position:absolute;
-    top:50%;
-    right:4px;
-    transform:translateY(-50%);
-    svg {
-        width: 1em !important;
-        height: 1em !important;
-        margin-top:4px;
+.button {
+    &__reset {
+        display: block;
+        position:absolute;
+        top:50%;
+        right:4px;
+        transform:translateY(-50%);
+        svg {
+            width: 1em !important;
+            height: 1em !important;
+            margin-top:4px;
+        }
+        + .button__eye {
+            right: 24px;
+        }
+    }
+    &__eye {
+        display: block;
+        position:absolute;
+        top:50%;
+        right: 4px;
+        transform:translateY(-50%);
+        svg {
+            width: 1em !important;
+            height: 1em !important;
+            margin-top:4px;
+        }
     }
 }

@@ -1,8 +1,12 @@
-export default function InputLayout({children}) {
+import Typography from '@/components/Typography/Index'
+
+const InputLayout = ({children}) => {
     return (
-        <div className="playground">
-            <h1>Input</h1>
+        <div>
+            <Typography.Title>Input</Typography.Title>
             {children}
         </div>
     )
 }
+
+export default InputLayout;

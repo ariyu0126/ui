@@ -41,6 +41,17 @@
     line-height:1.334;
     font-weight: if($weight != null, $weight, 400);
   }
+  @else if $type == 'heading4' {
+    font-size: 20px;
+    line-height:1.334;
+    font-weight: if($weight != null, $weight, 400);
+  }
+  @else if $type == 'heading5' {
+    font-size: 18px;
+    line-height:1.334;
+    font-weight: if($weight != null, $weight, 400);
+  }
+  
   @else if $type == 'small' {
     font-size: 14px;
     line-height:1.429;

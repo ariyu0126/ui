@@ -54,7 +54,7 @@ const code = `
         main.scss                 // 전역 SCSS
 `;
 
-export default function Home() {
+const Home = () => {
   return (
     <div className="playground playground--home">
       <h1>Home</h1>
@@ -129,3 +129,5 @@ export default function Home() {
     </div>
   );
 }
+
+export default Home;

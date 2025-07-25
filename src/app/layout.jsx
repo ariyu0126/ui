@@ -19,7 +19,7 @@ export const metadata = {
   description: 'React UI 컴포넌트 모음집',
 };
 
-export default function RootLayout({ children }) {
+const RootLayout = ({ children }) => {
   return (
     <html lang="ko">
       <head>
@@ -43,3 +43,5 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+
+export default RootLayout;

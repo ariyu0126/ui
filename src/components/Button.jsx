@@ -8,8 +8,8 @@ const icons = {
   down: <IconDownLoad />,
 };
 
-export default function Button({ size = 'md', style='fill', icon, align='left', color = 'white', disabled = false, children = '버튼', onClick }) {
-    const buttonClass = `button__default size--${size} align--${align} color--${color} style--${style}`;
+const Button = ({ size = 'md', style='fill', icon, align='left', color = 'white', disabled = false, children = '버튼', onClick, className }) => {
+    const buttonClass = `button__default size--${size} align--${align} color--${color} style--${style} ${className}`;
 
     return (
         <button className={buttonClass} disabled={disabled} onClick={onClick}>
@@ -18,3 +18,5 @@ export default function Button({ size = 'md', style='fill', icon, align='left', 
         </button>
     );
 }
+
+export default Button;

@@ -4,23 +4,88 @@ body {
     @include font-style('default');
     font-family: var(--font-noto-sans-kr);
 }
-h1 {
+
+/* layout */
+.typography--layout {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* heading */
+h1,
+.title__h1 {
     @include font-style('heading1');
 }
-h2 {
+h2,
+.title__h2 {
     @include font-style('heading2');
 }
-h3 {
+h3,
+.title__h3 {
     @include font-style('heading3');
 }
-.small {
+h4,
+.title__h4 {
+    @include font-style('heading4');
+}
+h5,
+.title__h5 {
+    @include font-style('heading5');
+}
+
+/* font size */
+.size__default {
+    @include font-style('default');
+}
+.size__small {
     @include font-style('small');
 }
-.xsmall {
+.size__xsmall {
     @include font-style('xsmall');
 }
+
+
+/* font weight */
+.text__100 {
+    font-weight:100;
+}
+.text__400 {
+    font-weight:400;
+}
+
+.text__700,
 b,
 strong,
 .bold {
-    font-weight: 700;
+    font-weight:700;
+}
+
+/* font color */
+.color__black {
+    color: var(--color-black);
+}
+.color__white {
+    color: var(--color-white);
+}
+.color__gray100 {
+    color: var(--color-gray-100);
+}
+.color__gray300 {
+    color: var(--color-gray-300);
+}
+.color__gray600 {
+    color: var(--color-gray-600);
+}
+.color__gray800 {
+    color: var(--color-gray-800);
+}
+.color__blue {
+    color: var(--color-blue);
+}
+.color__point {
+    color: var(--color-point);
+}
+.color__error {
+    color: var(--color-error);
 }

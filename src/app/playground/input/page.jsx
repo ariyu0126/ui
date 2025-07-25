@@ -1,10 +1,11 @@
+import Typography from '@/components/Typography/Index'
 import InputTextPlayground from './inputText/page';
 import InputRadioPlayground from './inputRadio/page';
 
-export default function InputPlayground() {
+const InputPlayground = () => {
     return (
-        <div>
-            <h2>input - text</h2>
+        <div className="playground">
+            <Typography.Title level="2">input - text</Typography.Title>
             <InputTextPlayground />
 
             {/* <h2>input - radio</h2>
@@ -12,3 +13,5 @@ export default function InputPlayground() {
         </div>
     )
 }
+
+export default InputPlayground;

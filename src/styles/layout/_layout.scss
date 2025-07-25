@@ -26,7 +26,7 @@
     }
   }
   &__header {
-    height:calc(map.get($padding-base, 'PC') * 2);
+    max-height:calc(map.get($padding-base, 'PC') * 2);
     padding: 16px 0;
     position: sticky;
     top:0;

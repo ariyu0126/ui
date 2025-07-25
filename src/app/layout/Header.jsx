@@ -1,4 +1,4 @@
-export default function Header() {
+const Header = () => {
   return (
     <header className="layout__header" role="header">
       <div className="layout__block row">
@@ -22,3 +22,5 @@ export default function Header() {
     </header>
   );
 }
+
+export default Header;

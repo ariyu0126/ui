@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { InputText, SourceCodeViewer } from "@/components";
+import { SourceCodeViewer } from "@/components";
 import Typography from '@/components/Typography/Index'
 import '@/styles/pages/playground.scss';
 

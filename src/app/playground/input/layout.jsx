@@ -1,4 +1,4 @@
-import Typography from '@/components/Typography/Index'
+import Typography from '@/components/Typography'
 
 const InputLayout = ({children}) => {
     return (

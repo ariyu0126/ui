@@ -1,4 +1,4 @@
-import Typography from '@/components/Typography/Index'
+import Typography from '@/components/Typography'
 import InputTextPlayground from './inputText/page';
 import InputRadioPlayground from './inputRadio/page';
 

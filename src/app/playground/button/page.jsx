@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Button, SourceCodeViewer } from "@/components";
-import Typography from '@/components/Typography/Index'
+import Typography from '@/components/Typography'
 import '@/styles/pages/playground.scss';
 
 

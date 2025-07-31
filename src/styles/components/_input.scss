@@ -3,20 +3,20 @@
 
 .input {
     &__text {
-        padding-bottom:1.3em;
+        padding-bottom:1.3rem;
         position:relative;
-        display:inline-block;
+        display:inline-flex;
         &-wrapper {
             width:auto;
             height:100%;
-            display:inline-block;
+            display:inline-flex;
             position:relative;
         }
         &-error,
         &-hint {
             .error-message,
             .hint-message {
-                font-size:12px;
+                @include font-style('xsmall');
                 position:absolute;
                 bottom:0;
                 left:8px;
@@ -36,7 +36,7 @@
 
     &__default {
         height: map.get($height, 'md');
-        padding:0 32px 0 16px;
+        padding:0 var(--spacing-xl) 0 var(--spacing-base);
         border:1px solid var(--color-gray-300);
         border-radius:12px;
         &:focus-visible {
@@ -50,7 +50,7 @@
         &.size--lg {
             height: map.get($height, 'lg');
             padding:0 24px;
-            border-radius:16px;
+            border-radius:var(--spacing-base);
         }
         &.size--full {
             width:100%;

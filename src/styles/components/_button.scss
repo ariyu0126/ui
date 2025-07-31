@@ -4,7 +4,7 @@
 button {
     &.button__default {
         height: map.get($height, 'md');
-        padding: 0 16px;
+        padding: 0 var(--spacing-base);
         border-radius: 12px;
         border:none;
         cursor: pointer;

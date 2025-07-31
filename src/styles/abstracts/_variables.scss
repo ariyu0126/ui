@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 // color 
 :root {
   --color-black: #333;
@@ -9,25 +11,65 @@
   --color-blue: #001933;
   --color-point: #25e2cc;
   --color-error: #ff0000;
+
+  --spacing-xxs: 4px;  
+  --spacing-xs: 8px;  
+  --spacing-sm: 12px;  
+  --spacing-base: 16px;
+  --spacing-md: 20px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+
+  --font-size-xsmall: 12px;
+  --font-size-small: 14px;
+  --font-size-base: 16px;
+  --font-size-heading1: 36px;
+  --font-size-heading2: 28px;
+  --font-size-heading3: 24px;
+  --font-size-heading4: 20px;
+  --font-size-heading5: 18px;
+
+  --line-height-xsmall: 1.334;
+  --line-height-small: 1.429;
+  --line-height-base: 1.5;
+  --line-height-heading1: 1.334;
+  --line-height-heading2: 1.358;
+  --line-height-heading3: 1.334;
+  --line-height-heading4: 1.334;
+  --line-height-heading5: 1.334;
 }
 
 // media query
 $breakpoints: (
-  'MO' : 767px,
-  'TAB' : 1024px,
-  'PC' : 1280px,
-);
+  'MO': 767px,
+  'TAB': 1024px,
+  'PC': 1280px,
+) !default;
 
 // padding
 $padding-base: (
-  'MO' : 16px,
-  'TAB' : 32px,
-  'PC' : 32px,
-);
+  'MO': var(--spacing-base),
+  'TAB': var(--spacing-lg),
+  'PC': var(--spacing-lg),
+) !default;
 
 // height
 $height: (
-  'sm' : 32px,
-  'md' : 40px,
-  'lg' : 48px,
-);
+  'sm': 32px,
+  'md': 40px,
+  'lg': 48px,
+) !default;
+
+
+// grid
+$grid-columns: 12;
+$grid-gutter: map.get($padding-base, 'PC');
+
+// gap
+$gap-map: (
+  none: 0,
+  sm: 4px,
+  md: 8px,
+  lg: 16px,
+  xl: 32px
+)

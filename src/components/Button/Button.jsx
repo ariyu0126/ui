@@ -8,11 +8,22 @@ const icons = {
   down: <IconDownLoad />,
 };
 
-const Button = ({ size = 'md', style='fill', icon, align='left', color = 'white', disabled = false, children = '버튼', onClick, className }) => {
+const Button = ({
+    size = 'md',
+    style='fill',
+    icon,
+    align='left',
+    color = 'white',
+    disabled = false,
+    children = '버튼',
+    onClick,
+    className,
+    ...rest
+}) => {
     const buttonClass = `button__default size--${size} align--${align} color--${color} style--${style} ${className}`;
 
     return (
-        <button className={buttonClass} disabled={disabled} onClick={onClick}>
+        <button className={buttonClass} disabled={disabled} onClick={onClick} {...rest}>
             {icon && icon !== 'null' && <span className="button__icon">{icons[icon]}</span>}
             <span className="button__text">{children}</span>
         </button>

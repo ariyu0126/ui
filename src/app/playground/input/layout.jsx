@@ -1,9 +1,9 @@
-import Typography from '@/components/Typography'
+import '@/styles/pages/playground.scss';
+
 
 const InputLayout = ({children}) => {
     return (
         <div>
-            <Typography.Title>Input</Typography.Title>
             {children}
         </div>
     )

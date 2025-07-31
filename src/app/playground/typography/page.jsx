@@ -41,6 +41,7 @@ const TypographyPlayground = () => {
         textColor: '',
         ptag: false,
         size: 'default',
+        ellipsis: '',
     });
     const weightOptions = ['100', '400', '700'];
     const sizeOptions = ['default', 'small', 'xsmall'];
@@ -53,7 +54,7 @@ const TypographyPlayground = () => {
         }));
     };
     // code
-    const {level, weight, text, textClass, textColor, ptag, size} = textProps;
+    const {level, weight, text, textClass, textColor, ptag, size, ellipsis} = textProps;
     const textCode = `
         <Typography.Text
             level="${level}"
@@ -62,6 +63,7 @@ const TypographyPlayground = () => {
             textColor="${textColor}"
             ptag="${ptag}"
             size="${size}"
+            ellipsis="${ellipsis}"
         >
             ${text}
         </Typography.Text>
@@ -80,33 +82,34 @@ const TypographyPlayground = () => {
             textClass="${textClass}"
             ptag="${ptag}"
             size="${size}"
+            ellipsis="${ellipsis}"
         />
     `;
 
     return (
         <div className="playground">
-            <Typography.Title level={1}>Typography</Typography.Title>
+            <Typography.Title>Typography</Typography.Title>
             <Typography.Title level={2}>1. Title</Typography.Title>
             <div className="playground__inner">
                 <Typography.Title level={3}>1-1. Title 속성</Typography.Title>
                 <Typography.Text>- level : 1, 2, 3, 4, 5, 6</Typography.Text>
-                <Typography.Title level={1} children="Heading level 1" />
-                <Typography.Title level={2} children="Heading level 2" />
-                <Typography.Title level={3} children="Heading level 3" />
-                <Typography.Title level={4} children="Heading level 4" />
-                <Typography.Title level={5} children="Heading level 5" />
-                <Typography.Title level={6} children="Heading level 6" />
+                <Typography.Title level={1}>Heading level 1</Typography.Title>
+                <Typography.Title level={2}>Heading level 2</Typography.Title>
+                <Typography.Title level={3}>Heading level 3</Typography.Title>
+                <Typography.Title level={4}>Heading level 4</Typography.Title>
+                <Typography.Title level={5}>Heading level 5</Typography.Title>
+                <Typography.Title level={6}>Heading level 6</Typography.Title>
                 <br /><br />
                 <Typography.Text>- titleColor : black, white, gray100, gray300, gray600, gray800, blue, point, error</Typography.Text>
-                <Typography.Title level={2} titleColor="black" children="Color black" />
-                <Typography.Title level={2} titleColor="white" children="Color white" />
-                <Typography.Title level={2} titleColor="gray100" children="Color gray100" />
-                <Typography.Title level={2} titleColor="gray300" children="Color gray300" />
-                <Typography.Title level={2} titleColor="gray600" children="Color gray600" />
-                <Typography.Title level={2} titleColor="gray800" children="Color gray800" />
-                <Typography.Title level={2} titleColor="blue" children="Color blue" />
-                <Typography.Title level={2} titleColor="point" children="Color point" />
-                <Typography.Title level={2} titleColor="error" children="Color error" />
+                <Typography.Title level={2} titleColor="black">Color black</Typography.Title>
+                <Typography.Title level={2} titleColor="white">Color white</Typography.Title>
+                <Typography.Title level={2} titleColor="gray100">Color gray100</Typography.Title>
+                <Typography.Title level={2} titleColor="gray300">Color gray300</Typography.Title>
+                <Typography.Title level={2} titleColor="gray600">Color gray600</Typography.Title>
+                <Typography.Title level={2} titleColor="gray800">Color gray800</Typography.Title>
+                <Typography.Title level={2} titleColor="blue">Color blue</Typography.Title>
+                <Typography.Title level={2} titleColor="point">Color point</Typography.Title>
+                <Typography.Title level={2} titleColor="error">Color error</Typography.Title>
                 <br /><br />
                 <Typography.Text>- title : title 내용</Typography.Text>
                 <Typography.Title title="Title 속성" />
@@ -159,7 +162,7 @@ const TypographyPlayground = () => {
             </div>
 
 
-            <Typography.Title level={2} children="Text" />
+            <Typography.Title level={2}>Text</Typography.Title>
             <div className="playground__inner">
                 <Typography.Title level={3}>2-1. Text 속성</Typography.Title>
                 <Typography.Text>- weight : 100, 400, 700</Typography.Text>
@@ -189,6 +192,31 @@ const TypographyPlayground = () => {
                 <br /><br />
                 <Typography.Text>- text : 텍스트 내용</Typography.Text>
                 <Typography.Text text="Text 내용" />
+                <br /><br />
+                <Typography.Text>- ellipsis : 말줄임</Typography.Text>
+                <Typography.Text ellipsis={2}>  
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+                </Typography.Text>
+                <Typography.Text ellipsis={3}>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+                </Typography.Text>
+                <Typography.Text ellipsis={4}>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.                
+                </Typography.Text>
 
                 <Typography.Title level={3}>2-2. Text 예시</Typography.Title>
                 <ul>
@@ -231,7 +259,7 @@ const TypographyPlayground = () => {
                         </div>
                     </li>
                     <li>
-                        - ptag : {' '}                        
+                        - ptag : {' '}
                         <div className="button__group">
                             <button className={`button__tag ${textProps.ptag === true ? 'is-active' : ''}`} onClick={() => handleTextPropertyChange('ptag', true)}>true</button>
                             <button className={`button__tag ${textProps.ptag === false ? 'is-active' : ''}`} onClick={() => handleTextPropertyChange('ptag', false)}>false</button>
@@ -247,16 +275,20 @@ const TypographyPlayground = () => {
                             }
                         </div>
                     </li>
+                    <li>
+                        - ellipsis :{' '}
+                        <input type="number" min="2" max="5" value={textProps.ellipsis || ''} onChange={(e) => handleTextPropertyChange('ellipsis', e.target.value)} />
+                    </li>
                 </ul>
-                <Typography.Text weight={textProps.weight} textClass={textProps.textClass} textColor={textProps.textColor} ptag={textProps.ptag} size={textProps.size}>
+                <Typography.Text weight={textProps.weight} textClass={textProps.textClass} textColor={textProps.textColor} ptag={textProps.ptag} size={textProps.size} ellipsis={textProps.ellipsis}>
                     {textProps.text}
                 </Typography.Text>
                 <SourceCodeViewer code={textCode} />
             </div>
 
-            <Typography.Title level={2} children="Text Group" />
+            <Typography.Title level={2}>Text Group</Typography.Title>
             <div className="playground__inner">
-                <Typography title="Text group title" titleColor="point" level="3" text="Text group text" textColor="gray300" weight="700" size="default" />
+                <Typography title="Text group title" titleColor="point" level="3" text="Text group text" textColor="gray300" weight="700" size="default" ellipsis={2} />
                 <SourceCodeViewer code={typographyGroupCode} />
             </div>
         </div>

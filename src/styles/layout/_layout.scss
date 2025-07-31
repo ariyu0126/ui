@@ -27,12 +27,19 @@
   }
   &__header {
     max-height:calc(map.get($padding-base, 'PC') * 2);
-    padding: 16px 0;
+    padding: calc(map.get($padding-base, 'PC') / 2) 0;
     position: sticky;
     top:0;
     left:0;
     z-index:100;
     width:100%;
+    @include MO {
+      max-height:calc(map.get($padding-base, 'MO') * 2);
+      padding: calc(map.get($padding-base, 'MO') / 2) 0;
+    }
+    @include TAB {
+      max-height:calc(map.get($padding-base, 'TAB') * 2);
+    }
   }
   &__container{
     padding:map.get($padding-base, 'PC') 0;
@@ -51,8 +58,8 @@
     overflow-y:auto;
     display:flex;
     flex-direction: column;
-    gap:16px;
-    padding:16px 0;
+    gap:var(--spacing-base);
+    padding:var(--spacing-base) 0;
     a {
       &.is-active {
         font-weight:700;

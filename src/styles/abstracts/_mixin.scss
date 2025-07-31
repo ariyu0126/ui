@@ -22,44 +22,63 @@
 /* font style */
 @mixin font-style($type, $weight: null) {
   @if $type == 'default' {
-    font-size: 16px;
-    line-height: 1.5;
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
     font-weight: if($weight != null, $weight, 400);
   }
   @else if $type == 'heading1' {
-    font-size: 36px;
-    line-height:1.334;
+    font-size: var(--font-size-heading1); // 36px
+    line-height: var(--line-height-heading1);
     font-weight: if($weight != null, $weight, 700);
   }
   @else if $type == 'heading2' {
-    font-size: 28px;
-    line-height:1.358;
+    font-size: var(--font-size-heading2); // 28px
+    line-height: var(--line-height-heading2);
     font-weight: if($weight != null, $weight, 400);
   }
   @else if $type == 'heading3' {
-    font-size: 24px;
-    line-height:1.334;
+    font-size: var(--font-size-heading3); // 24px
+    line-height: var(--line-height-heading3);
     font-weight: if($weight != null, $weight, 400);
   }
   @else if $type == 'heading4' {
-    font-size: 20px;
-    line-height:1.334;
+    font-size: var(--font-size-heading4); // 20px
+    line-height: var(--line-height-heading4);
     font-weight: if($weight != null, $weight, 400);
   }
   @else if $type == 'heading5' {
-    font-size: 18px;
-    line-height:1.334;
+    font-size: var(--font-size-heading5); // 18px
+    line-height: var(--line-height-heading5);
     font-weight: if($weight != null, $weight, 400);
   }
-  
   @else if $type == 'small' {
-    font-size: 14px;
-    line-height:1.429;
+    font-size: var(--font-size-small); // 14px
+    line-height: var(--line-height-small);
     font-weight: if($weight != null, $weight, 400);
   }
   @else if $type == 'xsmall' {
-    font-size: 12px;
-    line-height:1.334;
+    font-size: var(--font-size-xsmall); // 12px
+    line-height: var(--line-height-xsmall);
     font-weight: if($weight != null, $weight, 400);
   }
+}
+
+/* ellipsis */
+@mixin ellipsis($lines) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+}
+
+
+/* flex */
+@mixin flex($direction: row, $justify: flex-start, $align: center, $gap: md, $wrap: nowrap) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  gap: map-get($gap-map, $gap);
+  flex-wrap: $wrap;
 }

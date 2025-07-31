@@ -1,11 +1,28 @@
 'use client';
 
 import { useState } from 'react';
-import { Input, SourceCodeViewer } from "@/components";
+import { Input, Button, SourceCodeViewer } from "@/components";
 import Typography from '@/components/Typography'
-import '@/styles/pages/playground.scss';
 
 const InputTextPlayground = () => {
+    const [errorTextProps, setErrorTextProps] = useState({
+        size: 'md',
+        type: 'text',
+        error: null,
+        hint: null,
+        required: false,
+        disabled: false,
+        readOnly: false,
+        placeholder: '',
+        label: '',
+        className: '',
+        validate: null,
+        min: '',
+        max: '',
+        errorBlur: false,
+        errorTouched: false,
+    });
+
     const [inputTextProps, setInputTextProps] = useState({
         size: 'md',
         type: 'text',
@@ -13,26 +30,37 @@ const InputTextPlayground = () => {
         hint: null,
         required: false,
         disabled: false,
-        readonly: false,
+        readOnly: false,
         placeholder: '',
         label: '',
+        className: '',
+        validate: null,
+        min: '',
+        max: '',
+        errorBlur: false,
+        errorTouched: false,
     });
 
     // button props
     const handlePropertyChange = (property, value) => {
-        const requiredOption = value === 'true' ? true : value === 'false' ? false : value;
-        const disabledOption = value === 'true' ? true : value === 'false' ? false : value;
-        const readonlyOption = value === 'true' ? true : value === 'false' ? false : value;
+        // const requiredOption = value === 'true' ? true : value === 'false' ? false : value;
+        // const disabledOption = value === 'true' ? true : value === 'false' ? false : value;
+        // const readOnlyOption = value === 'true' ? true : value === 'false' ? false : value;
+        // const errorBlurOption = value === 'true' ? true : value === 'false' ? false : value;
+        // const errorTouchedOption = value === 'true' ? true : value === 'false' ? false : value;
         setInputTextProps((prevProps) => ({
             ...prevProps,
             [property]: value,
         }));
     };
+    const handleReset = () => {
+        handlePropertyChange('value', '');
+    }
     const sizeOption = ['md', 'lg', 'full'];
     const typeOption = ['text', 'password', 'number', 'email', 'tel'];
 
     // code
-    const {size, error, hint, required, disabled, readonly,placeholder,label,value} = inputTextProps;
+    const {size, error, hint, required, disabled, readOnly, placeholder, label, value, min, max, errorBlur, errorTouched, } = inputTextProps;
     const typeComponent = {
         text: 'Text',
         password: 'Password',
@@ -46,22 +74,26 @@ const InputTextPlayground = () => {
     size="${size}"
     error="${error}"
     hint="${hint}"
+    ${required ? 'required' : ''}
+    disabled=${disabled ? 'true' : 'false'}
+    ${readOnly ? 'readOnly' : ''}
     placeholder="${placeholder}"
     label="${label}"
     value="${value}"
-    ${readonly ? 'readonly' : ''}
-    ${required ? 'required' : ''}
-    ${disabled ? 'disabled' : ''}
+    min="${min}"
+    max="${max}"
+    ${errorBlur ? 'errorBlur' : ''}
+    ${errorTouched ? 'errorTouched' : ''}
   />
 `;
-
     return (
-        <>
+        <div className="playground">
+            <Typography.Title>Input text</Typography.Title>
+            <Typography.Title level={2}>1. Input text 속성</Typography.Title>
             <div className="playground__inner">
-                <Typography.Title level="3">1-1. Input text 속성</Typography.Title>
                 <ul>
                     <li>
-                        <Typography.Title level="4">- size</Typography.Title>
+                        <Typography.Title level={3}>- size</Typography.Title>
                         <Typography.Text>md</Typography.Text>
                         <Input.Text size="md" /><br />
                         <Typography.Text>lg</Typography.Text>
@@ -70,7 +102,7 @@ const InputTextPlayground = () => {
                         <Input.Text size="full" />
                     </li>
                     <li>
-                        <Typography.Title level="4">- type</Typography.Title>
+                        <Typography.Title level={3}>- type</Typography.Title>
                         <Typography.Text>text</Typography.Text>
                         <Input.Text /><br />
                         <Typography.Text>password</Typography.Text>
@@ -83,14 +115,17 @@ const InputTextPlayground = () => {
                         <Input.Tel type="tel" placeholder="010-1234-5678" />
                     </li>
                     <li>
-                        <Typography.Title level="4">- 속성</Typography.Title>
+                        <Typography.Title level={3}>- 속성</Typography.Title>
                         <Typography.Text>label</Typography.Text>
                         <Input.Text label="라벨입니다" />
                         <Typography.Text>placeholder</Typography.Text>
                         <Input.Text placeholder="플레이스홀더입니다" />
                     </li>
                 </ul>
-                <Typography.Title level="3">1-2. Input text 설정</Typography.Title>
+            </div>
+
+            <Typography.Title level={2}>2. Input text 설정</Typography.Title>
+            <div className="playground__inner">
                 <ul>
                     <li>
                         <Typography.Text>- basic</Typography.Text>
@@ -102,22 +137,45 @@ const InputTextPlayground = () => {
                     </li>
                     <li>
                         <Typography.Text>- disabled</Typography.Text>
-                        <Input.Text disabled value="비활성화" />
+                        <Input.Text disabled={true} value="비활성화" />
                     </li>
                     <li>
-                        <Typography.Text>- readonly</Typography.Text>
-                        <Input.Text readonly value="읽기만 가능" />
+                        <Typography.Text>- readOnly</Typography.Text>
+                        <Input.Text readOnly value="읽기만 가능" />
                     </li>
                     <li>
-                        <Typography.Text>- error</Typography.Text>
-                        <Input.Text error="에러닷" />
+                        <Typography.Text>- errorBlur=true : blur할때 error 메시지 표시</Typography.Text>
+                        <Input.Text error="에러닷" errorBlur />
                     </li>
                     <li>
-                        <Typography.Text children="- hint" />
+                        <Typography.Text>- errorBlur=false : click할때 error 메시지 표시</Typography.Text>
+                        <Input.Text {...errorTextProps} />
+                        <Button onClick={() => {
+                            setErrorTextProps((prevProps) => ({
+                                ...prevProps,
+                                error: '에러닷',
+                                errorBlur: true,
+                                errorTouched: true,
+                            }));
+                        }}>click</Button>
+                    </li>
+                    <li>
+                        <Typography.Text>- hint</Typography.Text>
                         <Input.Text hint="힌트다" />
                     </li>
+                    <li>
+                        <Typography.Text>- min/max (min:3, max: 5, 숫자)</Typography.Text>
+                        <Input.Number min="3" max="5" />
+                    </li>
+                    <li>
+                        <Typography.Text>- min/max (min:3, max:5, 문자)</Typography.Text>
+                        <Input.Text min="3" max="5" />
+                    </li>
                 </ul>
-                <Typography.Title level="3">2-1. Input text 예시</Typography.Title>
+            </div>
+
+            <Typography.Title level={2}>3. Input text 예시</Typography.Title>
+            <div className="playground__inner">
                 <ul>
                     <li>
                         - size :{' '}
@@ -155,22 +213,6 @@ const InputTextPlayground = () => {
                             placeholder="힌트를 입력하세요"
                         />
                     </li>
-                    <li>
-                        - placeholder :{' '}
-                        <input
-                            value={inputTextProps.placeholder || ''}
-                            onChange={(e) => handlePropertyChange('placeholder', e.target.value)}
-                            placeholder="플레이스홀더를 입력하세요"
-                        />
-                    </li>
-                    <li>
-                        - label :{' '}
-                        <input
-                            value={inputTextProps.label || ''}
-                            onChange={(e) => handlePropertyChange('label', e.target.value)}
-                            label="label을 입력하세요"
-                        />
-                    </li>
                     <li>- required : 
                         <div className="button__group">
                             <button className={`button__tag ${inputTextProps.required === true ? 'is-active' : ''}`} onClick={() => handlePropertyChange('required', true)}>true</button>
@@ -194,12 +236,12 @@ const InputTextPlayground = () => {
                             </div>
                         )}
                     </li>
-                    <li>- readonly : 
+                    <li>- readOnly : 
                         <div className="button__group">
-                            <button className={`button__tag ${inputTextProps.readonly === true ? 'is-active' : ''}`} onClick={() => handlePropertyChange('readonly', true)}>true</button>
-                            <button className={`button__tag ${inputTextProps.readonly === false ? 'is-active' : ''}`} onClick={() => handlePropertyChange('readonly', false)}>false</button>
+                            <button className={`button__tag ${inputTextProps.readOnly === true ? 'is-active' : ''}`} onClick={() => handlePropertyChange('readOnly', true)}>true</button>
+                            <button className={`button__tag ${inputTextProps.readOnly === false ? 'is-active' : ''}`} onClick={() => handlePropertyChange('readOnly', false)}>false</button>
                         </div>
-                        {(inputTextProps.readonly === true) && (
+                        {(inputTextProps.readOnly === true) && (
                             <div>
                                 <br />
                                 - value :{' '}
@@ -211,11 +253,46 @@ const InputTextPlayground = () => {
                             </div>
                         )}
                     </li>
+                    <li>
+                        - placeholder :{' '}
+                        <input
+                            value={inputTextProps.placeholder || ''}
+                            onChange={(e) => handlePropertyChange('placeholder', e.target.value)}
+                            placeholder="플레이스홀더를 입력하세요"
+                        />
+                    </li>
+                    <li>
+                        - label :{' '}
+                        <input
+                            value={inputTextProps.label || ''}
+                            onChange={(e) => handlePropertyChange('label', e.target.value)}
+                            label="label을 입력하세요"
+                        />
+                    </li>
+                    <li>
+                        - min :{' '}
+                        <input
+                            value={inputTextProps.min || ''}
+                            onChange={(e) => handlePropertyChange('min', e.target.value)}
+                        />
+                    </li>
+                    <li>
+                        - max :{' '}
+                        <input
+                            value={inputTextProps.max || ''}
+                            onChange={(e) => handlePropertyChange('max', e.target.value)}
+                        />
+                    </li>
                 </ul>
-                <Input.Text {...inputTextProps} />
+                {/* <pre>{JSON.stringify(inputTextProps)}</pre> */}
+                <Input.Text
+                    {...inputTextProps}
+                    onChange={(e) => handlePropertyChange('value', e?.target?.value ?? e)}
+                    onReset={handleReset}
+                />
                 <SourceCodeViewer code={code} />
             </div>
-        </>
+        </div>
     )
 }
 

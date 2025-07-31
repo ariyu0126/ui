@@ -353,6 +353,11 @@ template {
   box-sizing:border-box;
 }
 
+html,
+body {
+  font-size:var(--font-size-base);
+}
+
 ul,
 ol,
 li,

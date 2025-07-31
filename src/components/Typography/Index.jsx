@@ -16,12 +16,13 @@ const Typography = ({
         textColor,
         ptag,
         size,
+        ellipsis,
         ...rest
     }) => {
     return (
         <div className={`typography--layout ${className}`}>
             {title && <Title level={level} title={title} titleClass={titleClass} titleColor={titleColor} {...rest}/>}   
-            {text && <Text weight={weight} text={text} textClass={textClass} textColor={textColor} ptag={ptag} size={size} {...rest} />}
+            {text && <Text weight={weight} text={text} textClass={textClass} textColor={textColor} ptag={ptag} size={size} ellipsis={ellipsis} {...rest} />}
         </div>
     )
 }

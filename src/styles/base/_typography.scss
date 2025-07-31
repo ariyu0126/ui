@@ -1,3 +1,4 @@
+@use 'sass:map';
 @use '../abstracts' as *;
 
 body {
@@ -9,7 +10,7 @@ body {
 .typography--layout {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: map.get($padding-base, 'PC');
 }
 
 /* heading */
@@ -35,13 +36,13 @@ h5,
 }
 
 /* font size */
-.size__default {
+.font__size-default {
     @include font-style('default');
 }
-.size__small {
+.font__size-small {
     @include font-style('small');
 }
-.size__xsmall {
+.font__size-xsmall {
     @include font-style('xsmall');
 }
 
@@ -88,4 +89,18 @@ strong,
 }
 .color__error {
     color: var(--color-error);
+}
+
+/* ellipsis */
+.ellipsis__2 {
+    @include ellipsis(2);
+}
+.ellipsis__3 {
+    @include ellipsis(3);
+}
+.ellipsis__4 {
+    @include ellipsis(4);
+}
+.ellipsis__5 {
+    @include ellipsis(5);
 }

@@ -1,0 +1,111 @@
+@use '../abstracts' as *;
+
+.input__radio {
+    padding-bottom:1.1rem;
+    margin-right:1rem;
+    display: inline-flex;
+    align-items: center;
+    position:relative;
+    cursor: pointer;
+    input {
+        display:none;
+    }
+    .error-message {
+        @include font-style('xsmall');
+        position:absolute;
+        bottom:0;
+        left:8px;
+        color:var(--color-error);
+        min-width: 100px;
+    }
+    .radio__custom {
+        width: 16px;
+        height: 16px;
+        margin-right:0.5rem;
+        border-radius: 50%;
+        border: 1px solid var(--color-gray-600);
+        position: relative;
+        cursor: pointer;
+        transition: background-color 0.3s, border-color 0.3s;
+        
+        &:after {
+            content: '';
+            display: block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--color-gray-600);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.3s;
+        }
+    }
+    
+    /* checked */
+    input[type="radio"]:checked + .radio__custom:after {
+        transform: translate(-50%, -50%) scale(1);
+    }    
+    input[type="radio"]:checked + .radio__custom {
+        border: 1px solid var(--color-gray-600);
+    }
+
+    /* disabled */
+    &:has(input[type="radio"]:disabled) {
+        cursor: not-allowed;
+        .radio__label {
+            color:var(--color-gray-300);
+        }
+    }
+    input[type="radio"]:disabled + .radio__custom {
+        border: 1px solid var(--color-gray-300);
+        cursor: not-allowed;
+    }
+    input[type="radio"]:disabled + .radio__custom:after {
+        background-color: var(--color-gray-300);
+    }
+
+    /* readOnly */
+    &:has(input[type="radio"]:readOnly) {
+        cursor: not-allowed;
+        .radio__label {
+            color:var(--color-gray-300);
+        }
+    }
+
+    &.size--sm {
+        @include font-style('xsmall');
+        .radio__custom {
+            width: 12px;
+            height: 12px;
+            &:after {
+                width: 6px;
+                height: 6px;
+            }
+        }
+    }
+
+    &.size--lg {
+        @include font-style('heading5');
+        .radio__custom {
+            width: 20px;
+            height: 20px;
+            &:after {
+                width: 12px;
+                height: 12px;
+            }
+        }
+    }
+}
+
+.radio__group.direction--column {
+    display: flex;
+    flex-direction: column;
+}
+
+.radio__group.direction--row {
+    display: flex;
+    flex-direction: row;
+}
+

@@ -1,6 +1,7 @@
 'use client';
 
 import { useId, useState } from 'react';
+import getValidationMessage from '@/lib/getValidationMessage';
 import IconReset from '/public/xmark-large-svgrepo-com.svg';
 import IconEye from '/public/eye-alt-svgrepo-com.svg';
 import IconEyeOff from '/public/eye-slash-alt-svgrepo-com.svg';
@@ -12,81 +13,90 @@ const Input = ({
     hint,
     required=false,
     disabled=false,
-    readonly=false,
+    readOnly=false,
     placeholder='',
     label='',
     value: propValue,
     onChange,
+    onReset,
     className,
     validate,
+    min,
+    max,
+    errorBlur=false,
+    errorTouched,
+    ...rest
 }) => {
     const isControlled = propValue !== undefined;
-    // const [touched, setTouched] = useState(false);
-    // const [isTyping, setIsTyping] = useState(false);
     const [internalValue, setInternalValue] = useState('');
-    const currentValue = isControlled ? propValue : internalValue;
+    const [touched, setTouched] = useState(false);
+    const currentValue = isControlled ? (propValue || '') : internalValue;
     const [errorMessage, setErrorMessage] = useState('');
     const [hintVisible, setHintVisible] = useState(false);
-    const [showPassword, setShowPassword] = useState(false);
-    
+    const [showPassword, setShowPassword] = useState(false);    
     
     const inputId = useId();
     const errorId = `${inputId}-error`;
     const hintId = `${inputId}-hint`;
+    const isTouched = errorTouched !== undefined ? errorTouched : touched;
 
     const showHintMessage = hintVisible && !(error || errorMessage);
-    // const showErrorMessage = !hintVisible && !isTyping && (touched && hasError);
+    const showErrorMessage = !hintVisible && (error || errorMessage) && (errorTouched || touched);
 
     const handleFocus = () => {
-        // setTouched(true);
-        if (hint) setHintVisible(true);
+      if (hint) setHintVisible(true);
     }
 
     const handleChange = (e) => {
-        // setTouched(true);
-        const newValue = e.target.value;
+      const newValue = e.target.value;
 
-        if (!readonly) {
-            if (!isControlled) {
-                setInternalValue(newValue);
-            }
-            onChange?.(newValue);
+      if (!readOnly) {
+        if (!isControlled) {
+          setInternalValue(newValue);
         }
+        onChange?.(newValue);
+      }
 
-        // 입력값이 변경되면 에러 초기화
-        if (newValue.trim() !== '') {
-            setErrorMessage('');
-        }
+      if (newValue.trim() !== '') {
+        setErrorMessage('');
+      }
     }
 
     const handleReset = () => {
-        // setTouched(false);
-        setInternalValue('');
-        setErrorMessage('');
-        setHintVisible(false);
+      setTouched(false);
+      setInternalValue('');
+      setErrorMessage('');
+      setHintVisible(false);
+      onReset?.();
     }
 
     const handleBlur = () => {
-        // setTouched(true);
-        setHintVisible(false);
+      setTouched(true);
+      setHintVisible(false);
+      if (errorBlur || !error) {
         validateValue();
+        console.log('validateValue');
+      }
     }
 
     const validateValue = () => {
-        if (validate) {
-            const result = validate(currentValue);
-            if (result !== true) {
-                setErrorMessage(result || '입력값을 확인해주세요.');
-                return false;
-            }
-        } else if (required && currentValue.trim() === '') {
-            console.log('required');
-            setErrorMessage(`${label || '입력값'} 은(는) 필수 입력 사항입니다.`);
-            return false;
-        }
+      const result = getValidationMessage({
+        required,
+        validate,
+        label,
+        min,
+        max,
+        value: currentValue,
+        type,
+      });
 
-        setErrorMessage('');
-        return true;
+      if (result !== true) {
+        setErrorMessage(result);
+        return false;
+      }
+
+      setErrorMessage('');
+      return true;
     }
 
     const togglePasswordVisibility = () => {
@@ -103,7 +113,7 @@ const Input = ({
                     type={type === 'password' && showPassword ? 'text' : type}
                     className={`input__default size--${size}`}
                     disabled={disabled}
-                    readOnly={readonly}
+                    readOnly={readOnly}
                     required={required}
                     aria-required={required}
                     aria-label={label}
@@ -111,31 +121,30 @@ const Input = ({
                     onChange={handleChange}
                     onBlur={handleBlur}
                     onFocus={handleFocus}
-                    // aria-describedby={(error || errorMessage) ? errorId : hint}
-                    aria-describedby={hint}
+                    aria-describedby={(error || errorMessage) ? errorId : hint}
+                    {...rest}
                 />
                 {
-                    !readonly && currentValue !== '' && type !== 'number' &&
+                    !readOnly && currentValue !== '' && type !== 'number' &&
                     <button className="button__reset" onClick={handleReset} aria-label="reset">
                        <IconReset />
                     </button>
                 }
                 {
-                    !readonly && type === 'password' &&
+                    !readOnly && type === 'password' &&
                     <button className="button__eye" onClick={togglePasswordVisibility} aria-label="toggle password visibility">
                         {showPassword ? <IconEyeOff /> : <IconEye />}
                     </button>
                 }
             </span>
             {
-                !readonly && (error || errorMessage) &&
+                !readOnly && showErrorMessage &&
                 <p id={errorId} className="error-message" role="alert">{error || errorMessage || '입력값을 확인해주세요.'}</p>
             }
             {
-                !readonly && showHintMessage &&
+                !readOnly && showHintMessage &&
                 <p id={hintId} className="hint-message" role="alert">{hint || '힌트! 입력값을 확인해주세요'}</p>
             }
-            {showHintMessage}
         </span>
     )
 }

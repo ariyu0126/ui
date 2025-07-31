@@ -1,8 +1,8 @@
 @use '../abstracts' as *;
 
 .input__radio {
-    padding-bottom:1.1rem;
-    margin-right:1rem;
+    padding-bottom:var(--spacing-base);
+    margin-right:var(--spacing-base);
     display: inline-flex;
     align-items: center;
     position:relative;
@@ -99,13 +99,30 @@
     }
 }
 
-.radio__group.direction--column {
-    display: flex;
-    flex-direction: column;
+.radio__group {
+    @include flex($align: flex-start);
+    gap:var(--spacing-base);
+    .input__radio {
+        margin-right:0;
+    }
+    &-option {
+        &-button {
+            border:1px solid red;
+            margin-bottom: var(--spacing-base);
+            .input__radio {
+                padding-bottom: 0;
+            }
+        }
+    }
+    &-direction {
+        &-column {
+            flex-direction: column;
+            .input__radio {
+                padding-bottom: 0;
+            }
+        }
+        &-row {
+            flex-direction: row;
+        }
+    }
 }
-
-.radio__group.direction--row {
-    display: flex;
-    flex-direction: row;
-}
-

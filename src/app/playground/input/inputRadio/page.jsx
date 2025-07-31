@@ -154,8 +154,22 @@ const InputRadioPlayground = () => {
                 <Typography.Title level={3}>2-2. Input Radio Group 속성</Typography.Title>
                 <ul>
                     <li>
-                        <Typography.Text>- options</Typography.Text>
-                        <Radio.Group options={radioOptions} defaultChecked="radio1" name="radio-group" />
+                        <Typography.Text>- defaultChecked: true, false</Typography.Text>
+                        <Radio.Group options={radioOptions} defaultChecked="radio1" name="radio-group3" />
+                    </li>
+                    <li>
+                        <Typography.Text>- required : true, false</Typography.Text>
+                        <Radio.Group options={radioOptions} defaultChecked="radio1" name="radio-group4" required={true} />
+                    </li>
+                    <li>
+                        <Typography.Text>- direction : column, row</Typography.Text>
+                        <Radio.Group options={radioOptions} defaultChecked="radio1" name="radio-group5" direction="row" />
+                        <Radio.Group options={radioOptions} defaultChecked="radio1" name="radio-group6" direction="column" />
+                    </li>
+                    <li>
+                        <Typography.Text>- optionType : default, button</Typography.Text>
+                        <Radio.Group options={radioOptions} defaultChecked="radio1" name="radio-group7" optionType="default" />
+                        <Radio.Group options={radioOptions} defaultChecked="radio1" name="radio-group8" optionType="button" />
                     </li>
                 </ul>
             </div>

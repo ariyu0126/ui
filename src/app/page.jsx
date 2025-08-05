@@ -1,10 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { SourceCodeViewer } from "@/components";
+import { SourceCodeViewer } from '@/components';
 import '@/styles/pages/playground.scss';
 import { buildPageMetadata } from '@/lib/seo';
-
 
 const code = `
   /src
@@ -66,7 +65,7 @@ const Home = () => {
           <li>2. 중첩 레이아웃 지원 (페이지마다 layout.jsx)</li>
         </ol>
         <SourceCodeViewer btnText="구조" code={code} hidden={false} />
-    
+
         <Typography.Title level="3">2. 디자인 규칙</Typography.Title>
         <ol>
           <li>1. 반응형 사이즈 지정 : mo 768 / tab 1024 / pc 1280</li>
@@ -108,32 +107,52 @@ const Home = () => {
         <Typography.Title level="3">6. 접근성</Typography.Title>
         <ol>
           <li>1. 키보드 이벤트</li>
-            <ul>
-              <li>- `Tab`, `Shift+Tab`, `Enter`, `Esc`, `Arrow 키` 모두 고려</li>
-              <li>- 커스텀 요소는 `tabIndex="0"`으로 초점 가능하게 만들기</li>
-              <li>- 초점 가능한 요소는 `:focus` 스타일 필수 (outline 제거 시 `:focus-visible` 등 추가 처리)</li>
-              <li>- `aria-label` 없는 버튼/링크 금지</li>
-              <li>- 커스텀 버튼은 `role="button"` + `tabIndex="0"` + `onKeyDown` 필수</li>
-              <li>- outline 제거 금지 or focus-visible 스타일 대체 필수</li>
-              {/* - 모든 컴포넌트 PR 머지 전 Lighthouse 점검 */}
-            </ul>
+          <ul>
+            <li>- `Tab`, `Shift+Tab`, `Enter`, `Esc`, `Arrow 키` 모두 고려</li>
+            <li>- 커스텀 요소는 `tabIndex="0"`으로 초점 가능하게 만들기</li>
+            <li>
+              - 초점 가능한 요소는 `:focus` 스타일 필수 (outline 제거 시 `:focus-visible` 등 추가
+              처리)
+            </li>
+            <li>- `aria-label` 없는 버튼/링크 금지</li>
+            <li>- 커스텀 버튼은 `role="button"` + `tabIndex="0"` + `onKeyDown` 필수</li>
+            <li>- outline 제거 금지 or focus-visible 스타일 대체 필수</li>
+            {/* - 모든 컴포넌트 PR 머지 전 Lighthouse 점검 */}
+          </ul>
         </ol>
         <Typography.Title level="3">7. 사용 라이브러리</Typography.Title>
         <ol>
           <li>
-            - react-hook-form<br />
-            <a href="https://react-hook-form.com/docs/useform" target="_blank">https://react-hook-form.com/docs/useform</a>
+            - react-hook-form
+            <br />
+            <a href="https://react-hook-form.com/docs/useform" target="_blank">
+              https://react-hook-form.com/docs/useform
+            </a>
           </li>
         </ol>
 
         <Typography.Title level="3">참고 사이트</Typography.Title>
-        <a href="https://mui.com/material-ui/all-components/" target="_blank">https://mui.com/material-ui/all-components/</a><br />
-        <a href="https://ant.design/components/button" target="_blank">https://ant.design/components/button</a><br />
-        <a href="https://animata.design/docs/button" target="_blank">https://animata.design/docs/button</a><br />
-        <a href="https://www.figma.com/community/file/1157761560874207208/v11-carbon-design-system" target="_blank">https://www.figma.com/community/file/1157761560874207208/v11-carbon-design-system</a>
-      </div>    
+        <a href="https://mui.com/material-ui/all-components/" target="_blank">
+          https://mui.com/material-ui/all-components/
+        </a>
+        <br />
+        <a href="https://ant.design/components/button" target="_blank">
+          https://ant.design/components/button
+        </a>
+        <br />
+        <a href="https://animata.design/docs/button" target="_blank">
+          https://animata.design/docs/button
+        </a>
+        <br />
+        <a
+          href="https://www.figma.com/community/file/1157761560874207208/v11-carbon-design-system"
+          target="_blank"
+        >
+          https://www.figma.com/community/file/1157761560874207208/v11-carbon-design-system
+        </a>
+      </div>
     </div>
   );
-}
+};
 
 export default Home;

@@ -1,23 +1,23 @@
 .layout__header {
-    background:var(--color-white);
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-    &-content {
-        display:flex;
-        align-items:center;
-    }
-    &-menu {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        ul {
-            display: flex;
-            align-items: center;
-            gap:var(--spacing-base);
-            li {
-                a {
-                    color:var(--color-black);
-                }
-            }
+  background: var(--color-white);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  &-content {
+    display: flex;
+    align-items: center;
+  }
+  &-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    ul {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-base);
+      li {
+        a {
+          color: var(--color-black);
         }
+      }
     }
+  }
 }

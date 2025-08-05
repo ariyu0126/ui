@@ -1,8 +1,4 @@
-const ButtonGroup = ({
-    alignGroup,
-    children,
-    ...rest
-}) => {
+const ButtonGroup = ({ alignGroup, children, ...rest }) => {
   return (
     <div className={`button__group button__group-${alignGroup}`} {...rest}>
       {children}

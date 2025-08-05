@@ -21,7 +21,7 @@ const exportLines = entries.flatMap((entry) => {
 
   if (entry.isDirectory()) {
     const indexFile = ['index.jsx', 'index.js', 'index.tsx', 'index.ts'].find((f) =>
-      fs.existsSync(path.join(fullPath, f))
+      fs.existsSync(path.join(fullPath, f)),
     );
     if (indexFile) {
       return `export { default as ${entry.name} } from './${entry.name}';`;

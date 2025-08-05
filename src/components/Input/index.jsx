@@ -6,11 +6,11 @@ import InputNumber from './InputNumber';
 import InputTel from './InputTel';
 
 const Input = {
-    Text: InputText,
-    Password: InputPassword,
-    Email: InputEmail,
-    Number: InputNumber,
-    Tel: InputTel,
-}
+  Text: InputText,
+  Password: InputPassword,
+  Email: InputEmail,
+  Number: InputNumber,
+  Tel: InputTel,
+};
 
 export default Input;

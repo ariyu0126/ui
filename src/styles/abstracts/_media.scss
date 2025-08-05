@@ -2,37 +2,37 @@
 @use './variables' as v;
 
 @mixin respond-to($screen) {
-    @if $screen == 'MO' {
-        // 0 ~ 767px
-        @media (max-width: #{map.get(v.$breakpoints, 'MO')}) {
-        @content;
-        }
-    } @else if $screen == 'TAB' {
-        // 768 ~ 1023px
-        @media (min-width: #{map.get(v.$breakpoints, 'MO') + 1}) and (max-width: #{map.get(v.$breakpoints, 'TAB') - 1}) {
-        @content;
-        }
-    } @else if $screen == 'PC' {
-        // 1024 ~ 1280px
-        @media (min-width: #{map.get(v.$breakpoints, 'TAB')}) and (max-width: #{map.get(v.$breakpoints, 'PC')}) {
-        @content;
-        }
-    } @else if $screen == 'MO-TAB' {
-        // 0 ~ 1023px
-        @media (max-width: #{map.get(v.$breakpoints, 'TAB') - 1}) {
-        @content;
-        }
-    } @else if $screen == '!MO' {
-        // 768 ~ 1280px
-        @media (min-width: #{map.get(v.$breakpoints, 'MO') + 1}) {
-        @content;
-        }
-    } @else if $screen == '!TAB' {
-        // 0 ~ 767px and 1024 ~ 1280px
-        @media not all and (min-width: #{map.get(v.$breakpoints, 'MO') + 1}) and (max-width: #{map.get(v.$breakpoints, 'TAB') - 1}) {
-        @content;
-        }
-    } @else {
-        @warn "Unknown breakpoint: #{$screen}";
+  @if $screen == 'MO' {
+    // 0 ~ 767px
+    @media (max-width: #{map.get(v.$breakpoints, 'MO')}) {
+      @content;
     }
+  } @else if $screen == 'TAB' {
+    // 768 ~ 1023px
+    @media (min-width: #{map.get(v.$breakpoints, 'MO') + 1}) and (max-width: #{map.get(v.$breakpoints, 'TAB') - 1}) {
+      @content;
+    }
+  } @else if $screen == 'PC' {
+    // 1024 ~ 1280px
+    @media (min-width: #{map.get(v.$breakpoints, 'TAB')}) and (max-width: #{map.get(v.$breakpoints, 'PC')}) {
+      @content;
+    }
+  } @else if $screen == 'MO-TAB' {
+    // 0 ~ 1023px
+    @media (max-width: #{map.get(v.$breakpoints, 'TAB') - 1}) {
+      @content;
+    }
+  } @else if $screen == '!MO' {
+    // 768 ~ 1280px
+    @media (min-width: #{map.get(v.$breakpoints, 'MO') + 1}) {
+      @content;
+    }
+  } @else if $screen == '!TAB' {
+    // 0 ~ 767px and 1024 ~ 1280px
+    @media not all and (min-width: #{map.get(v.$breakpoints, 'MO') + 1}) and (max-width: #{map.get(v.$breakpoints, 'TAB') - 1}) {
+      @content;
+    }
+  } @else {
+    @warn "Unknown breakpoint: #{$screen}";
+  }
 }

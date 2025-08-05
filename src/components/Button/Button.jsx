@@ -9,25 +9,25 @@ const icons = {
 };
 
 const Button = ({
-    size = 'md',
-    style='fill',
-    icon,
-    align='left',
-    color = 'white',
-    disabled = false,
-    children = '버튼',
-    onClick,
-    className,
-    ...rest
+  size = 'md',
+  style = 'fill',
+  icon,
+  align = 'left',
+  color = 'white',
+  disabled = false,
+  children = '버튼',
+  onClick,
+  className,
+  ...rest
 }) => {
-    const buttonClass = `button__default size--${size} align--${align} color--${color} style--${style} ${className}`;
+  const buttonClass = `button__default size--${size} align--${align} color--${color} style--${style} ${className} ${disabled ? 'is-disabled' : ''}`;
 
-    return (
-        <button className={buttonClass} disabled={disabled} onClick={onClick} {...rest}>
-            {icon && icon !== 'null' && <span className="button__icon">{icons[icon]}</span>}
-            <span className="button__text">{children}</span>
-        </button>
-    );
-}
+  return (
+    <button className={buttonClass} disabled={disabled} onClick={onClick} {...rest}>
+      {icon && icon !== 'null' && <span className="button__icon">{icons[icon]}</span>}
+      <span className="button__text">{children}</span>
+    </button>
+  );
+};
 
 export default Button;

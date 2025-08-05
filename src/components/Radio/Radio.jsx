@@ -8,39 +8,38 @@ const Radio = ({
     value,
     size='md',
     checked,
-    defaultChecked=false,
     disabled=false,
     required=false,
     className='',
     onChange,
+    color='white',
     ...rest
 }) => {
     const radioId = useId();
     const labelId = `${radioId}-label`;
     const handleChange = (e) => {
-        onChange?.(e.target.value);
-        required = false;
+        if (e.target){
+            onChange?.(e);
+        }
     }
 
     return (
-        <label className={`input__radio ${className} size--${size}`}>
+        <label className={`input__radio ${className} size--${size} color--${color} ${disabled ? 'is-disabled' : ''}`}>
             <input
                 type="radio"
                 id={radioId}
                 name={name}
                 label={label}
                 value={value}
-                {...(checked !== undefined
-                    ? { checked }
-                    : defaultChecked ? { defaultChecked:true } : {})}
+                checked={checked}
                 disabled={disabled}
                 required={required}
                 aria-required={required}
                 aria-label={label}
+                onChange={(e) => handleChange(e)}
                 {...rest}
-                onChange = {handleChange}
             />
-            <span className="radio__custom" role="radio" aria-checked={checked !== undefined ? checked : defaultChecked} aria-disabled={disabled} tabIndex="-1"/>
+            <span className="radio__custom" role="radio" aria-checked={checked !== undefined ? checked : false} aria-disabled={disabled} tabIndex="-1"/>
             {label && <span className="radio__label">{label}</span>}
             {
                 required  &&

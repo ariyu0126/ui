@@ -1,14 +1,14 @@
 import '@/styles/main.scss';
-import { Noto_Sans_KR } from "next/font/google";
-import SkipNav from "./layout/SkipNav";
-import Header from "./layout/Header";
+import { Noto_Sans_KR } from 'next/font/google';
+import SkipNav from './layout/SkipNav';
+import Header from './layout/Header';
 // import Footer from "./layout/Footer";
-import Sidebar from "./layout/Sidebar";
+import Sidebar from './layout/Sidebar';
 
 const notoSansKr = Noto_Sans_KR({
-  subsets: ["latin"],
-  weight: ["100", "400", "700"],
-  variable: "--font-noto-sans-kr",
+  subsets: ['latin'],
+  weight: ['100', '400', '700'],
+  variable: '--font-noto-sans-kr',
 });
 
 export const metadata = {
@@ -42,6 +42,6 @@ const RootLayout = ({ children }) => {
       </body>
     </html>
   );
-}
+};
 
 export default RootLayout;

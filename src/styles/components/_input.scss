@@ -2,88 +2,88 @@
 @use '../abstracts' as *;
 
 .input {
-    &__text {
-        padding-bottom:1.3rem;
-        position:relative;
-        display:inline-flex;
-        &-wrapper {
-            width:auto;
-            height:100%;
-            display:inline-flex;
-            position:relative;
-        }
-        &-error,
-        &-hint {
-            .error-message,
-            .hint-message {
-                @include font-style('xsmall');
-                position:absolute;
-                bottom:0;
-                left:8px;
-                color:var(--color-error);
-            }
-            .hint-message {
-                color:var(--color-point);
-            }
-        }
-        &:has(.size--full) {
-            width:100%;
-            .input__text-wrapper {
-                width:100%;
-            }
-        }  
+  &__text {
+    padding-bottom: 1.3rem;
+    position: relative;
+    display: inline-flex;
+    &-wrapper {
+      width: auto;
+      height: 100%;
+      display: inline-flex;
+      position: relative;
+    }
+    &-error,
+    &-hint {
+      .error-message,
+      .hint-message {
+        @include font-style('xsmall');
+        position: absolute;
+        bottom: 0;
+        left: 8px;
+        color: var(--color-error);
+      }
+      .hint-message {
+        color: var(--color-point);
+      }
+    }
+    &:has(.size--full) {
+      width: 100%;
+      .input__text-wrapper {
+        width: 100%;
+      }
+    }
+  }
+
+  &__default {
+    height: map.get($height, 'md');
+    padding: 0 var(--spacing-xl) 0 var(--spacing-base);
+    border: 1px solid var(--color-gray-300);
+    border-radius: 12px;
+    &:focus-visible {
+      outline: 2px solid var(--color-point);
+      z-index: 1;
+    }
+    &:read-only:focus-visible {
+      outline-color: var(--color-gray-100);
     }
 
-    &__default {
-        height: map.get($height, 'md');
-        padding:0 var(--spacing-xl) 0 var(--spacing-base);
-        border:1px solid var(--color-gray-300);
-        border-radius:12px;
-        &:focus-visible {
-            outline: 2px solid var(--color-point);
-            z-index:1;
-        }
-        &:read-only:focus-visible {
-            outline-color: var(--color-gray-100); // 원하는 색상으로 변경
-        }
-
-        &.size--lg {
-            height: map.get($height, 'lg');
-            padding:0 24px;
-            border-radius:var(--spacing-base);
-        }
-        &.size--full {
-            width:100%;
-        }
+    &.size--lg {
+      height: map.get($height, 'lg');
+      padding: 0 24px;
+      border-radius: var(--spacing-base);
     }
+    &.size--full {
+      width: 100%;
+    }
+  }
 }
 
 .button {
-    &__reset {
-        display: block;
-        position:absolute;
-        top:50%;
-        right:4px;
-        transform:translateY(-50%);
-        svg {
-            width: 1em !important;
-            height: 1em !important;
-            margin-top:4px;
-        }
-        + .button__eye {
-            right: 24px;
-        }
+  &__reset {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 4px;
+    transform: translateY(-50%);
+    svg {
+      width: 1em !important;
+      height: 1em !important;
+      margin-top: 4px;
     }
-    &__eye {
-        display: block;
-        position:absolute;
-        top:50%;
-        right: 4px;
-        transform:translateY(-50%);
-        svg {
-            width: 1em !important;
-            height: 1em !important;
-            margin-top:4px;
-        }
+    + .button__eye {
+      right: 24px;
     }
+  }
+  &__eye {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 4px;
+    transform: translateY(-50%);
+    svg {
+      width: 1em !important;
+      height: 1em !important;
+      margin-top: 4px;
+    }
+  }
 }

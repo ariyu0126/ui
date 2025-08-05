@@ -15,12 +15,14 @@ const Header = () => {
             </li>
           </ul> */}
           <div>
-            <a href="https://github.com/ariyu0126/ui" target="_blank">Github</a>
+            <a href="https://github.com/ariyu0126/ui" target="_blank">
+              Github
+            </a>
           </div>
         </div>
       </div>
     </header>
   );
-}
+};
 
 export default Header;

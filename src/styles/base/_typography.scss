@@ -2,105 +2,104 @@
 @use '../abstracts' as *;
 
 body {
-    @include font-style('default');
-    font-family: var(--font-noto-sans-kr);
+  @include font-style('default');
+  font-family: var(--font-noto-sans-kr);
 }
 
 /* layout */
 .typography--layout {
-    display: flex;
-    flex-direction: column;
-    gap: map.get($padding-base, 'PC');
+  display: flex;
+  flex-direction: column;
+  gap: map.get($padding-base, 'PC');
 }
 
 /* heading */
 h1,
 .title__h1 {
-    @include font-style('heading1');
+  @include font-style('heading1');
 }
 h2,
 .title__h2 {
-    @include font-style('heading2');
+  @include font-style('heading2');
 }
 h3,
 .title__h3 {
-    @include font-style('heading3');
+  @include font-style('heading3');
 }
 h4,
 .title__h4 {
-    @include font-style('heading4');
+  @include font-style('heading4');
 }
 h5,
 .title__h5 {
-    @include font-style('heading5');
+  @include font-style('heading5');
 }
 
 /* font size */
 .font__size-default {
-    @include font-style('default');
+  @include font-style('default');
 }
 .font__size-small {
-    @include font-style('small');
+  @include font-style('small');
 }
 .font__size-xsmall {
-    @include font-style('xsmall');
+  @include font-style('xsmall');
 }
-
 
 /* font weight */
 .text__100 {
-    font-weight:100;
+  font-weight: 100;
 }
 .text__400 {
-    font-weight:400;
+  font-weight: 400;
 }
 
 .text__700,
 b,
 strong,
 .bold {
-    font-weight:700;
+  font-weight: 700;
 }
 
 /* font color */
 .color__black {
-    color: var(--color-black);
+  color: var(--color-black);
 }
 .color__white {
-    color: var(--color-white);
+  color: var(--color-white);
 }
 .color__gray100 {
-    color: var(--color-gray-100);
+  color: var(--color-gray-100);
 }
 .color__gray300 {
-    color: var(--color-gray-300);
+  color: var(--color-gray-300);
 }
 .color__gray600 {
-    color: var(--color-gray-600);
+  color: var(--color-gray-600);
 }
 .color__gray800 {
-    color: var(--color-gray-800);
+  color: var(--color-gray-800);
 }
 .color__blue {
-    color: var(--color-blue);
+  color: var(--color-blue);
 }
 .color__point {
-    color: var(--color-point);
+  color: var(--color-point);
 }
 .color__error {
-    color: var(--color-error);
+  color: var(--color-error);
 }
 
 /* ellipsis */
 .ellipsis__2 {
-    @include ellipsis(2);
+  @include ellipsis(2);
 }
 .ellipsis__3 {
-    @include ellipsis(3);
+  @include ellipsis(3);
 }
 .ellipsis__4 {
-    @include ellipsis(4);
+  @include ellipsis(4);
 }
 .ellipsis__5 {
-    @include ellipsis(5);
+  @include ellipsis(5);
 }

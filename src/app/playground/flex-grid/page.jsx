@@ -1,4 +1,5 @@
-import { SourceCodeViewer, Flex, Typography } from '@/components';
+import { SourceCodeViewer, Flex } from '@/components';
+import Typography from '@/components/Typography';
 import '@/styles/pages/playground.scss';
 
 const FlexGridPlayground = () => {

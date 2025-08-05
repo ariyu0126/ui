@@ -1,8 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { Radio, SourceCodeViewer, Typography } from '@/components';
-import RadioGroup from '@/components/Radio/RadioGroup';
+import { Radio, SourceCodeViewer } from '@/components';
+import Typography from '@/components/Typography';
+// import RadioGroup from '@/components/Radio/RadioGroup';
 
 const InputRadioPlayground = () => {
   // radio group

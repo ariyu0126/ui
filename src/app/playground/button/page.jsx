@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { Button, SourceCodeViewer } from '@/components';
-import Typography from '@/components/Typography';
+import { Button, SourceCodeViewer, Typography } from '@/components';
+// import Typography from '@/components/Typography';
 import '@/styles/pages/playground.scss';
 
 const ButtonPlayground = () => {

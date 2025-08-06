@@ -85,7 +85,6 @@
     }
   }
 }
-
 @mixin radio-button-theme($name, $borderColor, $bgChecked, $textChecked) {
   &.radio__group-color--#{$name} {
     border-color: #{$borderColor};
@@ -114,6 +113,41 @@
           height: map.get($props, inner);
         }
       }
+    }
+  }
+}
+
+
+// _mixin.scss
+@mixin checkbox-style($size) {
+  $props: map.get($checkbox-sizes, $size);
+  @include font-style(map.get($props, font));
+
+  .checkbox__custom {
+    margin-right: 0.5rem;
+
+    width: map.get($props, width);
+    height: map.get($props, width);
+    margin-right: 0.5rem;
+    border: 1px solid var(--color-gray-600);
+    border-radius: var(--border-radius-xs);
+    position:relative;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+  
+    &:after {
+      content: '';
+      width: map.get($props, checkWidth);
+      height: map.get($props, checkHeight);
+      margin-top: map.get($props, margin);
+      display: block;
+      border: solid var(--color-gray-600);
+      border-width:0 map.get($props, borderWidth) map.get($props, borderWidth) 0;
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform:translate(-50%, -50%) scale(0) rotate(45deg);
+      transition:transform 0.3s;
     }
   }
 }

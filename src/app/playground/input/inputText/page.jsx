@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { Input, Button, SourceCodeViewer, Typography } from '@/components';
-// import Typography from '@/components/Typography';
 
 const InputTextPlayground = () => {
   const [errorTextProps, setErrorTextProps] = useState({

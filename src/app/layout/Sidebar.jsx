@@ -43,13 +43,19 @@ const Sidebar = () => {
           href="/playground/input/inputText"
           className={currentPath === '/playground/input/inputText' ? 'is-active' : ''}
         >
-          Input text
+          Input
         </Link>
         <Link
-          href="/playground/input/inputRadio"
-          className={currentPath === '/playground/input/inputRadio' ? 'is-active' : ''}
+          href="/playground/input/radio"
+          className={currentPath === '/playground/input/radio' ? 'is-active' : ''}
         >
-          Input radio
+          Radio
+        </Link>
+        <Link
+          href="/playground/input/checkbox"
+          className={currentPath === '/playground/input/checkbox' ? 'is-active' : ''}
+        >
+          Checkbox
         </Link>
       </nav>
     </aside>

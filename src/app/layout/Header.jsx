@@ -1,9 +1,13 @@
+import Link from 'next/link';
+
 const Header = () => {
   return (
     <header className="layout__header" role="header">
       <div className="layout__block row">
         <div className="layout__header-content col-3">
-          <a href="https://ari-ui.netlify.app/">UI 컴포넌트</a>
+          <Link href="/">
+            UI 컴포넌트
+          </Link>
         </div>
         <div className="layout__header-menu col-9">
           {/* <ul aria-label="메뉴">
@@ -15,9 +19,9 @@ const Header = () => {
             </li>
           </ul> */}
           <div>
-            <a href="https://github.com/ariyu0126/ui" target="_blank">
+            <Link href="https://github.com/ariyu0126/ui" target="_blank">
               Github
-            </a>
+            </Link>
           </div>
         </div>
       </div>

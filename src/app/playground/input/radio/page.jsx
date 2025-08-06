@@ -2,10 +2,10 @@
 
 import { useState } from 'react';
 import { Radio, SourceCodeViewer, Typography } from '@/components';
-// import Typography from '@/components/Typography';
-// import RadioGroup from '@/components/Radio/RadioGroup';
 
 const InputRadioPlayground = () => {
+  const [radioValue, setRadioValue] = useState('');
+
   // radio group
   const radioOptions = [
     {
@@ -54,23 +54,27 @@ const InputRadioPlayground = () => {
     }));
   };
 
+  const handleRadioChange = (e) => {
+    setRadioValue(e.target.value);
+  };
+
   // code
   const sizeOption = ['sm', 'md', 'lg'];
   const colorOption = ['white', 'dark', 'point'];
   const { name, label, value, size, checked, disabled, required, className, color } = radioProps;
   const code = `
-        <Radio
-            name="${name}"
-            label="${label}"
-            value="${value}"
-            size="${size}"
-            color="${color}"
-            checked="${checked}"
-            disabled=${disabled ? 'true' : 'false'}
-            required=${required ? 'true' : 'false'}
-            className="${className}"
-        />
-    `;
+    <Radio
+      name="${name}"
+      label="${label}"
+      value="${value}"
+      size="${size}"
+      color="${color}"
+      checked="${checked}"
+      disabled=${disabled ? 'true' : 'false'}
+      required=${required ? 'true' : 'false'}
+      className="${className}"
+    />
+  `;
 
   // group code
   const handleGroupPropertyChange = (property, value) => {
@@ -245,7 +249,8 @@ const InputRadioPlayground = () => {
                 </Radio.Group> */}
         <Typography.Title level={3}>2-1. Input Radio Group 속성</Typography.Title>
         <Typography.Text>- checked: value값 입력</Typography.Text>
-        <Radio.Group options={radioOptions} checked="radio1" name="radio-group3" />
+        <Typography.Text>외부에서 value를 넘길때는 onChange 속성을 사용해야 합니다.</Typography.Text>
+        <Radio.Group options={radioOptions} checked="radio1" name="radio-group3" onChange={handleRadioChange} />
         <Typography.Text>- required : true, false</Typography.Text>
         <Radio.Group options={radioOptions} name="radio-group4" required={true} />
         <Typography.Text>- direction : column, row</Typography.Text>
@@ -329,10 +334,7 @@ const InputRadioPlayground = () => {
                 <button
                   className={`button__tag ${radioGroupProps.checked === val.value ? 'is-active' : ''}`}
                   key={idx}
-                  onClick={() => {
-                    handleGroupPropertyChange('checked', val.value);
-                    console.log(val.value)
-                  }}
+                  onClick={() => handleGroupPropertyChange('checked', val.value)}
                 >
                   {val.value}
                 </button>

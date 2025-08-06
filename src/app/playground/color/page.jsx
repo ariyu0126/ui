@@ -1,5 +1,4 @@
 import { Typography } from '@/components';
-// import Typography from '@/components/Typography';
 import '@/styles/pages/playground.scss';
 
 const ColorPlayground = () => {

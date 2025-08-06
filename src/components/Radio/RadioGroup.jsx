@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react';
 const RadioGroup = ({
   options = [],
   name = '',
+  value,
   checked, // checked 속성을 통해 초기 선택 상태 설정
   direction = 'row',
   optionType = 'default',
@@ -16,17 +17,20 @@ const RadioGroup = ({
   color = 'white',
   size = 'md',
   className = '',
+  onChange,
   ...rest
 }) => {
+  const isControlled = value !== undefined;
   const [selectedValue, setSelectedValue] = useState(checked);
+  const currentValue = isControlled ? value : selectedValue;
 
   useEffect(() => {
     setSelectedValue(checked);
   }, [checked]);
 
   const handleChange = (e) => {
-    setSelectedValue(e.target.value);
-    rest.onChange?.(e);
+    if (!isControlled) setSelectedValue(e.target.value);
+    onChange?.(e);
   };
 
   return (
@@ -41,7 +45,7 @@ const RadioGroup = ({
             {...option}
             value={option.value}
             name={name}
-            checked={selectedValue === option.value}
+            checked={currentValue === option.value}
             disabled={disabled}
             color={color}
             size={size}
@@ -49,7 +53,7 @@ const RadioGroup = ({
           />
         ))}
       </div>
-      {required && !selectedValue && (
+      {required && !currentValue && (
         <p className="error-message" role="alert">
           필수 선택입니다.
         </p>

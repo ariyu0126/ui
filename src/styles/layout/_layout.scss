@@ -26,7 +26,7 @@
     }
   }
   &__header {
-    max-height: calc(map.get($padding-base, 'PC') * 2);
+    height: map.get($height, 'PC');
     padding: calc(map.get($padding-base, 'PC') / 2) 0;
     position: sticky;
     top: 0;
@@ -34,11 +34,11 @@
     z-index: 100;
     width: 100%;
     @include MO {
-      max-height: calc(map.get($padding-base, 'MO') * 2);
+      height: map.get($height, 'MO');
       padding: calc(map.get($padding-base, 'MO') / 2) 0;
     }
     @include TAB {
-      max-height: calc(map.get($padding-base, 'TAB') * 2);
+      height: map.get($height, 'TAB');
     }
   }
   &__container {

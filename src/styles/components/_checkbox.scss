@@ -1,0 +1,61 @@
+@use 'sass:map';
+@use '../abstracts' as *;
+
+.error-message {
+  @include font-style('xsmall');
+  position:absolute;
+  bottom:0;
+  left:8px;
+  color:var(--color-error);
+  min-width: 100px;
+}
+
+.input__checkbox {
+  padding-bottom:var(--spacing-base);
+  margin-right:var(--spacing-base);
+  display: inline-flex;
+  align-items: center;
+  position:relative;
+  cursor: pointer;
+  input {
+    display:none;
+  }
+
+  @include checkbox-style(md);
+
+  &.size--sm {
+    @include checkbox-style(sm);
+  }  
+  &.size--lg {
+    @include checkbox-style(lg);
+  }
+  
+
+  &.color--dark {
+    @include radio-input-theme('dark', var(--color-blue), none, var(--color-white));
+  }
+  &.color--point {
+    @include radio-input-theme('point', var(--color-point), none, var(--color-white));
+  }
+
+  /* checked */
+  input[type="checkbox"]:checked + .checkbox__custom:after {
+    transform: translate(-50%, -50%) scale(1) rotate(45deg);
+  }
+
+  /* disabled */
+  &.is-disabled {
+    border-color: var(--color-gray-300);
+    cursor: not-allowed;
+    .checkbox__label {
+      color: var(--color-gray-300);
+    }
+    .checkbox__custom {
+      border: 1px solid var(--color-gray-300);
+      cursor: not-allowed;
+      &:after {
+        background-color: var(--color-gray-300);
+      }
+    }
+  }
+}

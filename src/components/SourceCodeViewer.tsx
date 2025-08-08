@@ -3,7 +3,15 @@
 import { useState } from 'react';
 import Button from '@/components/Button/Button';
 
-const SourceCodeViewer = ({ code, btnText = '코드', hidden = true, copy = false, className }) => {
+type SourceCodeViewerProps = {
+  code: string;
+  btnText?: string;
+  hidden?: boolean;
+  copy?: boolean;
+  className?: string;
+};
+
+const SourceCodeViewer = ({ code, btnText = '코드', hidden = true, copy = false, className = '' }: SourceCodeViewerProps) => {
   const [showCode, setShowCode] = useState(!hidden);
 
   return (

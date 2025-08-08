@@ -1,6 +1,6 @@
 export const defaultOgImage = '';
 
-export const buildPageMetadata = (title, desc) => ({
+export const buildPageMetadata = (title: string, desc: string) => ({
   title: {
     default: 'React UI',
     template: `%s | React UI`,

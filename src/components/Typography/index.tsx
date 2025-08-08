@@ -1,6 +1,23 @@
 import Title from './Title';
 import Text from './Text';
 
+type TypographyProps = {
+  className?: string;
+  level?: 1 | 2 | 3 | 4 | 5 | 6;
+  title?: React.ReactNode;
+  titleColor?: string;
+  titleClass?: string;
+  titleWeight?: string;
+  text?: React.ReactNode;
+  textWeight?: string;
+  textClass?: string;
+  textColor?: string;
+  ptag?: boolean;
+  size?: string;
+  ellipsis?: string;
+  children?: React.ReactNode;
+} & React.HTMLAttributes<HTMLDivElement>;
+
 const Typography = ({
   // typography group
   className,
@@ -9,16 +26,17 @@ const Typography = ({
   title,
   titleColor,
   titleClass,
+  titleWeight,
   // text
   text,
-  weight,
+  textWeight,
   textClass,
   textColor,
   ptag,
   size,
   ellipsis,
   ...rest
-}) => {
+}: TypographyProps) => {
   return (
     <div className={`typography--layout ${className}`}>
       {title && (
@@ -27,12 +45,13 @@ const Typography = ({
           title={title}
           titleClass={titleClass}
           titleColor={titleColor}
+          titleWeight={titleWeight}
           {...rest}
         />
       )}
       {text && (
         <Text
-          weight={weight}
+          textWeight={textWeight}
           text={text}
           textClass={textClass}
           textColor={textColor}

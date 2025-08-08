@@ -77,7 +77,7 @@
 
 /* radio  - theme */
 @mixin radio-input-theme($name, $bg, $border:none, $innerColor) {
-  .radio_custom {
+  .radio__custom {
     background: $bg;
     border: $border;
     &:after {
@@ -86,7 +86,7 @@
   }
 }
 @mixin radio-button-theme($name, $borderColor, $bgChecked, $textChecked) {
-  &.radio__group-color--#{$name} {
+  &.radio__group-color-#{$name} {
     border-color: #{$borderColor};
 
     .input__radio {
@@ -148,6 +148,28 @@
       left:50%;
       transform:translate(-50%, -50%) scale(0) rotate(45deg);
       transition:transform 0.3s;
+    }
+  }
+}
+
+@mixin checkbox-theme($name, $bg, $checkColor) {
+  .checkbox__custom {
+    background: $bg;
+    border:none;
+    &:after {
+      border-color: $checkColor;
+    }
+  }
+}
+
+@mixin checkbox-button-theme($name, $borderColor, $bgChecked, $textChecked) {
+  &.checkbox__group-color-#{$name} {
+    .input__checkbox {
+      border-color: $borderColor;
+      &:has(input[type="checkbox"]:checked) {
+        background: $bgChecked;
+        color: $textChecked;
+      }
     }
   }
 }

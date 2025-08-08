@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { generateCode } from '@/lib/utils/generateCode';
 import { Button, SourceCodeViewer, Typography } from '@/components';
 import '@/styles/pages/playground.scss';
 
@@ -43,22 +44,26 @@ const ButtonPlayground = () => {
 
   // code
   const { size, color, style, icon, align, disabled, children } = buttonProps;
-  const code = `
-    <Button size="${size}" color="${color}" style="${style}" icon="${icon}" align="${align}" disabled="${disabled}">
-      ${children}
-    </Button>`;
-  const codeGroup = `
+  const buttonCode = generateCode('Button', {
+    size,
+    color,
+    style,
+    icon,
+    align,
+    disabled,
+  }, children);
+  const buttonGroupCode = `
   <div className="button__group button__group-${buttonGroupProps.alignGroup}">
-      ${code}${code}
+      ${buttonCode}${buttonCode}
   </div>
   `;
 
   return (
     <div className="playground">
       <Typography.Title>Button</Typography.Title>
-      <Typography.Title level="2">1. Button</Typography.Title>
+      <Typography.Title level={2}>1. Button</Typography.Title>
       <div className="playground__inner">
-        <Typography.Title level="3">1-1. Button 속성</Typography.Title>
+        <Typography.Title level={3}>1-1. Button 속성</Typography.Title>
         <ul>
           <li>
             <Typography.Text>- size : sm, md, lg, full</Typography.Text>
@@ -110,7 +115,7 @@ const ButtonPlayground = () => {
             </div>
           </li>
         </ul>
-        <Typography.Title level="3">1-2. Button 예시</Typography.Title>
+        <Typography.Title level={3}>1-2. Button 예시</Typography.Title>
         <ul>
           <li>
             - size :{' '}
@@ -201,11 +206,11 @@ const ButtonPlayground = () => {
           </li>
         </ul>
         <Button {...buttonProps} />
-        <SourceCodeViewer code={code} />
+        <SourceCodeViewer code={buttonCode} />
       </div>
-      <Typography.Title level="2">2. Button group</Typography.Title>
+      <Typography.Title level={2}>2. Button group</Typography.Title>
       <div className="playground__inner">
-        <Typography.Title level="3">2-1. Button group 속성</Typography.Title>
+        <Typography.Title level={3}>2-1. Button group 속성</Typography.Title>
         <ul>
           <li>
             - align group : left, center, right, down, full
@@ -233,7 +238,7 @@ const ButtonPlayground = () => {
           </li>
         </ul>
 
-        <Typography.Title level="3">2-2. Button group 예시</Typography.Title>
+        <Typography.Title level={3}>2-2. Button group 예시</Typography.Title>
         <ul>
           <li>
             - alignGroup : {''}
@@ -255,7 +260,7 @@ const ButtonPlayground = () => {
           <Button {...buttonProps} />
           <Button {...buttonProps} />
         </Button.Group>
-        <SourceCodeViewer code={codeGroup} />
+        <SourceCodeViewer code={buttonGroupCode} />
       </div>
     </div>
   );

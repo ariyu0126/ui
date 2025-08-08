@@ -1,3 +1,13 @@
+type GetValidationParams = {
+  required?: boolean;
+  validate?: (value: any) => boolean | string;
+  label?: string;
+  min?: number;
+  max?: number;
+  value?: any;
+  type?: 'text' | 'number' | 'email' | 'tel' | string;
+};
+
 const getValidationMessage = ({
   required = false,
   validate,
@@ -6,7 +16,7 @@ const getValidationMessage = ({
   max,
   value,
   type,
-}) => {
+}: GetValidationParams) => {
   // required 체크
   const trimmedValue = (value ?? '').toString().trim();
   if (required && trimmedValue === '') {
@@ -26,10 +36,10 @@ const getValidationMessage = ({
     const num = Number(trimmedValue);
     const minNum = !isNaN(Number(min)) ? Number(min) : null;
     const maxNum = !isNaN(Number(max)) ? Number(max) : null;
-    if (!isNaN(minNum) && num < minNum) {
+    if (minNum !== null && num < minNum) {
       return `최소 ${minNum}자 이상 입력해주세요.`;
     }
-    if (!isNaN(maxNum) && num > maxNum) {
+    if (maxNum !== null && num > maxNum) {
       return `최대 ${maxNum}자 이하로 입력해주세요.`;
     }
   }
@@ -40,10 +50,10 @@ const getValidationMessage = ({
     const maxLength = typeof max === 'number' ? Number(max) : undefined;
     console.log('minLength', minLength);
     console.log('maxLength', maxLength);
-    if (!isNaN(minLength) && trimmedValue.length < minLength) {
+    if (minLength !== undefined && trimmedValue.length < minLength) {
       return `최소 ${minLength}자 이상 입력해주세요.`;
     }
-    if (!isNaN(maxLength) && trimmedValue.length > maxLength) {
+    if (maxLength !== undefined && trimmedValue.length > maxLength) {
       return `최대 ${maxLength}자 이하로 입력해주세요.`;
     }
   }
@@ -70,10 +80,7 @@ const getValidationMessage = ({
   if (validate) {
     console.log('validate');
     const result = validate(value);
-    if (result !== true) {
-      setErrorMessage(result || '입력값을 확인해주세요.');
-      return false;
-    }
+    if (result !== true) return result || '입력값을 확인해주세요.';
   }
 
   return true;

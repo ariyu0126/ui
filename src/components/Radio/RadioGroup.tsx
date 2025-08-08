@@ -1,14 +1,37 @@
 'use client';
 
-import PropTypes from 'prop-types';
-import { Radio } from '@/components';
 import { useState, useEffect } from 'react';
+import { Radio } from '@/components';
+
+type RadioOption = {
+  label: React.ReactNode;
+  value: string;
+};
+
+type RadioGroupProps = {
+  options?: RadioOption[];
+  name?: string;
+  value?: string; // controlled
+  checked?: string; // uncontrolled initial
+  label?: string;
+  direction?: 'row' | 'column';
+  optionType?: 'default' | 'button';
+  children?: React.ReactNode;
+  disabled?: boolean;
+  required?: boolean;
+  color?: 'white' | 'dark' | 'point';
+  size?: 'sm' | 'md' | 'lg';
+  className?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  [key: string]: any;
+};
 
 const RadioGroup = ({
   options = [],
   name = '',
   value,
-  checked, // checked 속성을 통해 초기 선택 상태 설정
+  checked,
+  label,
   direction = 'row',
   optionType = 'default',
   children,
@@ -19,7 +42,7 @@ const RadioGroup = ({
   className = '',
   onChange,
   ...rest
-}) => {
+}: RadioGroupProps) => {
   const isControlled = value !== undefined;
   const [selectedValue, setSelectedValue] = useState(checked);
   const currentValue = isControlled ? value : selectedValue;
@@ -28,21 +51,25 @@ const RadioGroup = ({
     setSelectedValue(checked);
   }, [checked]);
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!isControlled) setSelectedValue(e.target.value);
     onChange?.(e);
   };
 
   return (
     <div className="radio__group-container">
-      <div
-        className={`radio__group radio__group-option-${optionType}
-                radio__group-direction-${direction} radio__group-color--${color} ${className} ${disabled ? 'is-disabled' : ''}`}
-      >
-        {options.map((option) => (
+      <div className={`
+        radio__group
+        radio__group-option-${optionType}
+        radio__group-direction-${direction}
+        radio__group-color-${color}
+        ${disabled ? 'is-disabled' : ''}
+        ${className}
+      `}>
+        {options.map((option: RadioOption) => (
           <Radio
             key={option.value}
-            {...option}
+            label={option.label}
             value={option.value}
             name={name}
             checked={currentValue === option.value}
@@ -50,6 +77,7 @@ const RadioGroup = ({
             color={color}
             size={size}
             onChange={handleChange}
+            {...rest}
           />
         ))}
       </div>
@@ -60,11 +88,6 @@ const RadioGroup = ({
       )}
     </div>
   );
-};
-
-RadioGroup.propTypes = {
-  optionType: PropTypes.oneOf(['default', 'button']),
-  direction: PropTypes.oneOf(['column', 'row']),
 };
 
 export default RadioGroup;

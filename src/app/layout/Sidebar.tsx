@@ -19,7 +19,7 @@ const Sidebar = () => {
           href="/playground/flex-grid"
           className={currentPath === '/playground/flex-grid' ? 'is-active' : ''}
         >
-          Flex Grid
+          Flex/Grid
         </Link>
         <Link
           href="/playground/color"

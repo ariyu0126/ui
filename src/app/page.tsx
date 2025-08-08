@@ -57,30 +57,30 @@ const Home = () => {
   return (
     <div className="playground playground--home">
       <Typography.Title>Home</Typography.Title>
-      <Typography.Title level="2">Next.js + React + SCSS 구조 가이드</Typography.Title>
+      <Typography.Title level={2}>Next.js + React + SCSS 구조 가이드</Typography.Title>
       <div className="playground__inner">
-        <Typography.Title level="3">1. 기본 구조</Typography.Title>
+        <Typography.Title level={3}>1. 기본 구조</Typography.Title>
         <ol>
           <li>1. app 디렉토리 중심 구조</li>
           <li>2. 중첩 레이아웃 지원 (페이지마다 layout.jsx)</li>
         </ol>
         <SourceCodeViewer btnText="구조" code={code} hidden={false} />
 
-        <Typography.Title level="3">2. 디자인 규칙</Typography.Title>
+        <Typography.Title level={3}>2. 디자인 규칙</Typography.Title>
         <ol>
           <li>1. 반응형 사이즈 지정 : mo 768 / tab 1024 / pc 1280</li>
           <li>2. Spacing : padding, margin은 4px 단위</li>
           <li>3. Font : NotoSans</li>
           <li>4. Color</li>
         </ol>
-        <Typography.Title level="3">3. 클래스 규칙</Typography.Title>
+        <Typography.Title level={3}>3. 클래스 규칙</Typography.Title>
         <ol>
           <li>1. is-open</li>
           <li>2. has-child</li>
           <li>3. is-active : 버튼 클릭시 추가 클래스</li>
         </ol>
-        <Typography.Title level="3">4. SCSS스타일 : BEM</Typography.Title>
-        <Typography.Title level="3">5. 컴포넌트 목록</Typography.Title>
+        <Typography.Title level={3}>4. SCSS스타일 : BEM</Typography.Title>
+        <Typography.Title level={3}>5. 컴포넌트 목록</Typography.Title>
         <ol>
           <li>1. color</li>
           <li>2. typography</li>
@@ -104,7 +104,7 @@ const Home = () => {
           <li>20. alert</li>
           <li>21. modal</li>
         </ol>
-        <Typography.Title level="3">6. 접근성</Typography.Title>
+        <Typography.Title level={3}>6. 접근성</Typography.Title>
         <ol>
           <li>1. 키보드 이벤트</li>
           <ul>
@@ -120,7 +120,7 @@ const Home = () => {
             {/* - 모든 컴포넌트 PR 머지 전 Lighthouse 점검 */}
           </ul>
         </ol>
-        <Typography.Title level="3">7. 사용 라이브러리</Typography.Title>
+        <Typography.Title level={3}>7. 사용 라이브러리</Typography.Title>
         <ol>
           <li>
             - react-hook-form
@@ -131,7 +131,7 @@ const Home = () => {
           </li>
         </ol>
 
-        <Typography.Title level="3">참고 사이트</Typography.Title>
+        <Typography.Title level={3}>참고 사이트</Typography.Title>
         <a href="https://mui.com/material-ui/all-components/" target="_blank">
           https://mui.com/material-ui/all-components/
         </a>
@@ -142,6 +142,10 @@ const Home = () => {
         <br />
         <a href="https://animata.design/docs/button" target="_blank">
           https://animata.design/docs/button
+        </a>
+        <br />
+        <a href="https://ui.shadcn.com/docs" target="_blank">
+          https://ui.shadcn.com/docs
         </a>
         <br />
         <a

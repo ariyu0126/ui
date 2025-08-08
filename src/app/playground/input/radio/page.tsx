@@ -1,11 +1,10 @@
 'use client';
 
 import { useState } from 'react';
+import { generateCode } from '@/lib/utils/generateCode';
 import { Radio, SourceCodeViewer, Typography } from '@/components';
 
 const InputRadioPlayground = () => {
-  const [radioValue, setRadioValue] = useState('');
-
   // radio group
   const radioOptions = [
     {
@@ -22,19 +21,41 @@ const InputRadioPlayground = () => {
     },
   ];
 
-  const [radioProps, setRadioProps] = useState({
+  type SingleRadioProps = {
+    name: string;
+    label: string;
+    value: string;
+    size: 'sm' | 'md' | 'lg';
+    checked: boolean;
+    disabled: boolean;
+    required: boolean;
+    className: string;
+    color: 'white' | 'dark' | 'point';
+  };
+  const [radioProps, setRadioProps] = useState<SingleRadioProps>({
     name: '',
     label: '',
     value: '',
     size: 'md',
-    checked: '',
+    checked: false,
     disabled: false,
     required: false,
     className: '',
     color: 'white',
   });
 
-  const [radioGroupProps, setRadioGroupProps] = useState({
+  type RadioGroupState = {
+    checked: string;
+    options: { label: string; value: string }[];
+    name: string;
+    direction: 'row' | 'column';
+    optionType: 'default' | 'button';
+    disabled: boolean;
+    required: boolean;
+    color: 'white' | 'dark' | 'point';
+    size: 'sm' | 'md' | 'lg';
+  };
+  const [radioGroupProps, setRadioGroupProps] = useState<RadioGroupState>({
     checked: '',
     options: radioOptions,
     name: 'radio-group',
@@ -47,99 +68,100 @@ const InputRadioPlayground = () => {
   });
 
   // button props
-  const handlePropertyChange = (property, value) => {
+  const handlePropertyChange = (property: string, value: any) => {
     setRadioProps((prevProps) => ({
       ...prevProps,
       [property]: value,
     }));
   };
 
-  const handleRadioChange = (e) => {
-    setRadioValue(e.target.value);
+  const handleRadioChange = (e: any) => {
+    handleGroupPropertyChange('checked', e.target.value);
   };
 
   // code
   const sizeOption = ['sm', 'md', 'lg'];
   const colorOption = ['white', 'dark', 'point'];
   const { name, label, value, size, checked, disabled, required, className, color } = radioProps;
-  const code = `
-    <Radio
-      name="${name}"
-      label="${label}"
-      value="${value}"
-      size="${size}"
-      color="${color}"
-      checked="${checked}"
-      disabled=${disabled ? 'true' : 'false'}
-      required=${required ? 'true' : 'false'}
-      className="${className}"
-    />
-  `;
+  const radioCode = generateCode('Radio', {
+    name,
+    label,
+    value,
+    size,
+    checked,
+    disabled,
+    required,
+    className,
+    color
+  });
 
   // group code
-  const handleGroupPropertyChange = (property, value) => {
+  const handleGroupPropertyChange = (property: string, value: any) => {
     setRadioGroupProps((prevProps) => ({
       ...prevProps,
       [property]: value,
     }));
   };
-  const groupSize = ['sm', 'md', 'lg'];
+  const groupSizes = ['sm', 'md', 'lg'];
   const groupDirection = ['row', 'column'];
   const groupOptionType = ['default', 'button'];
-  const groupColor = ['white', 'dark', 'point'];
-  const groupCode = `
-        <Radio.Group
-            options={radioOptions}
-            checked="${radioGroupProps.checked}"
-            name="radio-group"
-            direction="${radioGroupProps.direction}"
-            optionType="${radioGroupProps.optionType}"
-            disabled=${radioGroupProps.disabled ? 'true' : 'false'}
-            required=${radioGroupProps.required ? 'true' : 'false'}
-            color="${radioGroupProps.color}"
-            size="${radioGroupProps.size}"
-        />
-    `;
+  const groupColors = ['white', 'dark', 'point'];
+  const { checked:groupChecked, options, name:groupName, direction, optionType, disabled:groupDisabled, required:groupRequired, color:groupColor, size:groupSize } = radioGroupProps;
+  const radioGroupCode = generateCode('Radio.Group', {
+    checked: groupChecked,
+    options,
+    name: groupName,
+    direction,
+    optionType,
+    disabled: groupDisabled,
+    required: groupRequired,
+    color: groupColor,
+    size: groupSize
+  });
   return (
     <div className="playground">
-      <Typography.Title>Input Radio</Typography.Title>
-      <Typography.Title level={2}>1. Input Radio</Typography.Title>
+      <Typography.Title>Radio</Typography.Title>
+      <Typography.Title level={2}>1. Radio</Typography.Title>
       <div className="playground__inner">
-        <Typography.Title level={3}>1-1. Input Radio 속성</Typography.Title>
-        <ul>
-          <li>
-            <Typography.Text>- size: sm, md, lg</Typography.Text>
+        <Typography.Title level={3}>1-1. Radio 속성</Typography.Title>
+          <Typography.Text>- size: sm, md, lg</Typography.Text>
+          <div className="playground__inner-box">
             <Radio size="sm" checked={true} label="라디오" />
             <Radio size="md" checked={true} label="라디오" />
             <Radio size="lg" checked={true} label="라디오" />
-          </li>
-          <li>
-            <Typography.Text>- checked: true, false</Typography.Text>
+          </div>
+            
+          <Typography.Text>- checked: true, false</Typography.Text>
+          <div className="playground__inner-box">
             <Radio checked={true} label="라디오" />
-          </li>
-          <li>
-            <Typography.Text>- disabled : true, false</Typography.Text>
+          </div>
+          
+          <Typography.Text>- disabled : true, false</Typography.Text>
+          <div className="playground__inner-box">
             <Radio disabled={true} label="라디오" />
-          </li>
-          <li>
-            <Typography.Text>- required : true, false</Typography.Text>
+          </div>
+          
+          <Typography.Text>- required : true, false</Typography.Text>
+          <div className="playground__inner-box">
             <Radio required={true} label="라디오" />
-          </li>
-          <li>
-            <Typography.Text>- color : white, dark, point</Typography.Text>
+          </div>
+          
+          <Typography.Text>- color : white, dark, point</Typography.Text>
+          <div className="playground__inner-box">
             <Radio color="white" label="white" checked={true} />
             <Radio color="dark" label="dark" checked={true} />
             <Radio color="point" label="point" checked={true} />
-          </li>
-        </ul>
-        <Typography.Title level={3}>1-2. Input Radio 예시</Typography.Title>
+          </div>
+      </div>
+      <div className="playground__inner">
+        <Typography.Title level={3}>1-2. Radio 예시</Typography.Title>
         <ul>
           <li>
             - checked :{' '}
             <div className="button__group">
               <button
-                className={`button__tag ${radioProps.checked === 'radio1' ? 'is-active' : ''}`}
-                onClick={() => handlePropertyChange('checked', true)}
+                className={`button__tag ${radioProps.checked === true ? 'is-active' : ''}`}
+                onClick={() => handlePropertyChange('checked', !radioProps.checked)}
               >
                 radio1
               </button>
@@ -233,99 +255,113 @@ const InputRadioPlayground = () => {
           </li>
         </ul>
         <Radio {...radioProps} onChange={(e) => handlePropertyChange('checked', e.target.checked)} />
-        <SourceCodeViewer code={code} />
+        <SourceCodeViewer code={radioCode} />
       </div>
-      <Typography.Title level={2}>2. Input Radio group</Typography.Title>
+      <Typography.Title level={2}>2. Radio group</Typography.Title>
       <div className="playground__inner">
-        {/* <Typography.Title level={3}>2-1. Input Radio Group 사용방식</Typography.Title>
-                <Typography.Text>- options: 배열 형태로 사용</Typography.Text>
-                <Radio.Group options={radioOptions} checked="radio1" name="radio-group1" />
-                <br />
-                <Typography.Text>- children: 컴포넌트 형태로 사용</Typography.Text>
-                <Radio.Group checked="radio1" >
-                    <Radio label="라디오 1" value="radio1" name="radio-group2" />
-                    <Radio label="라디오 2" value="radio2" name="radio-group2" />
-                    <Radio label="라디오 3" value="radio3" name="radio-group2" />
-                </Radio.Group> */}
-        <Typography.Title level={3}>2-1. Input Radio Group 속성</Typography.Title>
+        <Typography.Title level={3}>2-1. Radio Group 속성</Typography.Title>
         <Typography.Text>- checked: value값 입력</Typography.Text>
         <Typography.Text>외부에서 value를 넘길때는 onChange 속성을 사용해야 합니다.</Typography.Text>
-        <Radio.Group options={radioOptions} checked="radio1" name="radio-group3" onChange={handleRadioChange} />
-        <Typography.Text>- required : true, false</Typography.Text>
-        <Radio.Group options={radioOptions} name="radio-group4" required={true} />
-        <Typography.Text>- direction : column, row</Typography.Text>
-        <Radio.Group options={radioOptions} checked="radio1" name="radio-group5" direction="row" />
-        <Radio.Group
-          options={radioOptions}
-          checked="radio1"
-          name="radio-group6"
-          direction="column"
-        />
-        <Typography.Text>- optionType : default, button</Typography.Text>
-        <Radio.Group
-          options={radioOptions}
-          checked="radio1"
-          name="radio-group7"
-          optionType="default"
-        />
-        <Radio.Group
-          options={radioOptions}
-          checked="radio1"
-          name="radio-group8"
-          optionType="button"
-        />
-        <Typography.Text>- color : white, dark, point</Typography.Text>
-        <Radio.Group options={radioOptions} checked="radio1" name="radio-group9" color="white" />
-        <Radio.Group options={radioOptions} checked="radio2" name="radio-group10" color="dark" />
-        <Radio.Group options={radioOptions} checked="radio3" name="radio-group11" color="point" />
-        <Radio.Group
-          options={radioOptions}
-          checked="radio1"
-          name="radio-group12"
-          optionType="button"
-          color="white"
-        />
-        <Radio.Group
-          options={radioOptions}
-          checked="radio2"
-          name="radio-group13"
-          optionType="button"
-          color="dark"
-        />
-        <Radio.Group
-          options={radioOptions}
-          checked="radio3"
-          name="radio-group14"
-          optionType="button"
-          color="point"
-        />
-        <Typography.Text>- size : sm, md, lg</Typography.Text>
-        <Radio.Group options={radioOptions} checked="radio1" name="radio-group15" size="sm" />
-        <Radio.Group options={radioOptions} checked="radio2" name="radio-group16" size="md" />
-        <Radio.Group options={radioOptions} checked="radio3" name="radio-group17" size="lg" />
-        <Radio.Group
-          options={radioOptions}
-          checked="radio1"
-          name="radio-group18"
-          optionType="button"
-          size="sm"
-        />
-        <Radio.Group
-          options={radioOptions}
-          checked="radio2"
-          name="radio-group19"
-          optionType="button"
-          size="md"
-        />
-        <Radio.Group
-          options={radioOptions}
-          checked="radio3"
-          name="radio-group20"
-          optionType="button"
-          size="lg"
-        />
+        <div className="playground__inner-box"><Radio.Group options={radioOptions} checked="radio1" name="radio-group3" onChange={handleRadioChange} /></div>
+        
+        <Typography.Text>- disabled : true, false</Typography.Text>
+        <div className="playground__inner-box"><Radio.Group options={radioOptions} name="radio-group4" disabled={true} /></div>
 
-        <Typography.Title level={3}>2-2. Input Radio Group 예시</Typography.Title>
+        <Typography.Text>- required : true, false</Typography.Text>
+        <div className="playground__inner-box"><Radio.Group options={radioOptions} name="radio-group4" required={true} /></div>
+
+        <Typography.Text>- direction : column, row</Typography.Text>
+        <div className="playground__inner-box">
+          <Radio.Group options={radioOptions} checked="radio1" name="radio-group5" direction="row" />
+        </div>
+        <div className="playground__inner-box">
+          <Radio.Group
+            options={radioOptions}
+            checked="radio1"
+            name="radio-group6"
+            direction="column"
+          />
+        </div>
+
+        <Typography.Text>- optionType : default, button</Typography.Text>
+        <div className="playground__inner-box">
+          <Radio.Group
+            options={radioOptions}
+            checked="radio1"
+            name="radio-group7"
+            optionType="default"
+          />
+        </div>
+        <div className="playground__inner-box">
+          <Radio.Group
+            options={radioOptions}
+            checked="radio1"
+            name="radio-group8"
+            optionType="button"
+          />
+        </div>
+
+        <Typography.Text>- color : white, dark, point</Typography.Text>
+        <div className="playground__inner-box">
+          <Radio.Group options={radioOptions} checked="radio1" name="radio-group9" color="white" />
+          <Radio.Group options={radioOptions} checked="radio2" name="radio-group10" color="dark" />
+          <Radio.Group options={radioOptions} checked="radio3" name="radio-group11" color="point" />
+        </div>
+        <div className="playground__inner-box">
+          <Radio.Group
+            options={radioOptions}
+            checked="radio1"
+            name="radio-group12"
+            optionType="button"
+            color="white"
+          />
+          <Radio.Group
+            options={radioOptions}
+            checked="radio2"
+            name="radio-group13"
+            optionType="button"
+            color="dark"
+          />
+          <Radio.Group
+            options={radioOptions}
+            checked="radio3"
+            name="radio-group14"
+            optionType="button"
+            color="point"
+          />
+        </div>
+
+        <Typography.Text>- size : sm, md, lg</Typography.Text>
+        <div className="playground__inner-box">
+          <Radio.Group options={radioOptions} checked="radio1" name="radio-group15" size="sm" />
+          <Radio.Group options={radioOptions} checked="radio2" name="radio-group16" size="md" />
+          <Radio.Group options={radioOptions} checked="radio3" name="radio-group17" size="lg" />
+        </div>
+        <div className="playground__inner-box">
+          <Radio.Group
+            options={radioOptions}
+            checked="radio1"
+            name="radio-group18"
+            optionType="button"
+            size="sm"
+          />
+          <Radio.Group
+            options={radioOptions}
+            checked="radio2"
+            name="radio-group19"
+            optionType="button"
+            size="md"
+          />
+          <Radio.Group
+            options={radioOptions}
+            checked="radio3"
+            name="radio-group20"
+            optionType="button"
+            size="lg"
+          />
+        </div>
+
+        <Typography.Title level={3}>2-2. Radio Group 예시</Typography.Title>
         <ul>
           <li>
             - checked :
@@ -406,7 +442,7 @@ const InputRadioPlayground = () => {
           <li>
             - color :{' '}
             <div className="button__group">
-              {groupColor.map((val, idx) => (
+              {groupColors.map((val, idx) => (
                 <button
                   className={`button__tag ${radioGroupProps.color === val ? 'is-active' : ''}`}
                   key={idx}
@@ -420,7 +456,7 @@ const InputRadioPlayground = () => {
           <li>
             - size :{' '}
             <div className="button__group">
-              {groupSize.map((val, idx) => (
+              {groupSizes.map((val, idx) => (
                 <button
                   className={`button__tag ${radioGroupProps.size === val ? 'is-active' : ''}`}
                   key={idx}
@@ -433,7 +469,7 @@ const InputRadioPlayground = () => {
           </li>
         </ul>
         <Radio.Group {...radioGroupProps} onChange={(e) => handleGroupPropertyChange('checked', e.target.value)} />
-        <SourceCodeViewer code={groupCode} />
+        <SourceCodeViewer code={radioGroupCode} />
       </div>
     </div>
   );

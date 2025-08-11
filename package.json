@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "gen:components": "node scripts/generateComponentIndex.js",
+    "gen:components": "node scripts/generateComponentIndex.cjs",
     "dev": "npm run gen:components && next dev",
     "build": "npm run gen:components && next build",
     "start": "next start",

@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "gen:components": "node scripts/generateComponentIndex.js",
+    "dev": "npm run gen:components && next dev",
+    "build": "npm run gen:components && next build",
     "start": "next start",
-    "lint": "next lint",
-    "gen:components": "node scripts/generateComponentIndex.js"
+    "lint": "next lint"
   },
   "dependencies": {
     "next": "15.4.1",

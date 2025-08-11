@@ -11,7 +11,6 @@ const compat = new FlatCompat({
 
 export default [
   ...compat.extends('next/core-web-vitals'),
-
   {
     plugins: {
       prettier: require('eslint-plugin-prettier'),

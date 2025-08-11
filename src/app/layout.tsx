@@ -1,5 +1,6 @@
 import '@/styles/main.scss';
 import { Noto_Sans_KR } from 'next/font/google';
+import type { ReactNode } from 'react';
 import SkipNav from './layout/SkipNav';
 import Header from './layout/Header';
 // import Footer from "./layout/Footer";
@@ -19,7 +20,9 @@ export const metadata = {
   description: 'React UI 컴포넌트 모음집',
 };
 
-const RootLayout = ({ children }) => {
+type RootLayoutProps = { children: ReactNode };
+
+const RootLayout = ({ children }: RootLayoutProps) => {
   return (
     <html lang="ko">
       <head>

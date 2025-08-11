@@ -57,6 +57,12 @@ const Sidebar = () => {
         >
           Checkbox
         </Link>
+        <Link
+          href="/playground/select"
+          className={currentPath === '/playground/select' ? 'is-active' : ''}
+        >
+          Select
+        </Link>
       </nav>
     </aside>
   );

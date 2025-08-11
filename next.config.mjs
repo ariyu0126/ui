@@ -1,21 +1,18 @@
-// next.config.js
-const path = require('path');
+// next.config.mjs
+import path from 'path';
 
-/** @type {import('next').NextConfig} */
 const nextConfig = {
   webpack(config) {
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
-      '@': path.resolve(__dirname, 'src'),
+      '@': path.resolve(process.cwd(), 'src'),
     };
-
     config.module.rules.push({
       test: /\.svg$/,
       use: ['@svgr/webpack'],
     });
-
     return config;
   },
 };
 
-module.exports = nextConfig;
+export default nextConfig;

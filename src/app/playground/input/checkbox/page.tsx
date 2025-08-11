@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import type React from 'react';
 import { generateCode } from '@/lib/utils/generateCode';
 import { SourceCodeViewer, Checkbox, Typography } from '@/components';
 
@@ -21,11 +22,21 @@ const InputCheckBoxPlayground = () => {
   ];
 
   const [checked, setChecked] = useState(true);
-  const [checkedValues, setCheckedValues] = useState<string>(['checkbox1']);
+  const [checkedValues, setCheckedValues] = useState<string[]>(['checkbox1']);
 
   // 단일 Checkbox 속성
-  const [checkboxProps, setCheckboxProps] = useState({
-    size: '',
+  type LocalCheckboxProps = {
+    size?: 'sm' | 'md' | 'lg';
+    disabled?: boolean;
+    required?: boolean;
+    color?: 'white' | 'dark' | 'point';
+    label?: string;
+    value?: string;
+    checked?: boolean;
+    defaultChecked?: boolean;
+  };
+
+  const [checkboxProps, setCheckboxProps] = useState<LocalCheckboxProps>({
     disabled: false,
     required: false,
     color: 'white',
@@ -34,9 +45,22 @@ const InputCheckBoxPlayground = () => {
   });
 
   // CheckboxGroup 속성
-  const [checkboxGroupProps, setCheckboxGroupProps] = useState({
+  type LocalCheckboxGroupProps = {
+    options: { label: React.ReactNode; value: string }[];
+    size?: 'sm' | 'md' | 'lg';
+    disabled?: boolean;
+    groupDisabled?: boolean;
+    required?: boolean;
+    color?: 'white' | 'dark' | 'point';
+    label?: string;
+    direction?: 'row' | 'column';
+    optionType?: 'default' | 'button';
+    className?: string;
+    defaultChecked?: string[];
+  };
+
+  const [checkboxGroupProps, setCheckboxGroupProps] = useState<LocalCheckboxGroupProps>({
     options: checkboxOptions,
-    size: '',
     disabled: false,
     groupDisabled: false,
     required: false,
@@ -47,28 +71,30 @@ const InputCheckBoxPlayground = () => {
     className: '',
   });
 
-  const handlePropertyChange = (property, value) => {
+  const handlePropertyChange = <K extends keyof LocalCheckboxProps>(property: K, value: LocalCheckboxProps[K]) => {
     setCheckboxProps((prevProps) => ({
       ...prevProps,
       [property]: value,
     }));
   };
 
-  const handleGroupPropChange = (key, value) => {
+  const handleGroupPropChange = <K extends keyof LocalCheckboxGroupProps>(key: K, value: LocalCheckboxGroupProps[K]) => {
     setCheckboxGroupProps(prev => ({
       ...prev,
-      [key]: value
+      [key]: value,
     }));
   };
 
   // 단일 Checkbox 토글 (controlled)
-  const handleSingleCheckboxChange = (e) => {
+  const handleSingleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(e.target.checked);
   };
 
   // code
-  const sizeOption = ['sm', 'md', 'lg'];
-  const colorOption = ['white', 'dark', 'point'];
+  const sizeOption = ['sm', 'md', 'lg'] as const;
+  type SizeOption = typeof sizeOption[number];
+  const colorOption = ['white', 'dark', 'point'] as const;
+  type ColorOption = typeof colorOption[number];
   const { size, defaultChecked, disabled, required, color, label, value } = checkboxProps;
   const checkboxCode = generateCode('Checkbox', {
     size,
@@ -138,7 +164,7 @@ const InputCheckBoxPlayground = () => {
                 <button
                   className={`button__tag ${checkboxProps.size === val ? 'is-active' : ''}`}
                   key={idx}
-                  onClick={() => handlePropertyChange('size', val)}
+                  onClick={() => handlePropertyChange('size', val as SizeOption)}
                 >
                   {val}
                 </button>
@@ -203,7 +229,7 @@ const InputCheckBoxPlayground = () => {
                   <button
                     className={`button__tag ${checkboxProps.color === val ? 'is-active' : ''}`}
                     key={idx}
-                    onClick={() => handlePropertyChange('color', val)}
+                    onClick={() => handlePropertyChange('color', val as ColorOption)}
                   >
                     {val}
                   </button>
@@ -287,13 +313,13 @@ const InputCheckBoxPlayground = () => {
             <div className="button__group">
               <button
                 className={`button__tag ${checkboxGroupProps.groupDisabled === true ? 'is-active' : ''}`}
-                onClick={() => handleGroupPropChange('disabled', true)}
+                onClick={() => handleGroupPropChange('groupDisabled', true)}
               >
                 true
               </button>
               <button
                 className={`button__tag ${checkboxGroupProps.groupDisabled === false ? 'is-active' : ''}`}
-                onClick={() => handleGroupPropChange('disabled', false)}
+                onClick={() => handleGroupPropChange('groupDisabled', false)}
               >
                 false
               </button>
@@ -357,7 +383,7 @@ const InputCheckBoxPlayground = () => {
                   <button
                     className={`button__tag ${checkboxGroupProps.color === val ? 'is-active' : ''}`}
                     key={idx}
-                    onClick={() => handleGroupPropChange('color', val)}
+                    onClick={() => handleGroupPropChange('color', val as ColorOption)}
                   >
                     {val}
                   </button>

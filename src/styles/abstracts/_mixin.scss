@@ -71,7 +71,7 @@
   flex-direction: $direction;
   justify-content: $justify;
   align-items: $align;
-  gap: map-get($gap-map, $gap);
+  gap: map.get($gap-map, $gap);
   flex-wrap: $wrap;
 }
 

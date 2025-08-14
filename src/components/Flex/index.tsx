@@ -1,3 +1,6 @@
+import type React from 'react';
+import { cx } from '@/lib/cx';
+
 type FlexProps = {
   direction?: string;
   justify?: string;
@@ -18,16 +21,17 @@ const Flex = ({
   children,
   ...rest
 }: FlexProps) => {
-  const flaxClassName = `
-      ${direction ? `flex--direction-${direction}` : ''}
-      ${justify ? `flex--justify-${justify}` : ''}
-      ${align ? `flex--align-${align}` : ''}
-      ${gap ? `flex--gap-${gap}` : ''}
-      ${wrap ? `flex--wrap-${wrap}` : ''}
-      ${className}
-    `.trim();
+  const flaxClassName = cx(
+    'flex',
+    direction && `flex--direction-${direction}`,
+    justify && `flex--justify-${justify}`,
+    align && `flex--align-${align}`,
+    gap && `flex--gap-${gap}`,
+    wrap && `flex--wrap-${wrap}`,
+    className,
+  );
   return (
-    <div className={`flex ${flaxClassName}`} {...rest}>
+    <div className={flaxClassName} {...rest}>
       {children}
     </div>
   );

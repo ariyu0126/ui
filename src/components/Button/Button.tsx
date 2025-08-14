@@ -1,3 +1,4 @@
+import { cx } from '@/lib/cx';
 import IconSearch from '/public/search-alt-2-svgrepo-com.svg';
 import IconNewWindow from '/public/arrow-up-right-svgrepo-com.svg';
 import IconDownLoad from '/public/arrow-narrow-bottom-alignment-svgrepo-com.svg';
@@ -34,11 +35,23 @@ const Button = ({
   className = '',
   ...rest
 }: ButtonProps) => {
-  const buttonClass = `button__default size--${size} align--${align} color--${color} style--${style} ${className} ${disabled ? 'is-disabled' : ''}`;
-
   return (
-    <button className={buttonClass} disabled={disabled} onClick={onClick} {...rest}>
-      {icon && icon !== 'null' && <span className="button__icon">{icons[icon as keyof typeof icons]}</span>}
+    <button
+      className={cx(
+        'button__default',
+        `size--${size}`,
+        `align--${align}`,
+        `color--${color}`,
+        `style--${style}`,
+        'no-drag',
+        className,
+        disabled && 'is-disabled',
+      )}
+      disabled={disabled}
+      onClick={onClick}
+      {...rest}
+    >
+      {icon && icon !== 'null' && <span className="icon">{icons[icon as keyof typeof icons]}</span>}
       <span className="button__text">{children}</span>
     </button>
   );

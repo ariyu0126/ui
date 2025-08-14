@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { cx } from '@/lib/cx';
 import { Radio } from '@/components';
 
 type RadioOption = {
@@ -58,14 +59,16 @@ const RadioGroup = ({
 
   return (
     <div className="radio__group-container">
-      <div className={`
-        radio__group
-        radio__group-option-${optionType}
-        radio__group-direction-${direction}
-        radio__group-color-${color}
-        ${disabled ? 'is-disabled' : ''}
-        ${className}
-      `}>
+      <div
+        className={cx(
+          'radio__group',
+          `radio__group-option-${optionType}`,
+          `radio__group-direction-${direction}`,
+          `radio__group-color-${color}`,
+          disabled && 'is-disabled',
+          className,
+        )}
+      >
         {options.map((option: RadioOption) => (
           <Radio
             key={option.value}

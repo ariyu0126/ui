@@ -1,11 +1,29 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, type ChangeEvent } from 'react';
 import { generateCode } from '@/lib/utils/generateCode';
-import { Input, Button, SourceCodeViewer, Typography } from '@/components';
+import { Input, Button, SourceCodeViewer, Typography, Selectbox } from '@/components';
 
 const InputTextPlayground = () => {
-  const [errorTextProps, setErrorTextProps] = useState({
+  type LocalInputTextProps = {
+    size: 'md' | 'lg' | 'full';
+    type: 'text' | 'password' | 'number' | 'email' | 'tel';
+    error: string | null;
+    hint: string | null;
+    required: boolean;
+    disabled: boolean;
+    readOnly: boolean;
+    placeholder: string;
+    label: string;
+    className: string;
+    validate: unknown | null;
+    min: string | number | '';
+    max: string | number | '';
+    errorBlur: boolean;
+    errorTouched: boolean;
+    value?: string;
+  };
+  const [errorTextProps, setErrorTextProps] = useState<LocalInputTextProps>({
     size: 'md',
     type: 'text',
     error: null,
@@ -23,7 +41,7 @@ const InputTextPlayground = () => {
     errorTouched: false,
   });
 
-  const [inputTextProps, setInputTextProps] = useState({
+  const [inputTextProps, setInputTextProps] = useState<LocalInputTextProps>({
     size: 'md',
     type: 'text',
     error: null,
@@ -42,7 +60,10 @@ const InputTextPlayground = () => {
   });
 
   // button props
-  const handlePropertyChange = (property, value) => {
+  const handlePropertyChange = <K extends keyof LocalInputTextProps>(
+    property: K,
+    value: LocalInputTextProps[K],
+  ) => {
     setInputTextProps((prevProps) => ({
       ...prevProps,
       [property]: value,
@@ -51,8 +72,16 @@ const InputTextPlayground = () => {
   const handleReset = () => {
     handlePropertyChange('value', '');
   };
-  const sizeOption = ['md', 'lg', 'full'];
-  const typeOption = ['text', 'password', 'number', 'email', 'tel'];
+  const sizeOption = ['md', 'lg', 'full'] as const;
+  type SizeOption = (typeof sizeOption)[number];
+  const typeOption = ['text', 'password', 'number', 'email', 'tel'] as const;
+  type TypeOption = (typeof typeOption)[number];
+
+  const selectOptions = [
+    { value: 'opt1', name: '옵션 1' },
+    { value: 'opt2', name: '옵션 2' },
+    { value: 'opt3', name: '옵션 3', disabled: true },
+  ];
 
   // code
   const {
@@ -96,7 +125,7 @@ const InputTextPlayground = () => {
   return (
     <div className="playground">
       <Typography.Title>Input text</Typography.Title>
-      <Typography.Title level={2}>1. Input text 속성</Typography.Title>
+      <Typography.Title level={2}>1. Input 속성</Typography.Title>
       <div className="playground__inner">
         <Typography.Title level={3}>- size</Typography.Title>
         <div className="playground__inner-box">
@@ -109,7 +138,7 @@ const InputTextPlayground = () => {
           <Typography.Text>full</Typography.Text>
           <Input.Text size="full" />
         </div>
-            
+
         <Typography.Title level={3}>- type</Typography.Title>
         <div className="playground__inner-box">
           <Typography.Text>text</Typography.Text>
@@ -137,23 +166,33 @@ const InputTextPlayground = () => {
         </div>
       </div>
 
-      <Typography.Title level={2}>2. Input text 설정</Typography.Title>
+      <Typography.Title level={2}>2. Input 설정</Typography.Title>
       <div className="playground__inner">
         <Typography.Text>- basic</Typography.Text>
-        <div className="playground__inner-box"><Input.Text /></div>
-            
+        <div className="playground__inner-box">
+          <Input.Text />
+        </div>
+
         <Typography.Text>- required</Typography.Text>
-        <div className="playground__inner-box"><Input.Text required label="이름" /></div>
+        <div className="playground__inner-box">
+          <Input.Text required label="이름" />
+        </div>
 
         <Typography.Text>- disabled</Typography.Text>
-        <div className="playground__inner-box"><Input.Text disabled={true} value="비활성화" /></div>
+        <div className="playground__inner-box">
+          <Input.Text disabled={true} value="비활성화" />
+        </div>
 
         <Typography.Text>- readOnly</Typography.Text>
-        <div className="playground__inner-box"><Input.Text readOnly value="읽기만 가능" /></div>
-        
+        <div className="playground__inner-box">
+          <Input.Text readOnly value="읽기만 가능" />
+        </div>
+
         <Typography.Text>- errorBlur=true : blur할때 error 메시지 표시</Typography.Text>
-        <div className="playground__inner-box"><Input.Text error="에러닷" errorBlur /></div>
-        
+        <div className="playground__inner-box">
+          <Input.Text error="에러닷" errorBlur />
+        </div>
+
         <Typography.Text>- errorBlur=false : click할때 error 메시지 표시</Typography.Text>
         <div className="playground__inner-box">
           <Input.Text {...errorTextProps} />
@@ -170,21 +209,33 @@ const InputTextPlayground = () => {
             click
           </Button>
         </div>
-        
+
         <Typography.Text>- hint</Typography.Text>
-        <div className="playground__inner-box"><Input.Text hint="힌트다" /></div>
+        <div className="playground__inner-box">
+          <Input.Text hint="힌트다" />
+        </div>
 
         <Typography.Text>- min/max (min:3, max: 5, 숫자)</Typography.Text>
-        <div className="playground__inner-box"><Input.Number min="3" max="5" /></div>   
+        <div className="playground__inner-box">
+          <Input.Number min="3" max="5" />
+        </div>
       </div>
 
-      <Typography.Title level={2}>3. Input text 예시</Typography.Title>
+      <div className="playground__inner-box">
+        <div className="search__group">
+          <Selectbox options={selectOptions} />
+          <Input.Text />
+          <Button />
+        </div>
+      </div>
+
+      <Typography.Title level={2}>3. Input 예시</Typography.Title>
       <div className="playground__inner">
-        <ul>
+        <ul className="playground__inner-list">
           <li>
             - size :{' '}
             <div className="button__group">
-              {sizeOption.map((val, idx) => (
+              {sizeOption.map((val: SizeOption, idx) => (
                 <button
                   className={`button__tag ${inputTextProps.size === val ? 'is-active' : ''}`}
                   key={idx}
@@ -198,7 +249,7 @@ const InputTextPlayground = () => {
           <li>
             - type :{' '}
             <div className="button__group">
-              {typeOption.map((val, idx) => (
+              {typeOption.map((val: TypeOption, idx) => (
                 <button
                   className={`button__tag ${inputTextProps.type === val ? 'is-active' : ''}`}
                   key={idx}
@@ -264,7 +315,7 @@ const InputTextPlayground = () => {
                 <input
                   value={inputTextProps.value || ''}
                   onChange={(e) => handlePropertyChange('value', e.target.value)}
-                  label="value를 입력하세요"
+                  placeholder="value를 입력하세요"
                 />
               </div>
             )}
@@ -291,7 +342,7 @@ const InputTextPlayground = () => {
                 <input
                   value={inputTextProps.value || ''}
                   onChange={(e) => handlePropertyChange('value', e.target.value)}
-                  label="value를 입력하세요"
+                  placeholder="value를 입력하세요"
                 />
               </div>
             )}
@@ -309,7 +360,7 @@ const InputTextPlayground = () => {
             <input
               value={inputTextProps.label || ''}
               onChange={(e) => handlePropertyChange('label', e.target.value)}
-              label="label을 입력하세요"
+              placeholder="label을 입력하세요"
             />
           </li>
           <li>
@@ -327,10 +378,11 @@ const InputTextPlayground = () => {
             />
           </li>
         </ul>
-        {/* <pre>{JSON.stringify(inputTextProps)}</pre> */}
         <Input.Text
           {...inputTextProps}
-          onChange={(e) => handlePropertyChange('value', e?.target?.value ?? e)}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            handlePropertyChange('value', e.target.value)
+          }
           onReset={handleReset}
         />
         <SourceCodeViewer code={inputCode} />

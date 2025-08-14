@@ -59,3 +59,19 @@ $height: (
   'md': 40px,
   'lg': 48px,
 );
+
+// -------------------------------------------------
+// Global disabled cursor override (wins import order)
+// -------------------------------------------------
+:where(button:disabled,
+       input:disabled,
+       select:disabled,
+       textarea:disabled,
+       [aria-disabled='true'],
+       .is-disabled) {
+  cursor: not-allowed !important;
+}
+
+:where([aria-disabled='true'], .is-disabled) * {
+  cursor: not-allowed !important;
+}

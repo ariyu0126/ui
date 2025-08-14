@@ -124,38 +124,38 @@ const InputRadioPlayground = () => {
       <Typography.Title level={2}>1. Radio</Typography.Title>
       <div className="playground__inner">
         <Typography.Title level={3}>1-1. Radio 속성</Typography.Title>
-          <Typography.Text>- size: sm, md, lg</Typography.Text>
-          <div className="playground__inner-box">
-            <Radio size="sm" checked={true} label="라디오" />
-            <Radio size="md" checked={true} label="라디오" />
-            <Radio size="lg" checked={true} label="라디오" />
-          </div>
-            
-          <Typography.Text>- checked: true, false</Typography.Text>
-          <div className="playground__inner-box">
-            <Radio checked={true} label="라디오" />
-          </div>
-          
-          <Typography.Text>- disabled : true, false</Typography.Text>
-          <div className="playground__inner-box">
-            <Radio disabled={true} label="라디오" />
-          </div>
-          
-          <Typography.Text>- required : true, false</Typography.Text>
-          <div className="playground__inner-box">
-            <Radio required={true} label="라디오" />
-          </div>
-          
-          <Typography.Text>- color : white, dark, point</Typography.Text>
-          <div className="playground__inner-box">
-            <Radio color="white" label="white" checked={true} />
-            <Radio color="dark" label="dark" checked={true} />
-            <Radio color="point" label="point" checked={true} />
-          </div>
+        <Typography.Text>- size: sm, md, lg</Typography.Text>
+        <div className="playground__inner-box">
+          <Radio size="sm" checked={true} label="라디오" />
+          <Radio size="md" checked={true} label="라디오" />
+          <Radio size="lg" checked={true} label="라디오" />
+        </div>
+
+        <Typography.Text>- checked: true, false</Typography.Text>
+        <div className="playground__inner-box">
+          <Radio checked={true} label="라디오" />
+        </div>
+
+        <Typography.Text>- disabled : true, false</Typography.Text>
+        <div className="playground__inner-box">
+          <Radio disabled={true} label="라디오" />
+        </div>
+
+        <Typography.Text>- required : true, false</Typography.Text>
+        <div className="playground__inner-box">
+          <Radio required={true} label="라디오" />
+        </div>
+
+        <Typography.Text>- color : white, dark, point</Typography.Text>
+        <div className="playground__inner-box">
+          <Radio color="white" label="white" checked={true} />
+          <Radio color="dark" label="dark" checked={true} />
+          <Radio color="point" label="point" checked={true} />
+        </div>
       </div>
       <div className="playground__inner">
         <Typography.Title level={3}>1-2. Radio 예시</Typography.Title>
-        <ul>
+        <ul className="playground__inner-list">
           <li>
             - checked :{' '}
             <div className="button__group">
@@ -254,7 +254,9 @@ const InputRadioPlayground = () => {
             </div>
           </li>
         </ul>
-        <Radio {...radioProps} onChange={(e) => handlePropertyChange('checked', e.target.checked)} />
+        <div className="playground__inner-box">
+          <Radio {...radioProps} onChange={(e) => handlePropertyChange('checked', e.target.checked)} />
+        </div>
         <SourceCodeViewer code={radioCode} />
       </div>
       <Typography.Title level={2}>2. Radio group</Typography.Title>
@@ -263,7 +265,7 @@ const InputRadioPlayground = () => {
         <Typography.Text>- checked: value값 입력</Typography.Text>
         <Typography.Text>외부에서 value를 넘길때는 onChange 속성을 사용해야 합니다.</Typography.Text>
         <div className="playground__inner-box"><Radio.Group options={radioOptions} checked="radio1" name="radio-group3" onChange={handleRadioChange} /></div>
-        
+
         <Typography.Text>- disabled : true, false</Typography.Text>
         <div className="playground__inner-box"><Radio.Group options={radioOptions} name="radio-group4" disabled={true} /></div>
 
@@ -362,7 +364,7 @@ const InputRadioPlayground = () => {
         </div>
 
         <Typography.Title level={3}>2-2. Radio Group 예시</Typography.Title>
-        <ul>
+        <ul className="playground__inner-list">
           <li>
             - checked :
             <div className="button__group">
@@ -468,7 +470,7 @@ const InputRadioPlayground = () => {
             </div>
           </li>
         </ul>
-        <Radio.Group {...radioGroupProps} onChange={(e) => handleGroupPropertyChange('checked', e.target.value)} />
+        <div className="playground__inner-box"><Radio.Group {...radioGroupProps} onChange={(e) => handleGroupPropertyChange('checked', e.target.value)} /></div>
         <SourceCodeViewer code={radioGroupCode} />
       </div>
     </div>

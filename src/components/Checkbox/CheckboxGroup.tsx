@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
-import { Checkbox } from '@/components';
+import { useId, useState } from 'react';
+import { cx } from '@/lib/cx';
+import Checkbox from './Checkbox';
 
 type CheckboxOption = {
   label: React.ReactNode;
@@ -47,11 +48,15 @@ const CheckboxGroup = ({
   const isControlled = value !== undefined;
   const [internalValue, setInternalValue] = useState<string[]>(defaultChecked);
   const currentValue = isControlled ? value! : internalValue;
+  const isInvalid = required && currentValue.length === 0;
+  const errorId = useId();
 
   const handleChange = (optionValue: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
     const next = e.target.checked
-      ? (currentValue.includes(optionValue) ? currentValue : [...currentValue, optionValue])
-      : currentValue.filter(v => v !== optionValue);
+      ? currentValue.includes(optionValue)
+        ? currentValue
+        : [...currentValue, optionValue]
+      : currentValue.filter((v) => v !== optionValue);
 
     if (!isControlled) setInternalValue(next);
     onChange?.(next);
@@ -59,16 +64,17 @@ const CheckboxGroup = ({
 
   return (
     <div className="checkbox__group-container">
-      <div className={`
-        checkbox__group
-        checkbox__group-option-${optionType}
-        checkbox__group-direction-${direction}
-        checkbox__group-color-${color}
-        ${groupDisabled ? 'is-disabled' : ''}
-        ${className}
-      `}
+      <div
+        className={cx(
+          'checkbox__group',
+          optionType && `checkbox__group-option-${optionType}`,
+          direction && `checkbox__group-direction-${direction}`,
+          color && `checkbox__group-color-${color}`,
+          groupDisabled && 'is-disabled',
+          className,
+        )}
         role="group"
-        aria-required={required}
+        aria-describedby={isInvalid ? errorId : undefined}
       >
         {options.map((option: CheckboxOption) => (
           <Checkbox
@@ -85,8 +91,8 @@ const CheckboxGroup = ({
           />
         ))}
       </div>
-      {required && currentValue.length === 0 && (
-        <p className="error-message" role="alert">
+      {isInvalid && (
+        <p id={errorId} className="error-message" role="alert">
           필수 선택입니다.
         </p>
       )}

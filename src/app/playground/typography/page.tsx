@@ -147,7 +147,7 @@ const TypographyPlayground = () => {
         <div className="playground__inner-box"><Typography.Title title="Title 속성" /></div>
 
         <Typography.Title level={3}>1-2. Title 예시</Typography.Title>
-        <ul>
+        <ul className="playground__inner-list">
           <li>
             - level :{' '}
             <div className="button__group">
@@ -195,13 +195,15 @@ const TypographyPlayground = () => {
             </div>
           </li>
         </ul>
-        <Typography.Title
-          level={titleProps.level}
-          titleClass={titleProps.titleClass}
-          titleColor={titleProps.titleColor}
-        >
-          {titleProps.title}
-        </Typography.Title>
+        <div className="playground__inner-box">
+          <Typography.Title
+            level={titleProps.level}
+            titleClass={titleProps.titleClass}
+            titleColor={titleProps.titleColor}
+          >
+            {titleProps.title}
+          </Typography.Title>
+        </div>
         <SourceCodeViewer code={titleCode} />
       </div>
 
@@ -270,7 +272,7 @@ const TypographyPlayground = () => {
         </div>
 
         <Typography.Title level={3}>2-2. Text 예시</Typography.Title>
-        <ul>
+        <ul className="playground__inner-list">
           <li>
             - weight :{' '}
             <div className="button__group">
@@ -359,16 +361,18 @@ const TypographyPlayground = () => {
             />
           </li>
         </ul>
-        <Typography.Text
-          weight={textProps.weight}
-          textClass={textProps.textClass}
-          textColor={textProps.textColor}
-          ptag={textProps.ptag}
-          size={textProps.size}
-          ellipsis={textProps.ellipsis}
-        >
-          {textProps.text}
-        </Typography.Text>
+        <div className="playground__inner-box">
+          <Typography.Text
+            weight={textProps.weight}
+            textClass={textProps.textClass}
+            textColor={textProps.textColor}
+            ptag={textProps.ptag}
+            size={textProps.size}
+            ellipsis={textProps.ellipsis}
+          >
+            {textProps.text}
+          </Typography.Text>
+        </div>
         <SourceCodeViewer code={textCode} />
       </div>
 
@@ -376,7 +380,7 @@ const TypographyPlayground = () => {
       <div className="playground__inner">
         <Typography
           level={titleProps.level}
-          title={titleProps.title}          
+          title={titleProps.title}
           titleClass={titleProps.titleClass}
           titleColor={titleProps.titleColor}
           weight={textProps.weight}

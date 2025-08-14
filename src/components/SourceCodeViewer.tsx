@@ -11,7 +11,13 @@ type SourceCodeViewerProps = {
   className?: string;
 };
 
-const SourceCodeViewer = ({ code, btnText = '코드', hidden = true, copy = false, className = '' }: SourceCodeViewerProps) => {
+const SourceCodeViewer = ({
+  code,
+  btnText = '코드',
+  hidden = true,
+  copy = false,
+  className = '',
+}: SourceCodeViewerProps) => {
   const [showCode, setShowCode] = useState(!hidden);
 
   return (

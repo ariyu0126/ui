@@ -1,0 +1,175 @@
+@use 'sass:map';
+@use '../abstracts' as *;
+
+.selectbox {
+  display: inline-block;
+  width: auto;
+  min-width: var(--selectbox-min-width, 100px);
+  max-width: var(--selectbox-max-width, 150px);
+  position: relative;
+  
+  &__label {
+    width: 100%;
+    @include control-size(md, 'container');
+    padding: 0 var(--spacing-base);
+    cursor: pointer;
+    border:1px solid var(--color-gray-300);
+    border-radius: var(--border-radius-md);
+    @include flex($flex: inline-flex, $align: center, $justify: space-between, $gap: md);
+    .label {
+      flex: 1 1 auto;
+      min-width: 0;
+      white-space:nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: inherit;
+    }
+    .icon {
+      color:var(--color-gray-600);
+      @include flex($flex: inline-flex, $align: center, $justify: center);
+      line-height: 0;
+      transform-origin: center;
+      transition: transform 0.25s ease-in-out;
+      will-change: transform;
+      svg {
+        display: block;
+        margin-top: 0;
+        transform-origin: center;
+      }
+    }
+  }
+  &__input {
+    width: auto;
+    border: 1px solid var(--color-gray-300);
+    border-radius: 0 0 var(--border-radius-md) var(--border-radius-md);
+    border-top: none;
+    box-sizing: border-box;
+    background: var(--color-white);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index:100;
+    overflow:hidden;
+    ul {
+      max-height: 200px;
+      overflow-y: auto;
+      @include pretty-scrollbar(0);
+      scrollbar-width: none;
+      &:hover {
+        @include pretty-scrollbar(8px, rgba(0,0,0,.28), transparent);
+        scrollbar-width: thin;
+      }
+      li {
+        padding: var(--spacing-xs) var(--spacing-base);
+        @include control-size(md, 'item');
+        @include flex();
+        cursor: pointer;
+        + li {
+          border-top: 1px solid var(--color-gray-300);
+        }
+        
+        &[aria-selected="true"] {
+          background:rgba(0,0,0,0.1);
+        }
+        &:not(.is-disabled):hover {
+          background: rgba(0,0,0,0.05);
+        }
+      }
+    }
+  }
+  &.selectbox__top {
+    &.is-open {
+      .selectbox__label {
+        border-radius: 0 0 var(--border-radius-md) var(--border-radius-md);
+      }
+    }
+    .selectbox__input {
+      top:auto;
+      bottom:100%;
+      border-top: 1px solid var(--color-gray-300);
+      border-bottom: none;
+      border-radius: var(--border-radius-md) var(--border-radius-md) 0 0;
+    }
+  }
+  &.size {
+    &--sm {
+      .selectbox__label {
+        @include control-size(sm, 'container');
+      }
+      .selectbox__input {
+        li {
+          @include control-size(sm, 'item');
+        }
+      }
+    }
+    &--lg {
+      .selectbox__label {
+        @include control-size(lg, 'container');
+      }
+      .selectbox__input {
+        li {
+          @include control-size(lg, 'item');
+        }
+      }
+    }
+  }
+  &.color {
+    &--dark {
+      .selectbox__label {
+        background:var(--color-blue);
+        color:var(--color-point);
+        border-color:var(--color-gray-600);
+        .icon {
+          color:var(--color-point);
+        }
+      }
+      .selectbox__input {
+        background:var(--color-blue);
+        color:var(--color-white);
+        border-color:var(--color-gray-600);
+        li {
+          border-color: var(--color-gray-600);
+          
+          &[aria-selected="true"] {
+            background:rgba(255,255,255,0.1);
+          }
+          &:not(.is-disabled):hover {
+            background: rgba(255,255,255,0.05);
+          }
+        }
+      }
+    }
+    &--point {
+      .selectbox__label {
+        background:var(--color-point);
+        color:var(--color-blue);
+        border-color:var(--color-gray-100);
+        .icon {
+          color:var(--color-blue);
+        }
+      }
+      .selectbox__input {
+        background:var(--color-point);
+        color:var(--color-blue);
+        border-color:var(--color-gray-100);
+        li {
+          border-color: var(--color-gray-100);
+        }
+      }
+    }
+  }
+  &.is-open {
+    .selectbox__label {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      .icon {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
+
+.is-disabled {
+  opacity: 0.45 !important;
+}

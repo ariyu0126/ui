@@ -24,13 +24,18 @@
     }
   }
 
-  ul,
-  ol {
+  ul.playground__inner-list,
+  ol.playground__inner-list {
     li {
       margin-top: var(--spacing-base);
       margin-bottom: var(--spacing-sm);
       .size__default {
         margin-bottom: var(--spacing-sm);
+      }
+      .button__group {
+        width:auto;
+        display:inline-flex;
+        gap:var(--spacing-xxs)
       }
     }
   }

@@ -122,7 +122,7 @@ const InputCheckBoxPlayground = () => {
       <Typography.Title>Checkbox</Typography.Title>
       <Typography.Title level={2}>1. Checkbox</Typography.Title>
       <div className="playground__inner">
-        <Typography.Title level={3}>1-1. Checkbox 속성</Typography.Title>        
+        <Typography.Title level={3}>1-1. Checkbox 속성</Typography.Title>
         <Typography.Text>- size: sm, md, lg</Typography.Text>
         <div className="playground__inner-box">
           <Checkbox size="sm" defaultChecked={true} label="체크박스" />
@@ -156,7 +156,7 @@ const InputCheckBoxPlayground = () => {
       </div>
       <div className="playground__inner">
         <Typography.Title level={3}>1-2. Checkbox 예시</Typography.Title>
-        <ul>
+        <ul className="playground__inner-list">
           <li>
             - size :{' '}
             <div className="button__group">
@@ -206,7 +206,7 @@ const InputCheckBoxPlayground = () => {
             </div>
           </li>
           <li>
-            - required: {' '}
+            - required:{' '}
             <div className="button__group">
               <button
                 className={`button__tag ${checkboxProps.required === true ? 'is-active' : ''}`}
@@ -223,17 +223,17 @@ const InputCheckBoxPlayground = () => {
             </div>
           </li>
           <li>
-            - color: {' '}
+            - color:{' '}
             <div className="button__group">
               {colorOption.map((val, idx) => (
-                  <button
-                    className={`button__tag ${checkboxProps.color === val ? 'is-active' : ''}`}
-                    key={idx}
-                    onClick={() => handlePropertyChange('color', val as ColorOption)}
-                  >
-                    {val}
-                  </button>
-               ))}
+                <button
+                  className={`button__tag ${checkboxProps.color === val ? 'is-active' : ''}`}
+                  key={idx}
+                  onClick={() => handlePropertyChange('color', val as ColorOption)}
+                >
+                  {val}
+                </button>
+              ))}
             </div>
           </li>
           <li>
@@ -307,9 +307,9 @@ const InputCheckBoxPlayground = () => {
 
       <div className="playground__inner">
         <Typography.Title level={3}>1-2. Checkbox Group 예시</Typography.Title>
-        <ul>
+        <ul className="playground__inner-list">
           <li>
-            - disabled: {' '}
+            - disabled:{' '}
             <div className="button__group">
               <button
                 className={`button__tag ${checkboxGroupProps.groupDisabled === true ? 'is-active' : ''}`}
@@ -377,23 +377,23 @@ const InputCheckBoxPlayground = () => {
             </div>
           </li>
           <li>
-            - color: {' '}
+            - color:{' '}
             <div className="button__group">
               {colorOption.map((val, idx) => (
-                  <button
-                    className={`button__tag ${checkboxGroupProps.color === val ? 'is-active' : ''}`}
-                    key={idx}
-                    onClick={() => handleGroupPropChange('color', val as ColorOption)}
-                  >
-                    {val}
-                  </button>
+                <button
+                  className={`button__tag ${checkboxGroupProps.color === val ? 'is-active' : ''}`}
+                  key={idx}
+                  onClick={() => handleGroupPropChange('color', val as ColorOption)}
+                >
+                  {val}
+                </button>
                ))}
             </div>
           </li>
         </ul>
-        <Checkbox.Group
-          {...checkboxGroupProps}
-        />
+        <div className="playground__inner-box">
+          <Checkbox.Group {...checkboxGroupProps} />
+        </div>
         <SourceCodeViewer code={checkboxGroupCode} />
       </div>
     </div>

@@ -56,16 +56,16 @@
 
   /* disabled */
   &.is-disabled {
-    border-color: var(--color-gray-300);
+    border-color: var(--color-gray-600);
     cursor: not-allowed;
     .radio__label {
-      color: var(--color-gray-300);
+      color: var(--color-gray-600);
     }
     .radio__custom {
-      border: 1px solid var(--color-gray-300);
+      border: 1px solid var(--color-gray-600);
       cursor: not-allowed;
       &:after {
-        background-color: var(--color-gray-300);
+        background-color: var(--color-gray-600);
       }
     }
   }

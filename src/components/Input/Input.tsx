@@ -1,6 +1,7 @@
 'use client';
 
 import { useId, useState } from 'react';
+import { cx } from '@/lib/cx';
 import getValidationMessage from '@/lib/getValidationMessage';
 import IconReset from '/public/xmark-large-svgrepo-com.svg';
 import IconEye from '/public/eye-alt-svgrepo-com.svg';
@@ -19,13 +20,33 @@ const Input = ({
   value: propValue,
   onChange,
   onReset,
-  className,
+  className = '',
   validate,
   min,
   max,
   errorBlur = false,
   errorTouched,
   ...rest
+}: {
+  size?: 'sm' | 'md' | 'lg';
+  type?: 'text' | 'password' | 'number' | 'tel';
+  error?: boolean;
+  hint?: string;
+  required?: boolean;
+  disabled?: boolean;
+  readOnly?: boolean;
+  placeholder?: string;
+  label?: string;
+  value?: string;
+  onChange?: (value: string) => void;
+  onReset?: () => void;
+  className?: string;
+  validate?: string;
+  min?: number;
+  max?: number;
+  errorBlur?: boolean;
+  errorTouched?: boolean;
+  [key: string]: any;
 }) => {
   const isControlled = propValue !== undefined;
   const [internalValue, setInternalValue] = useState('');
@@ -105,7 +126,15 @@ const Input = ({
 
   return (
     <span
-      className={`input__text ${error || errorMessage ? 'input__text-error' : ''} ${required ? 'input__text-required' : ''} ${hint ? 'input__text-hint' : ''} ${className} ${disabled ? 'is-disabled' : ''} ${readOnly ? 'is-readOnly' : ''} ${readOnly ? 'is-readOnly' : ''}`}
+      className={cx(
+        'input__text',
+        (error || errorMessage) && 'input__text-error',
+        required && 'input__text-required',
+        hint && 'input__text-hint',
+        disabled && 'is-disabled',
+        readOnly && 'is-readOnly',
+        className,
+      )}
     >
       <span className="input__text-wrapper">
         <input

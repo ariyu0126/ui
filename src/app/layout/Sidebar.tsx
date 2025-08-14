@@ -46,6 +46,12 @@ const Sidebar = () => {
           Input
         </Link>
         <Link
+          href="/playground/input/textarea"
+          className={currentPath === '/playground/input/textarea' ? 'is-active' : ''}
+        >
+          Textarea
+        </Link>
+        <Link
           href="/playground/input/radio"
           className={currentPath === '/playground/input/radio' ? 'is-active' : ''}
         >
@@ -62,6 +68,12 @@ const Sidebar = () => {
           className={currentPath === '/playground/select' ? 'is-active' : ''}
         >
           Select
+        </Link>
+        <Link
+          href="/playground/table"
+          className={currentPath === '/playground/table' ? 'is-active' : ''}
+        >
+          Table
         </Link>
       </nav>
     </aside>

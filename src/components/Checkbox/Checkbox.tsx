@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useId } from 'react';
+import { cx } from '@/lib/cx';
 
 type CheckboxProps = {
   name?: string;
@@ -43,10 +44,22 @@ const Checkbox = ({
   };
 
   // 경고 방지: default*는 input에 전달하지 않음(호출부에서 넘겨도 제거)
-  const { defaultValue: _omitDefaultValue, defaultChecked: _omitDefaultChecked, ...restSafe } = rest || {};
+  const {
+    defaultValue: _omitDefaultValue,
+    defaultChecked: _omitDefaultChecked,
+    ...restSafe
+  } = rest || {};
 
   return (
-    <label className={`input__checkbox ${size ? ` size--${size}` : ''} ${color ? `color--${color}` : ''} ${disabled ? 'is-disabled' : ''} ${className}`}>
+    <label
+      className={cx(
+        'input__checkbox',
+        size && `size--${size}`,
+        color && `color--${color}`,
+        disabled && 'is-disabled',
+        className,
+      )}
+    >
       <input
         type="checkbox"
         id={checkboxId}
@@ -61,14 +74,21 @@ const Checkbox = ({
         onChange={handleChange}
         {...restSafe}
       />
-      <span className="checkbox__custom" role="checkbox" aria-checked={currentChecked} aria-disabled={disabled} tabIndex={-1}/>
+      <span
+        className="checkbox__custom"
+        role="checkbox"
+        aria-checked={currentChecked}
+        aria-disabled={disabled}
+        tabIndex={-1}
+      />
       {label && <span className="checkbox__label">{label}</span>}
-      {
-        required && !currentChecked &&
-        <p id={checkboxId} className="error-message" role="alert">필수 선택입니다.</p>
-      }
+      {required && !currentChecked && (
+        <p id={checkboxId} className="error-message" role="alert">
+          필수 선택입니다.
+        </p>
+      )}
     </label>
-  )
-}
+  );
+};
 
 export default Checkbox;

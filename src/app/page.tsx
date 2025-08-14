@@ -89,20 +89,19 @@ const Home = () => {
           <li>5. input - text, number, password, error, disabled</li>
           <li>6. Button - size, icon, align, color, disabled, style</li>
           <li>7. toggle switch</li>
-          <li>8. Checkbox - normal, group, checked, error, disabled</li>
-          <li>9. Radio - normal, group, checked, error, disabled</li>
-          <li>10. Select - size, color, disabled</li>
-          <li>11. dropdown</li>
-          <li>12. Textarea</li>
-          <li>13. Form</li>
-          <li>14. table</li>
-          <li>15. tab</li>
-          <li>16. progressbar</li>
-          <li>17. notification</li>
-          <li>18. pagination</li>
-          <li>19. loading</li>
-          <li>20. alert</li>
-          <li>21. modal</li>
+          <li>8. Checkbox - group, checked, error, disabled</li>
+          <li>9. Radio - group, checked, error, disabled</li>
+          <li>10. Select - size, color, minWidth, maxWidth, disabled, defaultSelected</li>
+          <li>11. Textarea</li>
+          <li>12. Form</li>
+          <li>13. table</li>
+          <li>14. tab</li>
+          <li>15. progressbar</li>
+          <li>16. notification</li>
+          <li>17. pagination</li>
+          <li>18. loading</li>
+          <li>19. alert</li>
+          <li>20. modal</li>
         </ol>
         <Typography.Title level={3}>6. 접근성</Typography.Title>
         <ol>
@@ -153,6 +152,10 @@ const Home = () => {
           target="_blank"
         >
           https://www.figma.com/community/file/1157761560874207208/v11-carbon-design-system
+        </a>
+
+        <a href="https://www.svgrepo.com/svg/533594/arrow-narrow-bottom-alignment" target="_blank">
+          SVG REPO
         </a>
       </div>
     </div>

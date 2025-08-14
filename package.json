@@ -1,6 +1,6 @@
 {
-  "name": "ui",
-  "version": "0.1.0",
+  "name": "URE UI",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "gen:components": "node scripts/generateComponentIndex.cjs",
@@ -10,6 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "clsx": "^2.1.1",
     "next": "15.4.1",
     "react": "19.1.0",
     "react-dom": "19.1.0",

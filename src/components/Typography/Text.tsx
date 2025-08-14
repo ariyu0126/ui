@@ -1,4 +1,5 @@
 import type React from 'react';
+import { cx } from '@/lib/cx';
 
 type TextProps = {
   textWeight?: '100' | '400' | '700' | string;
@@ -9,7 +10,8 @@ type TextProps = {
   textColor?: string;
   size?: 'default' | 'small' | 'xsmall' | string;
   ellipsis?: string;
-} & React.HTMLAttributes<HTMLDivElement> & React.HTMLAttributes<HTMLParagraphElement>;
+} & React.HTMLAttributes<HTMLDivElement> &
+  React.HTMLAttributes<HTMLParagraphElement>;
 
 const Text = ({
   textWeight = '400',
@@ -26,7 +28,13 @@ const Text = ({
   const content = text || children;
   return content ? (
     <Tag
-      className={`text__${textWeight}${textClass ? ` ${textClass}` : ''}${textColor ? ` color__${textColor}` : ''}${size ? ` size__${size}` : ''}${ellipsis ? ` ellipsis__${ellipsis}` : ''}`}
+      className={cx(
+        `text__${textWeight}`,
+        textClass,
+        textColor && `color__${textColor}`,
+        `size__${size}`,
+        ellipsis && `ellipsis__${ellipsis}`,
+      )}
       {...rest}
     >
       {content}

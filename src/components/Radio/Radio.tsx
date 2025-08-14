@@ -1,6 +1,7 @@
 'use client';
 
 import { useId } from 'react';
+import { cx } from '@/lib/cx';
 
 type RadioProps = {
   name?: string;
@@ -20,26 +21,34 @@ const Radio = ({
   name,
   label,
   value,
-  size='md',
+  size = 'md',
   checked,
-  disabled=false,
-  required=false,
-  className='',
+  disabled = false,
+  required = false,
+  className = '',
   onChange,
-  color='white',
+  color = 'white',
   ...rest
 }: RadioProps) => {
   const radioId = useId();
   const labelId = `${radioId}-label`;
   const isChecked = !!checked;
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target){
+    if (e.target) {
       onChange?.(e);
-    };
-  }
+    }
+  };
 
   return (
-    <label className={`input__radio ${className} size--${size} color--${color} ${disabled ? 'is-disabled' : ''}`}>
+    <label
+      className={cx(
+        'input__radio',
+        `size--${size}`,
+        `color--${color}`,
+        disabled && 'is-disabled',
+        className,
+      )}
+    >
       <input
         type="radio"
         id={radioId}
@@ -48,20 +57,25 @@ const Radio = ({
         {...(checked !== undefined ? { checked } : {})}
         disabled={disabled}
         required={required}
-        aria-required={required}
         aria-label={typeof label === 'string' ? label : undefined}
         onChange={(e) => handleChange(e)}
         {...rest}
       />
-      <span className="radio__custom" role="radio" aria-checked={isChecked} aria-disabled={disabled} tabIndex={-1}/>
+      <span
+        className="radio__custom"
+        role="radio"
+        aria-checked={isChecked}
+        aria-disabled={disabled}
+        tabIndex={-1}
+      />
       {label && <span className="radio__label">{label}</span>}
-      {
-        required && !isChecked && (
-          <p id={labelId} className="error-message" role="alert">필수 선택입니다.</p>
-        )
-      }
+      {required && !isChecked && (
+        <p id={labelId} className="error-message" role="alert">
+          필수 선택입니다.
+        </p>
+      )}
     </label>
-  )
-}
+  );
+};
 
 export default Radio;

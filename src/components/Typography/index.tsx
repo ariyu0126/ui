@@ -1,3 +1,5 @@
+import { cx } from '@/lib/cx';
+
 import Title from './Title';
 import Text from './Text';
 
@@ -20,7 +22,7 @@ type TypographyProps = {
 
 const Typography = ({
   // typography group
-  className,
+  className = '',
   // title
   level = 1,
   title,
@@ -38,7 +40,7 @@ const Typography = ({
   ...rest
 }: TypographyProps) => {
   return (
-    <div className={`typography--layout ${className}`}>
+    <div className={cx('typography--layout', className)}>
       {title && (
         <Title
           level={level}

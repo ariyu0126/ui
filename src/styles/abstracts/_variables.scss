@@ -60,9 +60,15 @@ $padding-base: (
 
 // height
 $height: (
-  'sm': 32px,
-  'md': 40px,
-  'lg': 48px,
+  sm: 32px,
+  md: 40px,
+  lg: 48px,
+) !default;
+
+$height-sizes: (
+  sm: (height: 32px, minHeight: 32px,font: 'xsmall'),
+  md: (height: 40px, minHeight: 40px, font: 'default'),
+  lg: (height: 48px, minHeight: 48px, font: 'heading5'),
 ) !default;
 
 // grid
@@ -80,12 +86,12 @@ $gap-map: (
 
 $radio-sizes: (
   sm: (outer: 12px, inner: 6px, font: 'xsmall'),
-  md: (outer: 16px, inner: 8px, font: 'body'),
+  md: (outer: 16px, inner: 8px, font: 'default'),
   lg: (outer: 20px, inner: 10px, font: 'heading5'),
 ) !default;
 
 $checkbox-sizes: (
   sm: (width: 12px, checkWidth: 2px, checkHeight: 4px, borderWidth: 2px, margin:0, font: 'xsmall'),
-  md: (width: 16px, checkWidth: 4px, checkHeight: 8px, borderWidth: 2px, margin: -1px, font: 'body'),
+  md: (width: 16px, checkWidth: 4px, checkHeight: 8px, borderWidth: 2px, margin: -1px, font: 'default'),
   lg: (width: 20px, checkWidth: 6px, checkHeight: 12px, borderWidth: 3px, margin: -2px,font: 'heading5'),
 ) !default;

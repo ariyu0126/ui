@@ -1,6 +1,7 @@
 'use client';
 
 import { useId, useState } from 'react';
+import type { ChangeEvent } from 'react';
 import { cx } from '@/lib/cx';
 import getValidationMessage from '@/lib/getValidationMessage';
 import IconReset from '/public/xmark-large-svgrepo-com.svg';
@@ -41,7 +42,7 @@ const Input = ({
   onChange?: (value: string) => void;
   onReset?: () => void;
   className?: string;
-  validate?: string;
+  validate?: (value: any) => boolean | string;
   min?: number;
   max?: number;
   errorBlur?: boolean;
@@ -68,7 +69,7 @@ const Input = ({
     if (hint) setHintVisible(true);
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
 
     if (!readOnly) {

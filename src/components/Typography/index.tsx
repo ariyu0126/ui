@@ -12,6 +12,8 @@ type TypographyProps = {
   titleWeight?: string;
   text?: React.ReactNode;
   textWeight?: string;
+  /** alias for textWeight to support existing usages */
+  weight?: string;
   textClass?: string;
   textColor?: string;
   ptag?: boolean;
@@ -32,6 +34,7 @@ const Typography = ({
   // text
   text,
   textWeight,
+  weight,
   textClass,
   textColor,
   ptag,
@@ -53,7 +56,7 @@ const Typography = ({
       )}
       {text && (
         <Text
-          textWeight={textWeight}
+          textWeight={textWeight ?? weight}
           text={text}
           textClass={textClass}
           textColor={textColor}

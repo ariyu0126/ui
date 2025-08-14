@@ -8,13 +8,18 @@ import '@/styles/pages/playground.scss';
 
 const TypographyPlayground = () => {
   // title
-  const [titleProps, setTitleProps] = useState({
+  const [titleProps, setTitleProps] = useState<{
+    level: 1 | 2 | 3 | 4 | 5 | 6;
+    title: string;
+    titleClass: string;
+    titleColor: string;
+  }>({
     level: 1,
     title: '',
     titleClass: '',
     titleColor: '',
   });
-  const levelOptions = [1, 2, 3, 4, 5];
+  const levelOptions = [1, 2, 3, 4, 5, 6] as const;
   const titleColorOptions = [
     'black',
     'white',
@@ -26,7 +31,10 @@ const TypographyPlayground = () => {
     'point',
     'error',
   ];
-  const handlePropertyChange = (property, value) => {
+  const handlePropertyChange = (
+    property: 'level' | 'title' | 'titleClass' | 'titleColor',
+    value: any,
+  ) => {
     setTitleProps((prevProps) => ({
       ...prevProps,
       [property]: value,
@@ -34,7 +42,7 @@ const TypographyPlayground = () => {
   };
   const { level: titleLevel, title, titleClass, titleColor } = titleProps;
   const titleCode = generateCode('Typography.Title', {
-    level: titleLevel,
+    level: titleLevel as 1 | 2 | 3 | 4 | 5 | 6,
     titleClass,
     titleColor,
   });
@@ -62,17 +70,19 @@ const TypographyPlayground = () => {
     'point',
     'error',
   ];
-  const handleTextPropertyChange = (property, value) => {
+  const handleTextPropertyChange = (
+    property: 'weight' | 'text' | 'textClass' | 'textColor' | 'ptag' | 'size' | 'ellipsis',
+    value: any,
+  ) => {
     const ptagOption = value === 'true' ? true : value === 'false' ? false : value;
     setTextProps((prevProps) => ({
       ...prevProps,
-      [property]: value,
+      [property]: ptagOption,
     }));
   };
-  const { level, weight, text, textClass, textColor, ptag, size, ellipsis } = textProps;
+  const { weight, text, textClass, textColor, ptag, size, ellipsis } = textProps;
   const textCode = generateCode('Typography.Text', {
-    level,
-    weight,
+    textWeight: weight,
     textClass,
     textColor,
     ptag,
@@ -85,10 +95,10 @@ const TypographyPlayground = () => {
     title,
     titleColor,
     titleClass,
-    level: 1,
+    level: 1 as 1,
     text,
     textColor,
-    weight,
+    textWeight: weight,
     textClass,
     ptag,
     size,
@@ -212,9 +222,9 @@ const TypographyPlayground = () => {
         <Typography.Title level={3}>2-1. Text 속성</Typography.Title>
         <div className="playground__inner-box">
           <Typography.Text>- weight : 100, 400, 700</Typography.Text>
-          <Typography.Text weight="100">Weight 100</Typography.Text>
-          <Typography.Text weight="400">Weight 400</Typography.Text>
-          <Typography.Text weight="700">Weight 700</Typography.Text>
+          <Typography.Text textWeight="100">Weight 100</Typography.Text>
+          <Typography.Text textWeight="400">Weight 400</Typography.Text>
+          <Typography.Text textWeight="700">Weight 700</Typography.Text>
         </div>
         <Typography.Text>
           - textColor : black, white, gray100, gray300, gray600, gray800, blue, point, error
@@ -363,7 +373,7 @@ const TypographyPlayground = () => {
         </ul>
         <div className="playground__inner-box">
           <Typography.Text
-            weight={textProps.weight}
+            textWeight={textProps.weight}
             textClass={textProps.textClass}
             textColor={textProps.textColor}
             ptag={textProps.ptag}

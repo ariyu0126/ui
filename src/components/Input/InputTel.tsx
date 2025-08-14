@@ -1,6 +1,8 @@
 import Input from './Input';
+import type { ComponentProps } from 'react';
 
-const InputTel = (props) => {
+type BaseInputProps = ComponentProps<typeof Input>;
+const InputTel = (props: Omit<BaseInputProps, 'type'>) => {
   // const validateTel = (val) => {
   //     const telRegex = /^01([0|1|6|7|8|9])-?([0-9]{4})-?([0-9]{4})$/;
   //     if (!telRegex.test(val)) {

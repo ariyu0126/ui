@@ -1,9 +1,10 @@
 'use client';
 
-import { useState } from 'react';
 import Input from './Input';
+import type { ComponentProps } from 'react';
 
-const InputPassword = (props) => {
+type BaseInputProps = ComponentProps<typeof Input>;
+const InputPassword = (props: Omit<BaseInputProps, 'type'>) => {
   return <Input {...props} type="password" />;
 };
 

@@ -1,6 +1,8 @@
 import Input from './Input';
+import type { ComponentProps } from 'react';
 
-const InputNumber = (props) => {
+type BaseInputProps = ComponentProps<typeof Input>;
+const InputNumber = (props: Omit<BaseInputProps, 'type'>) => {
   return <Input {...props} type="number" />;
 };
 

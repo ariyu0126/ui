@@ -30,7 +30,7 @@ const Input = ({
   ...rest
 }: {
   size?: 'sm' | 'md' | 'lg';
-  type?: 'text' | 'password' | 'number' | 'tel';
+  type?: 'text' | 'password' | 'number' | 'tel' | 'email';
   error?: boolean;
   hint?: string;
   required?: boolean;

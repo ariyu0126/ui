@@ -12,3 +12,4 @@ export { default as SourceCodeViewer } from './SourceCodeViewer';
 export { default as Table } from './Table';
 export { default as Textarea } from './Textarea';
 export { default as Typography } from './Typography';
+export { Icon } from './Icon';

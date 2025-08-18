@@ -2,11 +2,9 @@
 
 import { useId, useState } from 'react';
 import type { ChangeEvent } from 'react';
-import { cx } from '@/lib/cx';
-import getValidationMessage from '@/lib/getValidationMessage';
-import IconReset from '/public/xmark-large-svgrepo-com.svg';
-import IconEye from '/public/eye-alt-svgrepo-com.svg';
-import IconEyeOff from '/public/eye-slash-alt-svgrepo-com.svg';
+import { cx } from '../../lib/cx';
+import { Icon } from '../Icon';
+import getValidationMessage from '../../lib/getValidationMessage';
 
 const Input = ({
   size = 'md',
@@ -157,7 +155,7 @@ const Input = ({
         />
         {!readOnly && currentValue !== '' && type !== 'number' && (
           <button className="button__reset" onClick={handleReset} aria-label="reset">
-            <IconReset />
+            <Icon.close />
           </button>
         )}
         {!readOnly && type === 'password' && (
@@ -166,7 +164,7 @@ const Input = ({
             onClick={togglePasswordVisibility}
             aria-label="toggle password visibility"
           >
-            {showPassword ? <IconEyeOff /> : <IconEye />}
+            {showPassword ? <Icon.eyeOff /> : <Icon.eyeOpen />}
           </button>
         )}
       </span>

@@ -1,7 +1,7 @@
 'use client';
 
 import { useId, useState } from 'react';
-import { cx } from '@/lib/cx';
+import { cx } from '../../lib/cx';
 import Checkbox from './Checkbox';
 
 type CheckboxOption = {

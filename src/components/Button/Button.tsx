@@ -1,12 +1,10 @@
-import { cx } from '@/lib/cx';
-import IconSearch from '/public/search-alt-2-svgrepo-com.svg';
-import IconNewWindow from '/public/arrow-up-right-svgrepo-com.svg';
-import IconDownLoad from '/public/arrow-narrow-bottom-alignment-svgrepo-com.svg';
+import { cx } from '../../lib/cx';
+import { Icon } from '../Icon/index';
 
 const icons = {
-  search: <IconSearch />,
-  new: <IconNewWindow />,
-  down: <IconDownLoad />,
+  search: <Icon.search />,
+  new: <Icon.newWindow />,
+  down: <Icon.down />,
 } as const;
 
 type IconKey = keyof typeof icons | 'null' | undefined;
@@ -37,6 +35,7 @@ const Button = ({
 }: ButtonProps) => {
   return (
     <button
+      type="button"
       className={cx(
         'button__default',
         `size--${size}`,

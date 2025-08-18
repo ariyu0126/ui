@@ -2,7 +2,7 @@
 
 import type React from 'react';
 import { useRef } from 'react';
-import { cx } from '@/lib/cx';
+import { cx } from '../../lib/cx';
 
 const Textarea = ({
   resize = 'none',
@@ -19,6 +19,7 @@ const Textarea = ({
         ref={textareaRef}
         className={cx('textarea__input', className)}
         style={{ resize: resize }}
+        aria-multiline="true"
         {...rest}
       />
     </div>

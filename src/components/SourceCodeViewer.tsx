@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import Button from '@/components/Button/Button';
+import Button from './Button/Button';
 
 type SourceCodeViewerProps = {
   code: string;
@@ -29,14 +29,19 @@ const SourceCodeViewer = ({
           size="sm"
           align="right"
           onClick={() => setShowCode(!showCode)}
+          aria-pressed={showCode}
         >
           {showCode ? `Hide ${btnText}` : `Show ${btnText}`}
         </Button>
       )}
       {(showCode || !hidden) && (
         <>
-          {copy && <button>Copy</button>}
-          <pre>
+          {copy && (
+            <button type="button" aria-label="Copy code">
+              Copy
+            </button>
+          )}
+          <pre role="region" aria-label="Source code">
             <code>{code}</code>
           </pre>
         </>

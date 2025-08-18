@@ -11,6 +11,11 @@
       height: 100%;
       display: inline-flex;
       position: relative;
+      &:has(.button__eye) {
+        .input__default {
+          padding-right: 56px;
+        }
+      }
     }
     &-error,
     &-hint {
@@ -30,6 +35,13 @@
       width: 100%;
       .input__text-wrapper {
         width: 100%;
+      }
+    }
+
+    &:is-disabled {
+      border:1px solid red;
+      button {
+        display: none;
       }
     }
   }
@@ -81,6 +93,7 @@
     top: 50%;
     right: 4px;
     transform: translateY(-50%);
+    z-index:10;
     svg {
       width: 1em !important;
       height: 1em !important;

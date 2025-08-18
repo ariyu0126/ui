@@ -1,32 +1,56 @@
 {
-  "name": "URE UI",
+  "name": "@ure/basic-ui-components",
   "version": "0.0.1",
-  "private": true,
+  "description": "React UI components by ure",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "sideEffects": false,
   "scripts": {
     "gen:components": "node scripts/generateComponentIndex.cjs",
-    "dev": "npm run gen:components && next dev",
-    "build": "npm run gen:components && next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev:lib": "tsup --watch",
+    "dev:app": "next dev -p 3000",
+    "build": "tsup",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
   },
   "dependencies": {
-    "clsx": "^2.1.1",
-    "next": "15.4.1",
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
-    "sass": "^1.89.2"
+    "clsx": "^2.1.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@svgr/webpack": "^8.1.0",
     "@types/node": "^24.2.0",
-    "@types/react": "^19.1.9",
+    "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
     "eslint": "^9",
     "eslint-config-next": "15.4.1",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.3",
+    "next": "15.4.1",
     "prettier": "^3.6.2",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "sass": "^1.89.2",
+    "tsup": "^8.5.0",
     "typescript": "^5.9.2"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

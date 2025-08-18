@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useId } from 'react';
-import { cx } from '@/lib/cx';
+import { cx } from '../../lib/cx';
 
 type CheckboxProps = {
   name?: string;
@@ -74,13 +74,7 @@ const Checkbox = ({
         onChange={handleChange}
         {...restSafe}
       />
-      <span
-        className="checkbox__custom"
-        role="checkbox"
-        aria-checked={currentChecked}
-        aria-disabled={disabled}
-        tabIndex={-1}
-      />
+      <span className="checkbox__custom" aria-hidden="true" />
       {label && <span className="checkbox__label">{label}</span>}
       {required && !currentChecked && (
         <p id={checkboxId} className="error-message" role="alert">

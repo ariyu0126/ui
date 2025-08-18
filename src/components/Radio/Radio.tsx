@@ -1,7 +1,7 @@
 'use client';
 
 import { useId } from 'react';
-import { cx } from '@/lib/cx';
+import { cx } from '../../lib/cx';
 
 type RadioProps = {
   name?: string;
@@ -61,13 +61,7 @@ const Radio = ({
         onChange={(e) => handleChange(e)}
         {...rest}
       />
-      <span
-        className="radio__custom"
-        role="radio"
-        aria-checked={isChecked}
-        aria-disabled={disabled}
-        tabIndex={-1}
-      />
+      <span className="radio__custom" aria-hidden="true" />
       {label && <span className="radio__label">{label}</span>}
       {required && !isChecked && (
         <p id={labelId} className="error-message" role="alert">

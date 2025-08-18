@@ -1,9 +1,5 @@
-import { cx } from '@/lib/cx';
-
-import IconFirst from '/public/chevron-left-double-svgrepo-com.svg';
-import IconPrev from '/public/chevron-left-svgrepo-com.svg';
-import IconNext from '/public/chevron-right-svgrepo-com.svg';
-import IconLast from '/public/chevron-right-double-svgrepo-com.svg';
+import { cx } from '../../lib/cx';
+import { Icon } from '../Icon';
 
 const Pagination = ({
   total,
@@ -93,7 +89,7 @@ const Pagination = ({
             onClick={() => goTo(1)}
             aria-label="First page"
           >
-            <IconFirst />
+            <Icon.arrowLeftDouble />
           </button>
         )}
         {!isFirstDisabled && (
@@ -103,7 +99,7 @@ const Pagination = ({
             onClick={() => goTo(current - 1)}
             aria-label="Previous page"
           >
-            <IconPrev />
+            <Icon.arrowLeft />
           </button>
         )}
         <div className="pagination__number">
@@ -132,7 +128,7 @@ const Pagination = ({
             onClick={() => goTo(current + 1)}
             aria-label="Next page"
           >
-            <IconNext />
+            <Icon.arrowRight />
           </button>
         )}
         {!isLastDisabled && (
@@ -142,7 +138,7 @@ const Pagination = ({
             onClick={() => goTo(totalPages)}
             aria-label="Last page"
           >
-            <IconLast />
+            <Icon.arrowRightDouble />
           </button>
         )}
       </div>

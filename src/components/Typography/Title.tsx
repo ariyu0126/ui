@@ -1,5 +1,5 @@
 import type React from 'react';
-import { cx } from '@/lib/cx';
+import { cx } from '../../lib/cx';
 
 type TitleProps = {
   level?: 1 | 2 | 3 | 4 | 5 | 6;

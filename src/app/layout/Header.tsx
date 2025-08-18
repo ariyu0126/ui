@@ -5,9 +5,7 @@ const Header = () => {
     <header className="layout__header" role="header">
       <div className="layout__block row">
         <div className="layout__header-content col-3">
-          <Link href="/">
-            UI 컴포넌트
-          </Link>
+          <Link href="/">Home</Link>
         </div>
         <div className="layout__header-menu col-9">
           <div>

@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { cx } from '@/lib/cx';
-import { Radio } from '@/components';
+import { cx } from '../../lib/cx';
+import Radio from './Radio';
 
 type RadioOption = {
   label: React.ReactNode;

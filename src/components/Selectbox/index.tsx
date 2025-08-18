@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
-import { cx } from '@/lib/cx';
-import IconArrowDown from '/public/chevron-down-svgrepo-com.svg';
+import { useEffect, useMemo, useRef, useState, useId } from 'react';
+import { cx } from '../../lib/cx';
+import { Icon } from '../Icon';
 
 const Select = ({
   options,
@@ -31,6 +31,7 @@ const Select = ({
   const [selectTop, setSelectTop] = useState(true);
   const [selected, setSelected] = useState<{ value: string; name: string } | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const listboxId = useId();
 
   const currentLabel = useMemo(() => {
     if (selected) return selected.name;
@@ -118,7 +119,7 @@ const Select = ({
       <div className="selectbox__label" onClick={() => labelClickSelect()}>
         <span className="label">{currentLabel}</span>
         <span className="icon">
-          <IconArrowDown />
+          <Icon.arrowDown />
         </span>
       </div>
       {isOpen && (

@@ -1,6 +1,6 @@
-import { cx } from '@/lib/cx';
+import { cx } from '../../lib/cx';
 import { useId } from 'react';
-import { Pagination } from '@/components';
+import Pagination from '../Pagination';
 
 const Table = ({
   caption,

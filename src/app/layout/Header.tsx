@@ -9,7 +9,7 @@ const Header = () => {
         </div>
         <div className="layout__header-menu col-9">
           <div>
-            <Link href="https://github.com/ariyu0126/ui" target="_blank">
+            <Link href="https://github.com/ure0126/ui" target="_blank">
               Github
             </Link>
           </div>

@@ -55,7 +55,7 @@ const code = `
 const Home = () => {
   return (
     <div className="playground playground--home">
-      <Typography.Title>@ure/basic-ui-components</Typography.Title>
+      <Typography.Title>@ure0126/basic-ui-components</Typography.Title>
       <Typography.Title level={2}>Next.js + React + SCSS 구조 가이드</Typography.Title>
       <div className="playground__inner">
         <Typography.Title level={3}>1. 기본 구조</Typography.Title>

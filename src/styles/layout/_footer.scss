@@ -1,0 +1,15 @@
+@use '../abstracts' as *;
+
+footer {
+  background: var(--color-gray-100);
+  box-shadow: none;
+  padding: var(--spacing-base);
+  text-align: center;
+  font-size: var(--font-size-small);
+  color: var(--color-black);
+  @include flex($direction: column);
+}
+
+footer p {
+  margin: 0;
+}

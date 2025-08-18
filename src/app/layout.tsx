@@ -3,7 +3,7 @@ import { Noto_Sans_KR } from 'next/font/google';
 import type { ReactNode } from 'react';
 import SkipNav from './layout/SkipNav';
 import Header from './layout/Header';
-// import Footer from "./layout/Footer";
+import Footer from './layout/Footer';
 import Sidebar from './layout/Sidebar';
 
 const notoSansKr = Noto_Sans_KR({
@@ -40,7 +40,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
               </section>
             </div>
           </main>
-          {/* <Footer /> */}
+          <Footer />
         </div>
       </body>
     </html>

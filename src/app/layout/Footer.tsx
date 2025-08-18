@@ -1,9 +1,8 @@
 const Footer = () => {
   return (
-    <footer className="layout__footer" role="contentinfo">
-      <div className="layout__footer-content">
-        <p>푸터입니다.</p>
-      </div>
+    <footer>
+      <p>© 2023 Your Project ure0126. All rights reserved. Licensed under the MIT License.</p>
+      <p>Contact: ariyu0126@gmail.com</p>
     </footer>
   );
 };

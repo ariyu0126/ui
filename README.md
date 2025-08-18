@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 프로젝트 컴포넌트
 
-## Getting Started
+이 저장소는 다양한 UI 컴포넌트를 포함하고 있으며, npm을 통해 쉽게 설치하고 사용할 수 있습니다.
 
-First, run the development server:
+## 설치
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install @your-namespace/your-component-library
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 사용법
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+각 컴포넌트는 개별적으로 가져와 사용할 수 있습니다. 예를 들어, `Button` 컴포넌트를 사용하려면 다음과 같이 작성합니다:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```jsx
+import { Button } from '@your-namespace/your-component-library';
 
-## Learn More
+const App = () => (
+  <Button onClick={() => alert('Clicked!')}>Click Me</Button>
+);
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 컴포넌트 목록
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Button**: 다양한 스타일과 크기를 지원하는 버튼 컴포넌트.
+- **Input**: 텍스트 입력을 위한 컴포넌트.
+- **Selectbox**: 드롭다운 선택 박스 컴포넌트.
+- **Table**: 데이터 테이블 컴포넌트.
+- **Pagination**: 페이지네이션을 위한 컴포넌트.
+- **Color**: 색상 관련 컴포넌트.
+- **Flex/Grid**: 레이아웃을 위한 플렉스 및 그리드 컴포넌트.
+- **Textarea**: 여러 줄 입력을 위한 컴포넌트.
+- **Radio**: 라디오 버튼 컴포넌트.
+- **Checkbox**: 체크박스 컴포넌트.
+- **Typography**: 텍스트 스타일링을 위한 컴포넌트.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 프로젝트 구조
 
-## Deploy on Vercel
+- **app**: 공통 레이아웃과 페이지 구성
+- **components**: 공통 UI 컴포넌트
+- **styles**: SCSS 스타일 파일
+- **lib**: 유틸리티, API, hooks
+- **public**: 정적 자원
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 디자인 규칙
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **반응형 사이즈**: 모바일 768px, 태블릿 1024px, PC 1280px
+- **Spacing**: 패딩과 마진은 4px 단위
+- **Font**: NotoSans 사용
+
+  
+
+## 클래스 규칙
+
+- **is-open**: 열림 상태
+- **has-child**: 자식 요소 포함
+- **is-active**: 활성화 상태
+
+## 사용 라이브러리
+
+- **react-hook-form**: [react-hook-form 사용법](https://react-hook-form.com/docs/useform)
+- **clsx**: [clsx 사용법](https://github.com/lukeed/clsx)
+
+## 참고 사이트
+
+- **UI Component**: [MUI](https://mui.com/material-ui/all-components/), [Ant Design](https://ant.design/components/button), [Animata](https://animata.design/docs/button), [Shadcn](https://ui.shadcn.com/docs)
+- **SVG**: [SVG REPO](https://www.svgrepo.com/svg/533594/arrow-narrow-bottom-alignment)
+
+## 예시 사이트
+
+프로젝트의 컴포넌트를 실제로 확인하고 싶다면 [ure-ui 예시 사이트](https://ure-ui.netlify.app/)를 방문해 보세요. 이 사이트에서는 다양한 컴포넌트의 사용 예시를 직접 확인할 수 있습니다.
+
+## 라이선스
+
+이 프로젝트는 MIT 라이선스를 따릅니다. 자세한 내용은 [LICENSE](./LICENSE) 파일을 참조하세요.

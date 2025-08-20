@@ -1,8 +1,10 @@
 @use 'sass:map';
 @use '../abstracts' as *;
 
-button {
+button,
+a {
   &.button__default {
+    border:1px solid red;
     @include control-size(md);
     padding: 0 var(--spacing-base);
     border-radius: var(--border-radius-md);
@@ -89,6 +91,8 @@ button {
   &.style--text {
     background: none;
     border: none;
+    text-underline-offset: var(--spacing-xxs);
+    text-decoration: underline;
     &:hover {
       text-underline-offset: var(--spacing-xxs);
       text-decoration: underline;

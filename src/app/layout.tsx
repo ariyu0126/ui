@@ -4,7 +4,7 @@ import type { ReactNode } from 'react';
 import SkipNav from './layout/SkipNav';
 import Header from './layout/Header';
 import Footer from './layout/Footer';
-import Sidebar from './layout/Sidebar';
+// import Sidebar from './layout/Sidebar';
 
 const notoSansKr = Noto_Sans_KR({
   subsets: ['latin'],
@@ -33,9 +33,9 @@ const RootLayout = ({ children }: RootLayoutProps) => {
           <SkipNav />
           <Header />
           <main className="layout__container" role="main">
-            <div className="layout__block row">
-              <Sidebar />
-              <section className="layout__content col-9" role="content" aria-labelledby="본문">
+            <div className="layout__block">
+              {/* <Sidebar /> */}
+              <section className="layout__content" role="content" aria-labelledby="본문">
                 {children}
               </section>
             </div>

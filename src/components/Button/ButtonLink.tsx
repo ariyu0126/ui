@@ -1,5 +1,6 @@
+import Link from 'next/link';
 import { cx } from '../../lib/cx';
-import { Icon } from '../Icon/index';
+import { Icon } from '../Icon';
 
 const icons = {
   search: <Icon.search />,
@@ -18,25 +19,25 @@ type BaseProps = {
   disabled?: boolean;
   children?: React.ReactNode;
   className?: string;
-};
+  href: string;
+  target?: '_self' | '_blank' | '_parent' | '_top';
+} & React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
-type ButtonProps = BaseProps & React.ButtonHTMLAttributes<HTMLButtonElement>;
-
-const Button = ({
+const ButtonLink = ({
   size = 'md',
   style = 'fill',
   icon,
   align = 'left',
   color = 'white',
-  disabled = false,
-  children = '버튼',
-  onClick,
+  children = '링크',
   className = '',
+  href = '#',
+  target = '_self',
   ...rest
-}: ButtonProps) => {
+}: BaseProps) => {
   return (
-    <button
-      type="button"
+    <Link
+      href={href}
       className={cx(
         'button__default',
         `size--${size}`,
@@ -45,16 +46,14 @@ const Button = ({
         `style--${style}`,
         'no-drag',
         className,
-        disabled && 'is-disabled',
       )}
-      disabled={disabled}
-      onClick={onClick}
+      target={target}
       {...rest}
     >
       {icon && icon !== 'null' && <span className="icon">{icons[icon as keyof typeof icons]}</span>}
       <span className="button__text">{children}</span>
-    </button>
+    </Link>
   );
 };
 
-export default Button;
+export default ButtonLink;

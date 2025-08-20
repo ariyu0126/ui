@@ -138,8 +138,8 @@ const ArrowRightDoubleIcon = (props: SvgProps) => (
       d="M6 17L11 12L6 7M13 17L18 12L13 7"
       stroke="currentColor"
       strokeWidth="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 );

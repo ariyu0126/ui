@@ -1,9 +1,10 @@
-'use client';
-
-import Button from './Button';
+import BaseButton from './Button';
+import ButtonLink from './ButtonLink';
 import ButtonGroup from './ButtonGroup';
 
-const _Button = Button as typeof Button & { Group: typeof ButtonGroup };
-(_Button as any).Group = ButtonGroup;
+export const Button = Object.assign(BaseButton, {
+  Link: ButtonLink,
+  Group: ButtonGroup,
+});
 
-export default _Button;
+export default Button;

@@ -27,7 +27,10 @@ const ButtonPlayground = () => {
   });
 
   // button props
-  const handlePropertyChange = <K extends keyof LocalButtonProps>(property: K, value: LocalButtonProps[K]) => {
+  const handlePropertyChange = <K extends keyof LocalButtonProps>(
+    property: K,
+    value: LocalButtonProps[K],
+  ) => {
     setButtonProps((prevProps) => ({
       ...prevProps,
       [property]: value,
@@ -35,34 +38,114 @@ const ButtonPlayground = () => {
   };
 
   const sizeOption = ['sm', 'md', 'lg'] as const;
-  type SizeOption = typeof sizeOption[number];
+  type SizeOption = (typeof sizeOption)[number];
   const iconOption = ['search', 'new', 'down', 'null'] as const;
-  type IconOption = typeof iconOption[number];
+  type IconOption = (typeof iconOption)[number];
   const alignOption = ['left', 'right'] as const;
-  type AlignOption = typeof alignOption[number];
+  type AlignOption = (typeof alignOption)[number];
   const colorOption = ['white', 'dark', 'point'] as const;
-  type ColorOption = typeof colorOption[number];
+  type ColorOption = (typeof colorOption)[number];
   const styleOption = ['fill', 'line', 'text'] as const;
-  type StyleOption = typeof styleOption[number];
+  type StyleOption = (typeof styleOption)[number];
+
+  // link props
+  type LocalLinknProps = {
+    size: 'sm' | 'md' | 'lg';
+    style: 'fill' | 'line' | 'text';
+    icon: 'search' | 'new' | 'down' | 'null';
+    align: 'left' | 'center' | 'right';
+    color: 'white' | 'dark' | 'point';
+    href: string;
+    children: string;
+    target: '_self' | '_blank' | '_parent' | '_top';
+  };
+
+  const [linkProps, setLinkProps] = useState<LocalLinknProps>({
+    size: 'md',
+    icon: 'null',
+    align: 'left',
+    color: 'white',
+    style: 'fill',
+    children: '버튼',
+    href: '#',
+    target: '_self',
+  });
+
+  const linkSizeOption = ['sm', 'md', 'lg'] as const;
+  type LinkSizeOption = (typeof linkSizeOption)[number];
+  const linkIconOption = ['search', 'new', 'down', 'null'] as const;
+  type LinkIconOption = (typeof linkIconOption)[number];
+  const linkAlignOption = ['left', 'right'] as const;
+  type LinkAlignOption = (typeof linkAlignOption)[number];
+  const linkColorOption = ['white', 'dark', 'point'] as const;
+  type LinkColorOption = (typeof linkColorOption)[number];
+  const linkStyleOption = ['fill', 'line', 'text'] as const;
+  type LinkStyleOption = (typeof linkStyleOption)[number];
+  const linkTargetOption = ['_self', '_blank', '_parent', '_top'] as const;
+  type LinkTargetOption = (typeof linkTargetOption)[number];
+
+  const handleLinkPropertyChange = <K extends keyof LocalLinknProps>(
+    property: K,
+    value: LocalLinknProps[K],
+  ) => {
+    setLinkProps((prevProps) => ({
+      ...prevProps,
+      [property]: value,
+    }));
+  };
 
   // button group props
   type LocalButtonGroupProps = { alignGroup: 'left' | 'center' | 'right' | 'down' | 'full' };
-  const [buttonGroupProps, setButtonGroupProps] = useState<LocalButtonGroupProps>({ alignGroup: 'left' });
+  const [buttonGroupProps, setButtonGroupProps] = useState<LocalButtonGroupProps>({
+    alignGroup: 'left',
+  });
   const handleAlignChange = (value: LocalButtonGroupProps['alignGroup']) => {
     setButtonGroupProps(() => ({ alignGroup: value }));
   };
   const alignGroupOption = ['left', 'center', 'right', 'down', 'full'];
 
-  // code
+  // button code
   const { size, color, style, icon, align, disabled, children } = buttonProps;
-  const buttonCode = generateCode('Button', {
-    size,
-    color,
-    style,
-    icon,
-    align,
-    disabled,
-  }, children);
+  const buttonCode = generateCode(
+    'Button',
+    {
+      size,
+      color,
+      style,
+      icon,
+      align,
+      disabled,
+    },
+    children,
+  );
+
+  // link code
+  const {
+    size: linkSize,
+    color: linkColor,
+    style: linkStyle,
+    icon: linkIcon,
+    align: linkAlign,
+    href: linkHref,
+    children: linkChildren,
+    target: linkTarget,
+  } = linkProps;
+
+  const linkCode = generateCode(
+    'Button.Link',
+    {
+      size: linkSize,
+      color: linkColor,
+      style: linkStyle,
+      icon: linkIcon,
+      align: linkAlign,
+      href: linkHref,
+      target: linkTarget,
+    },
+    children,
+  );
+
+  // button group code
   const buttonGroupCode = `
   <div className="button__group button__group-${buttonGroupProps.alignGroup}">
       ${buttonCode}${buttonCode}
@@ -72,10 +155,10 @@ const ButtonPlayground = () => {
   return (
     <div className="playground">
       <Typography.Title>Button</Typography.Title>
-      <Typography.Title level={2}>1. Button</Typography.Title>
+      <Typography.Title level={2}>1. Button ( &lt;button&gt; &lt;/button&gt; )</Typography.Title>
       <div className="playground__inner">
         <Typography.Title level={3}>1-1. Button 속성</Typography.Title>
-        <Typography.Text>- size : sm, md, lg, full</Typography.Text>
+        <Typography.Text>- size : sm, md, lg</Typography.Text>
         <div className="playground__inner-box">
           <Button size="sm">sm</Button>
           <Button size="md">md</Button>
@@ -227,9 +310,204 @@ const ButtonPlayground = () => {
         </div>
         <SourceCodeViewer code={buttonCode} />
       </div>
-      <Typography.Title level={2}>2. Button group</Typography.Title>
+
+      <Typography.Title level={2}>2. a ( &lt;a&gt; &lt;/a&gt; )</Typography.Title>
+      <Typography.Title level={3}>2-1. a 속성</Typography.Title>
+
+      <Typography.Text>- size : sm, md, lg</Typography.Text>
+      <div className="playground__inner-box">
+        <Button.Link href="#" size="sm">
+          sm
+        </Button.Link>
+        <Button.Link href="#" size="md">
+          md
+        </Button.Link>
+        <Button.Link href="#" size="lg">
+          lg
+        </Button.Link>
+      </div>
+
+      <Typography.Text>- icon : search, new, down, null</Typography.Text>
+      <div className="playground__inner-box">
+        <div className="button__group">
+          <Button.Link href="#" icon="search">
+            search
+          </Button.Link>
+          <Button.Link href="#" icon="new">
+            new
+          </Button.Link>
+          <Button.Link href="#" icon="down">
+            down
+          </Button.Link>
+        </div>
+      </div>
+
+      <Typography.Text>- align : left, right</Typography.Text>
+      <div className="playground__inner-box">
+        <div className="button__group">
+          <Button.Link href="#" icon="search" align="left">
+            left
+          </Button.Link>
+          <Button.Link href="#" icon="search" align="right">
+            right
+          </Button.Link>
+        </div>
+      </div>
+
+      <Typography.Text>- color : white, dark, point</Typography.Text>
+      <div className="playground__inner-box">
+        <div className="button__group">
+          <Button.Link href="#" color="white">
+            white
+          </Button.Link>
+          <Button.Link href="#" color="dark">
+            dark
+          </Button.Link>
+          <Button.Link href="#" color="point">
+            point
+          </Button.Link>
+        </div>
+      </div>
+
+      <Typography.Text>- href</Typography.Text>
+      <div className="playground__inner-box">
+        <Button.Link href="https://naver.com">https://naver.com</Button.Link>
+      </div>
+
+      <Typography.Text>- style : fill, line, text</Typography.Text>
+      <div className="playground__inner-box">
+        <div className="button__group">
+          <Button.Link href="#" color="dark" style="fill">
+            fill
+          </Button.Link>
+          <Button.Link href="#" color="dark" style="line">
+            line
+          </Button.Link>
+          <Button.Link href="#" color="dark" style="text">
+            text
+          </Button.Link>
+        </div>
+      </div>
+
+      <Typography.Text>- style : fill, line, text</Typography.Text>
+      <div className="playground__inner-box">
+        <div className="button__group">
+          <Button.Link href="https://naver.com" target="_self">
+            _self
+          </Button.Link>
+          <Button.Link href="https://naver.com" target="_blank">
+            _blank
+          </Button.Link>
+          <Button.Link href="https://naver.com" target="_parent">
+            _parent
+          </Button.Link>
+          <Button.Link href="https://naver.com" target="_top">
+            _top
+          </Button.Link>
+        </div>
+      </div>
+
+      <Typography.Title level={3}>2-2. a 예시</Typography.Title>
+      <ul className="playground__inner-list">
+        <li>
+          - size :{' '}
+          <div className="button__group">
+            {linkSizeOption.map((val, idx) => (
+              <button
+                className={`button__tag ${linkProps.size === val ? 'is-active' : ''}`}
+                key={idx}
+                onClick={() => handleLinkPropertyChange('size', val as SizeOption)}
+              >
+                {val}
+              </button>
+            ))}
+          </div>
+        </li>
+        <li>
+          - icon :{' '}
+          <div className="button__group">
+            {linkIconOption.map((val, idx) => (
+              <button
+                className={`button__tag ${linkProps.icon === val ? 'is-active' : ''}`}
+                key={idx}
+                onClick={() => handleLinkPropertyChange('icon', val as IconOption)}
+              >
+                {val}
+              </button>
+            ))}
+          </div>
+        </li>
+        <li>
+          - align :{' '}
+          <div className="button__group">
+            {linkAlignOption.map((val, idx) => (
+              <button
+                className={`button__tag ${linkProps.align === val ? 'is-active' : ''}`}
+                key={idx}
+                onClick={() => handleLinkPropertyChange('align', val as AlignOption)}
+              >
+                {val}
+              </button>
+            ))}
+          </div>
+        </li>
+        <li>
+          - color :{' '}
+          <div className="button__group">
+            {linkColorOption.map((val, idx) => (
+              <button
+                className={`button__tag ${linkProps.color === val ? 'is-active' : ''}`}
+                key={idx}
+                onClick={() => handleLinkPropertyChange('color', val as ColorOption)}
+              >
+                {val}
+              </button>
+            ))}
+          </div>
+        </li>
+        <li>
+          - style:{' '}
+          <div className="button__group">
+            {linkStyleOption.map((val, idx) => (
+              <button
+                className={`button__tag ${linkProps.style === val ? 'is-active' : ''}`}
+                key={idx}
+                onClick={() => handleLinkPropertyChange('style', val as StyleOption)}
+              >
+                {val}
+              </button>
+            ))}
+          </div>
+        </li>
+        <li>
+          - href:{' '}
+          <input
+            value={linkProps.href || ''}
+            onChange={(e) => handleLinkPropertyChange('href', e.target.value)}
+            placeholder="href를 입력하세요"
+          />
+        </li>
+        <li>
+          - target:{' '}
+          {linkTargetOption.map((val, idx) => (
+            <button
+              className={`button__tag ${linkProps.target === val ? 'is-active' : ''}`}
+              key={idx}
+              onClick={() => handleLinkPropertyChange('target', val as LinkTargetOption)}
+            >
+              {val}
+            </button>
+          ))}
+        </li>
+      </ul>
+      <div className="playground__inner-box">
+        <Button.Link {...linkProps} />
+      </div>
+      <SourceCodeViewer code={linkCode} />
+
+      <Typography.Title level={2}>3. Button group</Typography.Title>
       <div className="playground__inner">
-        <Typography.Title level={3}>2-1. Button group 속성</Typography.Title>
+        <Typography.Title level={3}>3-1. Button group 속성</Typography.Title>
         <Typography.Text>- align group : left, center, right, down, full</Typography.Text>
         <div className="playground__inner-box">
           <Button.Group alignGroup="left">
@@ -254,7 +532,7 @@ const ButtonPlayground = () => {
           </Button.Group>
         </div>
 
-        <Typography.Title level={3}>2-2. Button group 예시</Typography.Title>
+        <Typography.Title level={3}>3-2. Button group 예시</Typography.Title>
         <ul className="playground__inner-list">
           <li>
             - alignGroup :{' '}

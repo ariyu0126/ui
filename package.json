@@ -1,6 +1,6 @@
 {
   "name": "@ure0126/basic-ui-components",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "React UI components by ure",
   "license": "MIT",
   "files": [
@@ -26,6 +26,8 @@
     "dev:app": "next dev -p 3000",
     "build:lib": "tsup",
     "build:app": "next build",
+    "build:css": "sass src/styles/main.scss dist/styles/main.css --no-source-map",
+    "build": "npm run clean && npm run build:lib && npm run build:css",
     "clean": "rm -rf dist",
     "prepublishOnly": "npm run build:lib"
   },

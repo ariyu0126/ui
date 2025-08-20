@@ -12,6 +12,7 @@ export default function GettingStarted() {
   const cmd = pm === 'npm' ? `npm i ${PKG}` : pm === 'yarn' ? `yarn add ${PKG}` : `pnpm add ${PKG}`;
 
   const example = `
+import '@ure0126/basic-ui-components/dist/styles/main.css';
 import { Button } from '${PKG}';
 
 export default function Example() {

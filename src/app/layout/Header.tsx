@@ -17,13 +17,13 @@ const Header = () => {
             <Button.Link href="https://github.com/ure0126/ui" target="_blank" icon="new">
               Github
             </Button.Link>
-            <Button.Link
+            {/* <Button.Link
               href="https://www.npmjs.com/package/@ure0126/basic-ui-components"
               target="_blank"
               icon="new"
             >
               NPM
-            </Button.Link>
+            </Button.Link> */}
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 {
   "name": "@ure0126/basic-ui-components",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "React UI components by ure",
   "license": "MIT",
   "files": [
@@ -16,7 +16,10 @@
       "require": "./dist/index.cjs"
     }
   },
-  "sideEffects": ["/*.css", "/*.scss"],
+  "sideEffects": [
+    "/*.css",
+    "/*.scss"
+  ],
   "scripts": {
     "gen:components": "node scripts/generateComponentIndex.cjs",
     "dev:lib": "tsup --watch",

@@ -2,33 +2,32 @@ import * as react_jsx_runtime from 'react/jsx-runtime';
 import * as react from 'react';
 import react__default from 'react';
 
-declare const icons: {
-    readonly search: react_jsx_runtime.JSX.Element;
-    readonly new: react_jsx_runtime.JSX.Element;
-    readonly down: react_jsx_runtime.JSX.Element;
-};
-type IconKey = keyof typeof icons | 'null' | undefined;
-type ButtonProps = {
-    size?: 'sm' | 'md' | 'lg';
-    style?: 'fill' | 'line' | 'text';
-    icon?: IconKey;
-    align?: 'left' | 'center' | 'right';
-    color?: 'white' | 'dark' | 'point';
+declare const Button: (({ size, style, icon, align, color, disabled, children, onClick, className, ...rest }: {
+    size?: "sm" | "md" | "lg";
+    style?: "fill" | "line" | "text";
+    icon?: "search" | "new" | "down" | "null" | undefined;
+    align?: "left" | "center" | "right";
+    color?: "white" | "dark" | "point";
     disabled?: boolean;
-    children?: string;
-    onClick?: React.MouseEventHandler<HTMLButtonElement>;
-    className?: string;
-} & React.ButtonHTMLAttributes<HTMLButtonElement>;
-declare const Button: ({ size, style, icon, align, color, disabled, children, onClick, className, ...rest }: ButtonProps) => react_jsx_runtime.JSX.Element;
-
-type ButtonGroupProps = {
-    alignGroup?: 'left' | 'center' | 'right' | 'down' | 'full';
     children?: React.ReactNode;
-} & React.HTMLAttributes<HTMLDivElement>;
-declare const ButtonGroup: ({ alignGroup, children, ...rest }: ButtonGroupProps) => react_jsx_runtime.JSX.Element;
-
-declare const _Button: typeof Button & {
-    Group: typeof ButtonGroup;
+    className?: string;
+} & react.ButtonHTMLAttributes<HTMLButtonElement>) => react_jsx_runtime.JSX.Element) & {
+    Link: ({ size, style, icon, align, color, children, className, href, target, ...rest }: {
+        size?: "sm" | "md" | "lg";
+        style?: "fill" | "line" | "text";
+        icon?: "search" | "new" | "down" | "null" | undefined;
+        align?: "left" | "center" | "right";
+        color?: "white" | "dark" | "point";
+        disabled?: boolean;
+        children?: React.ReactNode;
+        className?: string;
+        href: string;
+        target?: "_self" | "_blank" | "_parent" | "_top";
+    } & react.AnchorHTMLAttributes<HTMLAnchorElement>) => react_jsx_runtime.JSX.Element;
+    Group: ({ alignGroup, children, ...rest }: {
+        alignGroup?: "left" | "center" | "right" | "down" | "full";
+        children?: React.ReactNode;
+    } & react.HTMLAttributes<HTMLDivElement>) => react_jsx_runtime.JSX.Element;
 };
 
 type CheckboxProps = {
@@ -352,4 +351,4 @@ declare const Icon: {
     readonly close: (props: SvgProps) => react_jsx_runtime.JSX.Element;
 };
 
-export { _Button as Button, _Checkbox as Checkbox, Flex, Icon, Input, Pagination, _Radio as Radio, Select as Selectbox, SourceCodeViewer, Table, Textarea, Typography };
+export { Button, _Checkbox as Checkbox, Flex, Icon, Input, Pagination, _Radio as Radio, Select as Selectbox, SourceCodeViewer, Table, Textarea, Typography };

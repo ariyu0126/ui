@@ -16,7 +16,7 @@
       "require": "./dist/index.cjs"
     }
   },
-  "sideEffects": false,
+  "sideEffects": ["/*.css", "/*.scss"],
   "scripts": {
     "gen:components": "node scripts/generateComponentIndex.cjs",
     "dev:lib": "tsup --watch",

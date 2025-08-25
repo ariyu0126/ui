@@ -10,7 +10,7 @@ const Header = () => {
         </div>
         <div className="layout__header-menu col-9">
           <div className="layout__header-menu-item">
-            <Button.Link href="/install" style="text">가이드</Button.Link>
+            <Button.Link href="/guide" style="text">가이드</Button.Link>
             <Button.Link href="/playground/flex-grid" style="text">컴포넌트</Button.Link>
           </div>
           <div className="flex flex--gap-md">

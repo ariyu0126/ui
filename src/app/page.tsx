@@ -1,7 +1,9 @@
 'use client';
 
+import Link from 'next/link';
+import { menuData } from './layout/Sidebar';
 import { useState } from 'react';
-import { SourceCodeViewer, Typography } from '../components';
+import { SourceCodeViewer, Typography, Button } from '../components';
 import '../styles/pages/playground.scss';
 
 const code = `
@@ -90,26 +92,15 @@ const Home = () => {
         <Typography.Title level={3}>5. 컴포넌트 목록</Typography.Title>
         <div className="playground__inner-box">
           <ol>
-            <li>1. flex / grid</li>
-            <li>2. color</li>
-            <li>3. typography</li>
-            <li>4. Button</li>
-            <li>5. input - text, number, password, tel, email</li>
-            <li>6. Textarea</li>
-            <li>7. Radio - group</li>
-            <li>8. Checkbox - group</li>
-            <li>9. Select</li>
-            <li>10. table</li>
-            {/*
-            <li>toggle switch</li>
-            <li>12. Form</li>
-            <li>14. tab</li>
-            <li>15. progressbar</li>
-            <li>16. notification</li>
-            <li>17. pagination</li>
-            <li>18. loading</li>
-            <li>19. alert</li>
-            <li>20. modal</li> */}
+            {menuData
+              .flatMap((section) => section.items)
+              .map((item, index) => (
+                <li key={item.href}>
+                  <Button.Link href={item.href} style="text">
+                    {index + 1}. {item.label}
+                  </Button.Link>
+                </li>
+              ))}
           </ol>
         </div>
 
@@ -131,45 +122,50 @@ const Home = () => {
 
         <Typography.Title level={3}>7. 사용 라이브러리</Typography.Title>
         <div className="playground__inner-box">
-          <Typography.Text>- react-hook-form</Typography.Text>
+          {/* <Typography.Text>- react-hook-form</Typography.Text>
           <a href="https://react-hook-form.com/docs/useform" target="_blank">
             https://react-hook-form.com/docs/useform
           </a>
           <br />
-          <br />
+          <br /> */}
           <Typography.Text>- clsx</Typography.Text>
-          <a href="https://github.com/lukeed/clsx" target="_blank">
+          <Button.Link href="https://github.com/lukeed/clsx" target="_blank" style="text">
             https://github.com/lukeed/clsx
-          </a>
+          </Button.Link>
         </div>
 
         <Typography.Title level={3}>참고 사이트</Typography.Title>
         <div className="playground__inner-box">
           <Typography.Text>- UI Component</Typography.Text>
-          <a href="https://mui.com/material-ui/all-components/" target="_blank">
+          <Button.Link
+            href="https://mui.com/material-ui/all-components/"
+            target="_blank"
+            style="text"
+          >
             https://mui.com/material-ui/all-components/
-          </a>
+          </Button.Link>
           <br />
-          <a href="https://ant.design/components/button" target="_blank">
+          <Button.Link href="https://ant.design/components/button" target="_blank" style="text">
             https://ant.design/components/button
-          </a>
+          </Button.Link>
           <br />
-          <a href="https://animata.design/docs/button" target="_blank">
+          <Button.Link href="https://animata.design/docs/button" target="_blank" style="text">
             https://animata.design/docs/button
-          </a>
+          </Button.Link>
           <br />
-          <a href="https://ui.shadcn.com/docs" target="_blank">
+          <Button.Link href="https://ui.shadcn.com/docs" target="_blank" style="text">
             https://ui.shadcn.com/docs
-          </a>
+          </Button.Link>
           <br />
           <br />
           <Typography.Text>- SVG</Typography.Text>
-          <a
+          <Button.Link
             href="https://www.svgrepo.com/svg/533594/arrow-narrow-bottom-alignment"
             target="_blank"
+            style="text"
           >
             SVG REPO
-          </a>
+          </Button.Link>
         </div>
       </div>
     </div>

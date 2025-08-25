@@ -5,7 +5,7 @@
 ## 설치
 
 ```bash
-npm install @your-namespace/your-component-library
+npm install @ure0126/basic-ui-components
 ```
 
 ## 사용법
@@ -13,7 +13,7 @@ npm install @your-namespace/your-component-library
 각 컴포넌트는 개별적으로 가져와 사용할 수 있습니다. 예를 들어, `Button` 컴포넌트를 사용하려면 다음과 같이 작성합니다:
 
 ```jsx
-import { Button } from '@your-namespace/your-component-library';
+import { Button } from '@ure0126/basic-ui-components';
 
 const App = () => (
   <Button onClick={() => alert('Clicked!')}>Click Me</Button>
@@ -31,8 +31,8 @@ const App = () => (
 - **Radio**: 라디오 버튼 컴포넌트.
 - **Checkbox**: 체크박스 컴포넌트.
 - **Selectbox**: 드롭다운 선택 박스 컴포넌트.
+- **Toggle**: 토글 버튼 컴포넌트.
 - **Table**: 데이터 테이블 컴포넌트.
-- **Pagination**: 페이지네이션을 위한 컴포넌트.
 
 ## 프로젝트 구조
 
@@ -58,7 +58,6 @@ const App = () => (
 
 ## 사용 라이브러리
 
-- **react-hook-form**: [react-hook-form 사용법](https://react-hook-form.com/docs/useform)
 - **clsx**: [clsx 사용법](https://github.com/lukeed/clsx)
 
 ## 참고 사이트

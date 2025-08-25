@@ -66,7 +66,7 @@ const Home = () => {
             <li>1. app 디렉토리 중심 구조</li>
             <li>2. 중첩 레이아웃 지원 (페이지마다 layout)</li>
           </ol>
-          <SourceCodeViewer btnText="구조" code={code} hidden={false} />
+          <SourceCodeViewer btnText="구조" code={code} hidden={false} copy={false} />
         </div>
 
         <Typography.Title level={3}>2. 디자인 규칙</Typography.Title>
@@ -119,54 +119,6 @@ const Home = () => {
             <li>- outline 제거 금지 or focus-visible 스타일 대체 필수</li>
           </ul>
         </div> */}
-
-        <Typography.Title level={3}>7. 사용 라이브러리</Typography.Title>
-        <div className="playground__inner-box">
-          {/* <Typography.Text>- react-hook-form</Typography.Text>
-          <a href="https://react-hook-form.com/docs/useform" target="_blank">
-            https://react-hook-form.com/docs/useform
-          </a>
-          <br />
-          <br /> */}
-          <Typography.Text>- clsx</Typography.Text>
-          <Button.Link href="https://github.com/lukeed/clsx" target="_blank" style="text">
-            https://github.com/lukeed/clsx
-          </Button.Link>
-        </div>
-
-        <Typography.Title level={3}>참고 사이트</Typography.Title>
-        <div className="playground__inner-box">
-          <Typography.Text>- UI Component</Typography.Text>
-          <Button.Link
-            href="https://mui.com/material-ui/all-components/"
-            target="_blank"
-            style="text"
-          >
-            https://mui.com/material-ui/all-components/
-          </Button.Link>
-          <br />
-          <Button.Link href="https://ant.design/components/button" target="_blank" style="text">
-            https://ant.design/components/button
-          </Button.Link>
-          <br />
-          <Button.Link href="https://animata.design/docs/button" target="_blank" style="text">
-            https://animata.design/docs/button
-          </Button.Link>
-          <br />
-          <Button.Link href="https://ui.shadcn.com/docs" target="_blank" style="text">
-            https://ui.shadcn.com/docs
-          </Button.Link>
-          <br />
-          <br />
-          <Typography.Text>- SVG</Typography.Text>
-          <Button.Link
-            href="https://www.svgrepo.com/svg/533594/arrow-narrow-bottom-alignment"
-            target="_blank"
-            style="text"
-          >
-            SVG REPO
-          </Button.Link>
-        </div>
       </div>
     </div>
   );

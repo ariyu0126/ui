@@ -10,6 +10,6 @@ const ComponentsLayout = ({ children }: { children: ReactNode }) => {
       </section>
     </div>
   );
-}
+};
 
 export default ComponentsLayout;

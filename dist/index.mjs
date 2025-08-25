@@ -1,5 +1,5 @@
 import default2 from 'clsx';
-import { jsxs, jsx, Fragment } from 'react/jsx-runtime';
+import { jsxs, jsx } from 'react/jsx-runtime';
 import { useId, useState, useRef, useMemo, useEffect } from 'react';
 
 var __create = Object.create;
@@ -3940,10 +3940,20 @@ var SourceCodeViewer = ({
   code,
   btnText = "\uCF54\uB4DC",
   hidden = true,
-  copy = false,
+  copy = true,
   className = ""
 }) => {
   const [showCode, setShowCode] = useState(!hidden);
+  const [copied, setCopied] = useState(false);
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(code);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2e3);
+    } catch (err) {
+      console.error("Failed to copy code:", err);
+    }
+  };
   return /* @__PURE__ */ jsxs("div", { className: `source-code-viewer ${className}`, children: [
     hidden && /* @__PURE__ */ jsx(
       Button_default,
@@ -3957,10 +3967,21 @@ var SourceCodeViewer = ({
         children: showCode ? `Hide ${btnText}` : `Show ${btnText}`
       }
     ),
-    (showCode || !hidden) && /* @__PURE__ */ jsxs(Fragment, { children: [
-      copy && /* @__PURE__ */ jsx("button", { type: "button", "aria-label": "Copy code", children: "Copy" }),
-      /* @__PURE__ */ jsx("pre", { role: "region", "aria-label": "Source code", children: /* @__PURE__ */ jsx("code", { children: code }) })
-    ] })
+    (showCode || !hidden) && /* @__PURE__ */ jsx("pre", { role: "region", "aria-label": "Source code", children: /* @__PURE__ */ jsxs("div", { className: "source-code-viewer__content", children: [
+      /* @__PURE__ */ jsx("code", { children: code }),
+      copy && /* @__PURE__ */ jsx(
+        Button_default,
+        {
+          color: "point",
+          style: "line",
+          size: "sm",
+          onClick: handleCopy,
+          "aria-label": "Copy code",
+          className: "source-code-viewer__copy-btn",
+          children: copied ? "Copied!" : "Copy"
+        }
+      )
+    ] }) })
   ] });
 };
 var SourceCodeViewer_default = SourceCodeViewer;

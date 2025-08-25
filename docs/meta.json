@@ -1,0 +1,64 @@
+{
+  "package": {
+    "name": "@ure0126/basic-ui-components",
+    "stylesImport": "import '@ure0126/basic-ui-components/dist/styles/main.css';",
+    "peerDepsInstall": "npm i react react-dom"
+  },
+  "install": {
+    "npm": "npm i @ure0126/basic-ui-components",
+    "yarn": "yarn add @ure0126/basic-ui-components",
+    "pnpm": "pnpm add @ure0126/basic-ui-components"
+  },
+  "requirements": {
+    "node": ">=18",
+    "react": ">=18",
+    "reactDom": ">=18"
+  },
+  "quickStart": "import '@ure0126/basic-ui-components/dist/styles/main.css';\nimport { Button } from '@ure0126/basic-ui-components';\n\nexport default function Example() {\n  return <Button>Click Me</Button>;\n}",
+  "componentsByCategory": [
+    { "category": "Flex/Grid", "items": ["레이아웃을 위한 플렉스 및 그리드 컴포넌트"] },
+    { "category": "Color", "items": ["색상 관련 컴포넌트"] },
+    { "category": "Typography", "items": ["텍스트 스타일링을 위한 컴포넌트"] },
+    { "category": "Button", "items": ["다양한 스타일과 크기를 지원하는 버튼 컴포넌트"] },
+    { "category": "Input", "items": ["텍스트 입력을 위한 컴포넌트"] },
+    { "category": "Textarea", "items": ["여러 줄 입력을 위한 컴포넌트"] },
+    { "category": "Radio", "items": ["라디오 버튼 컴포넌트"] },
+    { "category": "Checkbox", "items": ["체크박스 컴포넌트"] },
+    { "category": "Selectbox", "items": ["드롭다운 선택 박스 컴포넌트"] },
+    { "category": "Toggle", "items": ["토글 버튼 컴포넌트"] },
+    { "category": "Table", "items": ["데이터 테이블 컴포넌트"] }
+  ],
+  "libraries": [
+    {
+      "name": "clsx",
+      "desc": "조건부 클래스명 결합 유틸리티",
+      "github": "https://github.com/lukeed/clsx",
+      "licenseUrl": "https://github.com/lukeed/clsx/blob/master/license",
+      "licenseName": "MIT",
+      "author": "Luke Edwards (lukeed.com)"
+    }
+  ],
+  "icons": {
+    "note": "이 프로젝트에 포함된 일부 아이콘은 Dazzle UI의 작품을 사용합니다.",
+    "collectionLabel": "Dazzle Line Icons",
+    "collectionUrl": "https://www.svgrepo.com/collection/dazzle-line-icons/",
+    "licenseName": "CC BY 4.0",
+    "licenseUrl": "https://www.svgrepo.com/page/licensing/#CC%20Attribution",
+    "authorLabel": "Dazzle UI",
+    "authorUrl": "https://www.dazzleui.com/"
+  },
+  "demo": {
+    "label": "ure-ui 예시 사이트",
+    "url": "https://ure-ui.netlify.app/"
+  },
+  "references": {
+    "mui": "https://mui.com/material-ui/all-components/",
+    "antd": "https://ant.design/components/button",
+    "animata": "https://animata.design/docs/button",
+    "shadcn": "https://ui.shadcn.com/docs"
+  },
+  "license": {
+    "project": "MIT",
+    "notice": "단, 포함된 아이콘 및 외부 리소스는 각 리소스의 라이선스를 따릅니다."
+  }
+}

@@ -15,10 +15,21 @@ const SourceCodeViewer = ({
   code,
   btnText = '코드',
   hidden = true,
-  copy = false,
+  copy = true,
   className = '',
 }: SourceCodeViewerProps) => {
   const [showCode, setShowCode] = useState(!hidden);
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(code);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy code:', err);
+    }
+  };
 
   return (
     <div className={`source-code-viewer ${className}`}>
@@ -35,16 +46,23 @@ const SourceCodeViewer = ({
         </Button>
       )}
       {(showCode || !hidden) && (
-        <>
-          {copy && (
-            <button type="button" aria-label="Copy code">
-              Copy
-            </button>
-          )}
-          <pre role="region" aria-label="Source code">
+        <pre role="region" aria-label="Source code">
+          <div className="source-code-viewer__content">
             <code>{code}</code>
-          </pre>
-        </>
+            {copy && (
+              <Button
+                color="point"
+                style="line"
+                size="sm"
+                onClick={handleCopy}
+                aria-label="Copy code"
+                className="source-code-viewer__copy-btn"
+              >
+                {copied ? 'Copied!' : 'Copy'}
+              </Button>
+            )}
+          </div>
+        </pre>
       )}
     </div>
   );

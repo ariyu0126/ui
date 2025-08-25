@@ -3946,10 +3946,20 @@ var SourceCodeViewer = ({
   code,
   btnText = "\uCF54\uB4DC",
   hidden = true,
-  copy = false,
+  copy = true,
   className = ""
 }) => {
   const [showCode, setShowCode] = react.useState(!hidden);
+  const [copied, setCopied] = react.useState(false);
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(code);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2e3);
+    } catch (err) {
+      console.error("Failed to copy code:", err);
+    }
+  };
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: `source-code-viewer ${className}`, children: [
     hidden && /* @__PURE__ */ jsxRuntime.jsx(
       Button_default,
@@ -3963,10 +3973,21 @@ var SourceCodeViewer = ({
         children: showCode ? `Hide ${btnText}` : `Show ${btnText}`
       }
     ),
-    (showCode || !hidden) && /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-      copy && /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", "aria-label": "Copy code", children: "Copy" }),
-      /* @__PURE__ */ jsxRuntime.jsx("pre", { role: "region", "aria-label": "Source code", children: /* @__PURE__ */ jsxRuntime.jsx("code", { children: code }) })
-    ] })
+    (showCode || !hidden) && /* @__PURE__ */ jsxRuntime.jsx("pre", { role: "region", "aria-label": "Source code", children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "source-code-viewer__content", children: [
+      /* @__PURE__ */ jsxRuntime.jsx("code", { children: code }),
+      copy && /* @__PURE__ */ jsxRuntime.jsx(
+        Button_default,
+        {
+          color: "point",
+          style: "line",
+          size: "sm",
+          onClick: handleCopy,
+          "aria-label": "Copy code",
+          className: "source-code-viewer__copy-btn",
+          children: copied ? "Copied!" : "Copy"
+        }
+      )
+    ] }) })
   ] });
 };
 var SourceCodeViewer_default = SourceCodeViewer;

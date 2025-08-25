@@ -29,7 +29,8 @@
     "build:css": "sass src/styles/main.scss dist/styles/main.css --no-source-map",
     "build": "npm run clean && npm run build:lib && npm run build:css",
     "clean": "rm -rf dist",
-    "prepublishOnly": "npm run build:lib"
+    "prepublishOnly": "npm run build:lib",
+    "gen:readme": "node scripts/genReadme.mjs"
   },
   "peerDependencies": {
     "react": ">=18",

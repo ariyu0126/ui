@@ -92,7 +92,7 @@ export default function GettingStarted() {
       {/* 4) 사용 예시 */}
       <Typography.Title level={2}>사용 예시</Typography.Title>
       <div className="playground__inner">
-        <SourceCodeViewer code={meta.quickStart} hidden={false} />
+        <SourceCodeViewer code={meta.quickStart.replace(/\\n/g, '\n')} hidden={false} />
       </div>
 
       {/* 5) 컴포넌트 카테고리 */}

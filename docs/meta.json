@@ -14,7 +14,7 @@
     "react": ">=18",
     "reactDom": ">=18"
   },
-  "quickStart": "import '@ure0126/basic-ui-components/dist/styles/main.css';\nimport { Button } from '@ure0126/basic-ui-components';\n\nexport default function Example() {\n  return <Button>Click Me</Button>;\n}",
+  "quickStart": "import '@ure0126/basic-ui-components/dist/styles/main.css';\\nimport { Button } from '@ure0126/basic-ui-components';\\n\\nexport default function Example() {\\n  return <Button>Click Me</Button>;\\n}",
   "componentsByCategory": [
     { "category": "Flex/Grid", "items": ["레이아웃을 위한 플렉스 및 그리드 컴포넌트"] },
     { "category": "Color", "items": ["색상 관련 컴포넌트"] },
